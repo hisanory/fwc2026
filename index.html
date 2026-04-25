@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIFA World Cup 2026 — 旅のしおり</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#08101e; --card:#13243a; --border:#1e3a58; --green:#00e676; --gold:#ffd54f; --red:#ff5252; --blue:#40c4ff; --text:#e8f0fc; --muted:#7a94b0; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--bg); color:var(--text); font-family:'Noto Sans JP',sans-serif; min-height:100svh; display:flex; flex-direction:column; }
+    .hero { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:2.5rem 1.5rem; position:relative; overflow:hidden; background:radial-gradient(ellipse at 50% 0%, #0a2a50, #08101e 70%); }
+    .hero::before { content:''; position:absolute; inset:0; background-image:repeating-linear-gradient(0deg,transparent,transparent 38px,rgba(255,255,255,0.02) 38px,rgba(255,255,255,0.02) 40px),repeating-linear-gradient(90deg,transparent,transparent 38px,rgba(255,255,255,0.015) 38px,rgba(255,255,255,0.015) 40px); pointer-events:none; }
+    .glow { position:absolute; top:-80px; left:50%; transform:translateX(-50%); width:500px; height:300px; background:radial-gradient(ellipse,rgba(0,230,118,0.1),transparent 70%); pointer-events:none; }
+    .badge { display:inline-block; background:rgba(0,230,118,0.12); border:1px solid rgba(0,230,118,0.3); border-radius:100px; padding:5px 14px; font-size:0.72rem; color:var(--green); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:1.5rem; animation:fadeIn 0.5s ease both; }
+    h1 { font-family:'Bebas Neue',cursive; font-size:clamp(3rem,13vw,6.5rem); line-height:0.9; letter-spacing:0.04em; animation:slideUp 0.6s ease both 0.1s; }
+    h1 em { color:var(--green); font-style:normal; display:block; }
+    .sub { font-size:clamp(0.85rem,3vw,1rem); color:var(--gold); font-weight:700; letter-spacing:0.06em; margin-top:0.8rem; animation:slideUp 0.6s ease both 0.2s; }
+    .match-info { margin:1.5rem 0 2rem; display:inline-flex; flex-wrap:wrap; gap:0.8rem; justify-content:center; animation:slideUp 0.6s ease both 0.3s; }
+    .mi { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:8px 14px; font-size:0.8rem; text-align:center; }
+    .mi strong { display:block; color:var(--gold); font-size:0.95rem; }
+
+    .cards { display:grid; grid-template-columns:1fr 1fr; gap:1rem; max-width:600px; width:100%; margin:0 auto; padding:0 1rem; animation:slideUp 0.6s ease both 0.4s; }
+    @media(max-width:500px){ .cards { grid-template-columns:1fr; } }
+    .group-card { border-radius:20px; padding:1.5rem; text-decoration:none; display:flex; flex-direction:column; gap:0.5rem; transition:transform 0.2s, box-shadow 0.2s; border:1px solid; position:relative; overflow:hidden; }
+    .group-card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,0.4); }
+    .group-card.sea { background:linear-gradient(135deg,#0d2a1c,#1a2f40); border-color:rgba(0,230,118,0.3); }
+    .group-card.van { background:linear-gradient(135deg,#0d1a2a,#1a2040); border-color:rgba(64,196,255,0.3); }
+    .group-card .gc-label { font-size:0.68rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; }
+    .sea .gc-label { color:var(--green); }
+    .van .gc-label { color:var(--blue); }
+    .group-card .gc-title { font-family:'Bebas Neue',cursive; font-size:2rem; letter-spacing:0.06em; color:#fff; line-height:1; }
+    .group-card .gc-members { font-size:0.78rem; color:var(--muted); }
+    .group-card .gc-dates { font-size:0.75rem; font-weight:700; margin-top:0.3rem; }
+    .sea .gc-dates { color:var(--green); }
+    .van .gc-dates { color:var(--blue); }
+    .group-card .gc-match { margin-top:0.5rem; font-size:0.72rem; background:rgba(255,255,255,0.05); border-radius:8px; padding:5px 10px; color:var(--text); }
+    .group-card .gc-arrow { position:absolute; bottom:1rem; right:1rem; font-size:1.2rem; opacity:0.4; }
+    .group-card:hover .gc-arrow { opacity:1; }
+
+    footer { text-align:center; padding:1.5rem 1rem; font-size:0.72rem; color:var(--muted); border-top:1px solid var(--border); }
+
+    @keyframes fadeIn { from{opacity:0}to{opacity:1} }
+    @keyframes slideUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
+  </style>
+</head>
+<body>
+<div class="hero">
+  <div class="glow"></div>
+  <div class="badge">⚽ FIFA World Cup 2026™ — 旅のしおり Hub</div>
+  <h1>FWC <em>2026</em></h1>
+  <p class="sub">🏆 SEATTLE / VANCOUVER — Family &amp; Friends Trip</p>
+
+  <div class="match-info">
+    <div class="mi"><strong>⚽ Match 94</strong>7/6(月) 17:00 PT<br><small>Lumen Field, Seattle</small></div>
+    <div class="mi"><strong>⚽ Match 96</strong>7/10(金) 13:00 PT<br><small>BC Place, Vancouver</small></div>
+  </div>
+
+  <div class="cards">
+    <a class="group-card sea" href="./seattle/">
+      <div class="gc-label">🏠 Seattle 組</div>
+      <div class="gc-title">SEA<br>TRIP</div>
+      <div class="gc-members">山内・久典 ＋ 蓮太郎</div>
+      <div class="gc-dates">7/3(金)〜7/8(水)</div>
+      <div class="gc-match">🏆 Match 94 @ Lumen Field<br>✈️ ANA NH115 帰国</div>
+      <div class="gc-arrow">→</div>
+    </a>
+    <a class="group-card van" href="./vancouver/">
+      <div class="gc-label">✈️ Vancouver 組</div>
+      <div class="gc-title">VAN<br>TRIP</div>
+      <div class="gc-members">芝・勇介 ＋ コウシ</div>
+      <div class="gc-dates">7/3(金)〜7/12(日)</div>
+      <div class="gc-match">🏆 Match 94 @ Lumen Field<br>🏆 Match 96 @ BC Place</div>
+      <div class="gc-arrow">→</div>
+    </a>
+  </div>
+</div>
+<footer>FIFA World Cup 2026™ — Private Trip Planner</footer>
+</body>
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>⚽ FWC2026 SEA組 — 旅のしおり</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{ --bg:#08101e; --card:#13243a; --card2:#1a2f47; --border:#1e3a58; --green:#00e676; --green2:#00b853; --gold:#ffd54f; --red:#ff5252; --blue:#40c4ff; --purple:#ce93d8; --text:#e8f0fc; --muted:#7a94b0; }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;line-height:1.6;overflow-x:hidden;}
+
+    /* HERO */
+    .hero{position:relative;min-height:60svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem 1.5rem;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,#0a2a50,#08101e 65%);}
+    .hero::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 38px,rgba(255,255,255,0.02) 38px,rgba(255,255,255,0.02) 40px),repeating-linear-gradient(90deg,transparent,transparent 38px,rgba(255,255,255,0.015) 38px,rgba(255,255,255,0.015) 40px);pointer-events:none;}
+    .glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:300px;background:radial-gradient(ellipse,rgba(0,230,118,0.1),transparent 70%);pointer-events:none;}
+    .back-btn{position:absolute;top:1rem;left:1rem;display:inline-flex;align-items:center;gap:5px;color:var(--muted);font-size:0.78rem;text-decoration:none;border:1px solid var(--border);border-radius:100px;padding:4px 12px;transition:all .2s;}
+    .back-btn:hover{color:var(--text);border-color:var(--green);}
+    .badge{display:inline-block;background:rgba(0,230,118,0.12);border:1px solid rgba(0,230,118,0.3);border-radius:100px;padding:4px 14px;font-size:0.72rem;color:var(--green);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem;}
+    .hero h1{font-family:'Bebas Neue',cursive;font-size:clamp(3rem,12vw,6rem);line-height:.9;letter-spacing:.04em;color:#fff;}
+    .hero h1 em{color:var(--green);font-style:normal;display:block;}
+    .hero-sub{font-size:clamp(.85rem,3vw,1rem);color:var(--gold);font-weight:700;letter-spacing:.05em;margin-top:.6rem;}
+    .members{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:1rem;}
+    .mtag{display:inline-flex;align-items:center;gap:4px;border-radius:100px;padding:4px 10px;font-size:.74rem;font-weight:700;border:1px solid;background:rgba(0,230,118,0.1);border-color:rgba(0,230,118,0.3);color:var(--green);}
+
+    /* NAV */
+    .sticky-nav{position:sticky;top:0;z-index:100;background:rgba(8,16,30,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.55rem 1rem;overflow-x:auto;scrollbar-width:none;}
+    .sticky-nav::-webkit-scrollbar{display:none;}
+    .nav-inner{display:flex;gap:.35rem;min-width:max-content;}
+    .nav-btn{background:transparent;border:1px solid var(--border);border-radius:100px;padding:4px 11px;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:.72rem;cursor:pointer;transition:all .2s;white-space:nowrap;text-decoration:none;display:inline-block;}
+    .nav-btn:hover,.nav-btn.active{background:var(--green);border-color:var(--green);color:#000;font-weight:700;}
+
+    /* SCHEDULE TABLE */
+    .sched-wrap{padding:1.5rem 1rem;max-width:700px;margin:0 auto;}
+    .sched-title{font-family:'Bebas Neue',cursive;font-size:1.3rem;letter-spacing:.1em;color:var(--muted);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem;}
+    .sched-scroll{overflow-x:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;padding-bottom:.5rem;}
+    .sched-scroll::-webkit-scrollbar{height:4px;}
+    .sched-scroll::-webkit-scrollbar-track{background:transparent;}
+    .sched-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+    .sched-grid{display:flex;gap:.5rem;min-width:max-content;}
+    .day-col{width:110px;border-radius:14px;overflow:hidden;border:1px solid var(--border);flex-shrink:0;}
+    .day-col.match-day{border-color:rgba(0,230,118,0.4);}
+    .day-col.today{border-color:var(--gold);box-shadow:0 0 12px rgba(255,213,79,.15);}
+    .day-head{padding:.5rem .6rem;font-size:.7rem;font-weight:900;text-align:center;line-height:1.2;}
+    .day-head .dow{font-size:.6rem;font-weight:400;}
+    .day-col:not(.match-day):not(.travel-day) .day-head{background:rgba(255,255,255,.04);color:var(--text);}
+    .day-col.match-day .day-head{background:rgba(0,230,118,.12);color:var(--green);}
+    .day-col.travel-day .day-head{background:rgba(64,196,255,.1);color:var(--blue);}
+    .day-body{padding:.5rem .6rem;display:flex;flex-direction:column;gap:3px;}
+    .sc-item{font-size:.65rem;color:var(--muted);padding:2px 0;border-bottom:1px solid rgba(255,255,255,.04);line-height:1.3;}
+    .sc-item:last-child{border-bottom:none;}
+    .sc-item.hl{color:var(--text);}
+    .sc-item.match{color:var(--green);font-weight:700;}
+    .sc-item.food{color:var(--gold);}
+    .sc-item.acc{color:var(--purple);}
+    .sc-item.travel{color:var(--blue);}
+    .today-label{background:var(--gold);color:#000;font-size:.55rem;font-weight:900;padding:1px 5px;border-radius:3px;margin-bottom:2px;display:inline-block;}
+
+    /* SECTION */
+    .section{padding:0 1rem 2.5rem;max-width:640px;margin:0 auto;}
+    .section-title{padding:2.5rem 0 1.2rem;display:flex;align-items:center;gap:.8rem;}
+    .day-num{font-family:'Bebas Neue',cursive;font-size:3.2rem;line-height:1;color:var(--green);min-width:55px;}
+    .day-info h2{font-size:1.05rem;font-weight:900;color:#fff;line-height:1.2;}
+    .day-info p{font-size:.78rem;color:var(--muted);margin-top:1px;}
+    .dlabel{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:3px;}
+    .l-arr{background:rgba(0,230,118,.15);color:var(--green);}
+    .l-exp{background:rgba(255,213,79,.15);color:var(--gold);}
+    .l-mat{background:rgba(255,82,82,.2);color:var(--red);}
+    .l-fre{background:rgba(206,147,216,.15);color:var(--purple);}
+    .l-ret{background:rgba(64,196,255,.15);color:var(--blue);}
+
+    /* TIMELINE */
+    .tl{position:relative;padding-left:1.8rem;}
+    .tl::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--green2),var(--border),transparent);}
+    .tl-item{position:relative;margin-bottom:.8rem;}
+    .tl-dot{position:absolute;left:-1.8rem;top:14px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--green2);}
+    .tl-dot.g{border-color:var(--gold);background:rgba(255,213,79,.1);}
+    .tl-dot.r{border-color:var(--red);background:rgba(255,82,82,.1);width:18px;height:18px;left:calc(-1.8rem - 2px);top:10px;}
+
+    /* CARDS */
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:.9rem 1rem;transition:border-color .2s;}
+    .card:hover{border-color:rgba(0,230,118,.3);}
+    .ch{display:flex;align-items:flex-start;gap:8px;margin-bottom:.4rem;}
+    .ci{font-size:1.3rem;line-height:1;flex-shrink:0;margin-top:1px;}
+    .ct{font-size:.92rem;font-weight:700;color:#fff;line-height:1.25;}
+    .ctime{font-size:.72rem;color:var(--green);font-weight:700;}
+    .cd{font-size:.8rem;color:var(--muted);line-height:1.5;margin-bottom:.5rem;}
+    .cd strong{color:var(--text);}
+
+    /* BUTTONS */
+    .bgrp{display:flex;flex-wrap:wrap;gap:5px;margin-top:.45rem;}
+    .mbtn{display:inline-flex;align-items:center;gap:4px;background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.25);border-radius:7px;padding:4px 9px;color:var(--green);text-decoration:none;font-size:.7rem;font-weight:700;font-family:'Noto Sans JP',sans-serif;transition:all .2s;}
+    .mbtn:hover{background:rgba(0,230,118,.2);}
+    .mbtn svg,.lbtn svg{width:10px;height:10px;flex-shrink:0;}
+    .lbtn{display:inline-flex;align-items:center;gap:4px;background:rgba(64,196,255,.08);border:1px solid rgba(64,196,255,.2);border-radius:7px;padding:4px 9px;color:var(--blue);text-decoration:none;font-size:.7rem;font-weight:700;font-family:'Noto Sans JP',sans-serif;transition:all .2s;}
+    .lbtn:hover{background:rgba(64,196,255,.15);}
+    .tbadge{display:inline-flex;align-items:center;gap:3px;background:rgba(255,255,255,.05);border-radius:5px;padding:2px 7px;font-size:.67rem;color:var(--muted);margin:2px 2px 0 0;}
+    .ftag{display:inline-flex;align-items:center;background:rgba(255,213,79,.08);border:1px solid rgba(255,213,79,.2);border-radius:5px;padding:2px 7px;font-size:.68rem;color:var(--gold);margin:2px;}
+
+    /* MATCH CARD */
+    .match-card{background:linear-gradient(135deg,#0f2a1a,#1a1008,#0f1a2a);border:1px solid rgba(0,230,118,.35);border-radius:18px;padding:1.3rem;text-align:center;position:relative;overflow:hidden;margin-bottom:.8rem;}
+    .match-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,230,118,.07),transparent 60%);pointer-events:none;}
+    .mlabel{font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);font-weight:700;}
+    .mvs{font-family:'Bebas Neue',cursive;font-size:2.3rem;letter-spacing:.1em;color:#fff;line-height:1;margin:.25rem 0;}
+    .mvs span{color:var(--green);margin:0 .3em;}
+    .mmeta{font-size:.78rem;color:var(--muted);}
+    .mtime{font-family:'Bebas Neue',cursive;font-size:1.8rem;color:var(--gold);letter-spacing:.05em;}
+
+    /* FLIGHT */
+    .fcard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem;margin-bottom:.8rem;}
+    .froute{display:flex;align-items:center;justify-content:space-between;gap:.5rem;}
+    .fairp{text-align:center;}
+    .iata{font-family:'Bebas Neue',cursive;font-size:1.8rem;color:#fff;letter-spacing:.08em;}
+    .cname{font-size:.66rem;color:var(--muted);}
+    .fline{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;}
+    .fcarr{font-size:.67rem;color:var(--blue);font-weight:700;text-align:center;}
+    .farrow{width:100%;height:2px;background:linear-gradient(to right,var(--border),var(--blue),var(--border));position:relative;}
+    .farrow::after{content:'✈';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:.85rem;color:var(--blue);background:var(--card);padding:0 4px;}
+    .fdur{font-size:.66rem;color:var(--muted);text-align:center;}
+    .div{height:1px;background:var(--border);margin:.7rem 0;}
+    .irow{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:.78rem;border-bottom:1px solid rgba(255,255,255,.04);}
+    .irow:last-child{border-bottom:none;}
+    .irow .lbl{color:var(--muted);}
+    .irow .val{color:var(--text);font-weight:700;text-align:right;}
+    .hl{color:var(--green);}
+
+    /* ACC */
+    .acc-card{background:rgba(255,213,79,.05);border:1px solid rgba(255,213,79,.2);border-radius:12px;padding:.8rem .9rem;display:flex;gap:.6rem;margin-bottom:.7rem;}
+    .acc-icon{font-size:1.3rem;flex-shrink:0;}
+    .acc-name{font-size:.88rem;font-weight:700;color:var(--gold);}
+    .acc-det{font-size:.74rem;color:var(--muted);margin-top:1px;}
+
+    /* TIPS */
+    .tips{background:rgba(255,213,79,.05);border:1px solid rgba(255,213,79,.2);border-radius:11px;padding:.8rem .9rem;margin-top:.6rem;}
+    .tips h4{font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.4rem;}
+    .tips ul{list-style:none;display:flex;flex-direction:column;gap:3px;}
+    .tips li{font-size:.76rem;color:var(--text);padding-left:1.1em;position:relative;}
+    .tips li::before{content:'›';position:absolute;left:0;color:var(--gold);font-weight:700;}
+
+    /* RULES */
+    .rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.7rem;}
+    .ri{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:.7rem;}
+    .ri .ric{font-size:1.1rem;margin-bottom:3px;}
+    .ri h4{font-size:.73rem;font-weight:700;color:var(--text);}
+    .ri p{font-size:.67rem;color:var(--muted);margin-top:1px;}
+
+    .sh{font-family:'Bebas Neue',cursive;font-size:1.3rem;letter-spacing:.08em;color:var(--muted);padding:2rem 0 .8rem;border-top:1px solid var(--border);margin-top:1.5rem;}
+
+    /* EMERGENCY */
+    .eg{display:grid;gap:.45rem;margin-top:.7rem;}
+    .ei{display:flex;align-items:center;gap:.7rem;background:var(--card);border:1px solid var(--border);border-radius:11px;padding:.65rem .9rem;}
+    .ei .eic{font-size:1.2rem;flex-shrink:0;}
+    .ei h4{font-size:.8rem;font-weight:700;color:var(--text);}
+    .ei p{font-size:.7rem;color:var(--muted);}
+
+    footer{text-align:center;padding:2.5rem 1rem 3.5rem;color:var(--muted);font-size:.72rem;border-top:1px solid var(--border);margin-top:1.5rem;}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+    /* PIN/EXT SVG inline */
+    .psv,.esv{display:inline-block;vertical-align:middle;width:10px;height:10px;}
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="glow"></div>
+  <a class="back-btn" href="../">← 一覧へ</a>
+  <div class="badge">⚽ FIFA World Cup 2026™ — SEA組</div>
+  <h1>SEATTLE<em>2026</em></h1>
+  <p class="hero-sub">🏆 山内・久典 ＋ 蓮太郎 — 旅のしおり</p>
+  <div class="members">
+    <span class="mtag">🏠 山内・久典</span>
+    <span class="mtag">🏠 蓮太郎</span>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <a class="nav-btn" href="#top">🏠</a>
+    <a class="nav-btn" href="#sched">📅 日程一覧</a>
+    <a class="nav-btn" href="#acc">🏡 宿泊</a>
+    <a class="nav-btn" href="#day1">Day1｜7/3</a>
+    <a class="nav-btn" href="#day2">Day2｜7/4✈️</a>
+    <a class="nav-btn" href="#day3">Day3｜7/5⚾</a>
+    <a class="nav-btn" href="#day4">Day4｜7/6🏆</a>
+    <a class="nav-btn" href="#day5">Day5｜7/7</a>
+    <a class="nav-btn" href="#day6">Day6｜7/8帰国</a>
+    <a class="nav-btn" href="#rules">🏟️ 観戦</a>
+    <a class="nav-btn" href="#sos">🆘 緊急</a>
+  </div>
+</nav>
+
+<!-- SCHEDULE TABLE -->
+<div class="sched-wrap" id="sched">
+  <div class="sched-title">📅 日程一覧 — SEA組（山内・蓮太郎）</div>
+  <div class="sched-scroll">
+    <div class="sched-grid" id="schedGrid">
+      <!-- Day 1 -->
+      <div class="day-col" id="sc-d1">
+        <div class="day-head">7/3<div class="dow">金</div></div>
+        <div class="day-body">
+          <div class="sc-item acc">🏡 Lynnwood Villa</div>
+          <div class="sc-item travel">✈️ SEA着 10:50</div>
+          <div class="sc-item hl">🐟 Pike Place</div>
+          <div class="sc-item">🛒 Costco買い出し</div>
+          <div class="sc-item food">🍽️ 自炊</div>
+        </div>
+      </div>
+      <!-- Day 2 -->
+      <div class="day-col" id="sc-d2">
+        <div class="day-head">7/4<div class="dow">土</div></div>
+        <div class="day-body">
+          <div class="sc-item acc">🏡 Lynnwood Villa</div>
+          <div class="sc-item hl">✈️ Boeing 14:00〜</div>
+          <div class="sc-item">🛒 買い出し</div>
+          <div class="sc-item food">🎆 花火 22:00</div>
+          <div class="sc-item">🍽️ 自炊</div>
+        </div>
+      </div>
+      <!-- Day 3 -->
+      <div class="day-col" id="sc-d3">
+        <div class="day-head">7/5<div class="dow">日</div></div>
+        <div class="day-body">
+          <div class="sc-item acc">🏡 Lynnwood Villa</div>
+          <div class="sc-item hl">🦇 MoPOP 10:00〜</div>
+          <div class="sc-item">⚾ SEA vs TRO 13:30</div>
+          <div class="sc-item food">🍕 Stevie's Pizza</div>
+          <div class="sc-item food">🥩 Metropolitan</div>
+        </div>
+      </div>
+      <!-- Day 4 — MATCH -->
+      <div class="day-col match-day" id="sc-d4">
+        <div class="day-head">7/6<div class="dow">月</div></div>
+        <div class="day-body">
+          <div class="sc-item acc">🏠 新宿泊先</div>
+          <div class="sc-item food">🍔 Vera's Burger</div>
+          <div class="sc-item">🛍️ Lumen Field周辺</div>
+          <div class="sc-item match">🏆 Match94 17:00</div>
+          <div class="sc-item food">🍽️ 自炊</div>
+        </div>
+      </div>
+      <!-- Day 5 -->
+      <div class="day-col" id="sc-d5">
+        <div class="day-head">7/7<div class="dow">火</div></div>
+        <div class="day-body">
+          <div class="sc-item acc">🏠 TBD</div>
+          <div class="sc-item">🛍️ ショッピング</div>
+          <div class="sc-item food">🍸 The Sundbar</div>
+          <div class="sc-item">📦 Packing</div>
+        </div>
+      </div>
+      <!-- Day 6 -->
+      <div class="day-col travel-day" id="sc-d6">
+        <div class="day-head">7/8<div class="dow">水</div></div>
+        <div class="day-body">
+          <div class="sc-item travel">✈️ NH115 13:25</div>
+          <div class="sc-item travel">SEA → NRT</div>
+          <div class="sc-item">チェックアウト</div>
+          <div class="sc-item">空港 11時着目標</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACCOMMODATION -->
+<div class="section" id="acc">
+  <div class="acc-card">
+    <div class="acc-icon">🏡</div>
+    <div>
+      <div class="acc-name">The Lynnwood Villa</div>
+      <div class="acc-det">7/3(金)〜7/6(月) ／ Lynnwood, WA — シアトル北部・ボーイング工場近く（友人手配）</div>
+      <div class="bgrp" style="margin-top:.3rem">
+        <a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=Lynnwood+WA" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Lynnwood エリア</a>
+      </div>
+    </div>
+  </div>
+  <div class="acc-card" style="background:rgba(255,82,82,.05);border-color:rgba(255,82,82,.2)">
+    <div class="acc-icon">🔍</div>
+    <div>
+      <div class="acc-name" style="color:var(--red)">7/7〜7/8 — 宿泊先：予約待ち</div>
+      <div class="acc-det">ダウンタウン or Pioneer Square周辺が便利（Lumen Field・空港へのアクセス良好）</div>
+      <div class="bgrp" style="margin-top:.3rem">
+        <a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=hotels+Pioneer+Square+Seattle" target="_blank" rel="noopener" style="background:rgba(255,82,82,.1);border-color:rgba(255,82,82,.3);color:var(--red)"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>周辺ホテルを探す</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 1 -->
+<section class="section" id="day1">
+  <div class="section-title">
+    <div class="day-num">01</div>
+    <div class="day-info"><div class="dlabel l-arr">到着日</div><h2>7月3日（金）— シアトル到着</h2><p>〜10:50 SEA着 → Pike Place → 自炊</p></div>
+  </div>
+  <div class="fcard">
+    <div class="froute">
+      <div class="fairp"><div class="iata">HND</div><div class="cname">羽田空港</div></div>
+      <div class="fline"><div class="fcarr">JAL SKY 787</div><div class="farrow"></div><div class="fdur">約9時間（前日夜発）</div></div>
+      <div class="fairp"><div class="iata">SEA</div><div class="cname">タコマ国際</div></div>
+    </div>
+    <div class="div"></div>
+    <div class="irow"><span class="lbl">SEA到着</span><span class="val hl">〜10:50</span></div>
+    <div class="irow"><span class="lbl">時差</span><span class="val">日本より <span class="hl">−16h</span>（PDT）</span></div>
+  </div>
+  <div class="tl">
+    <div class="tl-item"><div class="tl-dot"></div><div class="card"><div class="ch"><div class="ci">🛬</div><div><div class="ctime">〜10:50</div><div class="ct">タコマ国際空港（SEA）到着</div></div></div><div class="cd">入国審査・荷物受取。Link Light Railで北上 → <strong>The Lynnwood Villaへチェックイン。</strong></div><div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=Seattle-Tacoma+International+Airport" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>SEAタック空港</a></div><span class="tbadge">🚇 Link Light Rail → Lynnwood方面</span></div></div>
+    <div class="tl-item"><div class="tl-dot g"></div><div class="card"><div class="ch"><div class="ci">🐟</div><div><div class="ctime">午後 〜15:00</div><div class="ct">Pike Place Market ＆ 周辺散策</div></div></div><div class="cd">シアトルの象徴的な公共市場。食べ歩き・お土産。<strong>Golden Age Collectables</strong>でDCグッズも。</div><div style="margin-bottom:.4rem"><span class="ftag">☕ Starbucks 1号店</span><span class="ftag">🍲 Pike Place Chowder</span><span class="ftag">🍺 Pike Brewing</span></div><div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=Pike+Place+Market+Seattle" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Pike Place Market</a><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=Golden+Age+Collectables+Seattle" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Golden Age Collectables</a></div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="card"><div class="ch"><div class="ci">🛒</div><div><div class="ctime">夕方 19:00頃</div><div class="ct">Market / Costco で食材調達</div></div></div><div class="cd">夜は自炊。Costcoでまとめ買いが便利。</div><div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=Costco+Lynnwood+WA" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Costco Lynnwood</a><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=Whole+Foods+Lynnwood+WA" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Whole Foods 近く</a></div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="card"><div class="ch"><div class="ci">🍽️</div><div><div class="ctime">夜 21:00</div><div class="ct">Lynnwood Villa にて 自炊</div></div></div><div class="cd">初日の夜はゆっくり自炊。時差ボケに注意し早めに就寝。</div></div></div>
+  </div>
+  <div class="tips"><h4>💡 到着当日チェック</h4><ul><li>ESTA（米国電子渡航認証）は事前申請確認必須</li><li>パスポート有効期限：入国時から6ヶ月以上</li><li>現地SIM / eSIM または国際ローミングを有効化</li><li>FIFA公式アプリにチケットを保存しておく</li></ul></div>
+</section>
+
+<!-- DAY 2 -->
+<section class="section" id="day2">
+  <div class="section-title">
+    <div class="day-num">02</div>
+    <div class="day-info"><div class="dlabel l-exp">観光日</div><h2>7月4日（土）— Boeing✈️ ＋ 独立記念日🎆</h2><p>Boeing Future of Flight (14:00〜) → 花火 22:00</p></div>
+  </div>
+  <div class="tl">
+    <div class="tl-item"><div class="tl-dot g"></div><div class="card"><div class="ch"><div class="ci">✈️</div><div><div class="ctime">14:00〜</div><div class="ct">Boeing Future of Flight Aviation Center &amp; Boeing Tour</div></div></div><div class="cd">世界最大の航空機製造工場！<strong>737・777・787</strong>の製造ラインを間近で見学。The Lynnwood Villaから<strong>車で15〜20分</strong>。事前予約推奨。</div><div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=Boeing+Future+of+Flight+Everett+Washington" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Boeing Future of Flight</a><a class="lbtn" href="https://www.futureofflight.org" target="_blank" rel="noopener"><svg class="esv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>公式・予約</a></div><span class="tbadge">🚗 宿から車で約15分</span></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="card"><div class="ch"><div class="ci">🛒</div><div><div class="ctime">夕方</div><div class="ct">Whole Foods / Costco で食材調達</div></div></div><div class="cd">自炊用の食材を補充。翌日以降の分もまとめて。</div></div></div>
+    <div class="tl-item"><div class="tl-dot g"></div><div class="card"><div class="ch"><div class="ci">🎆</div><div><div class="ctime">22:00〜</div><div class="ct">South Lake Union Park — 独立記念日花火🇺🇸</div></div></div><div class="cd">アメリカ最大の祝日・7月4日。South Lake Union Parkは<strong>水面に映る花火</strong>が絶景。</div><div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=South+Lake+Union+Park+Seattle" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>South Lake Union Park</a></div><div class="tips"><h4>💡 花火のコツ</h4><ul><li>20:00前後から混み始める。早めに場所取りを</li><li>防寒着必須（夜のシアトルは肌寒い）</li></ul></div></div></div>
+  </div>
+</section>
+
+<!-- DAY 3 -->
+<section class="section" id="day3">
+  <div class="section-title">
+    <div class="day-num">03</div>
+    <div class="day-info"><div class="dlabel l-exp">観光日</div><h2>7月5日（日）— MoPOP🦇 → MLB⚾</h2><p>ポップカルチャー博物館 → イチロー像 → Mariners観戦</p></div>
+  </div>
+  <div class="tl">
+    <div class="tl-item"><div class="tl-dot g"></div><div class="card"><div class="ch"><div class="ci">🦇</div><div><div class="ctime">10:00〜</div><div class="ct">Museum of Pop Culture（MoPOP）</div></div></div><div class="cd"><strong>バットマン展示！ジョージ・クルーニー版バットスーツ</strong>も展示中。DC・SF・音楽など多彩な展示。</div><div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=Museum+of+Pop+Culture+Seattle+Center" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>MoPOP</a><a class="lbtn" href="https://www.mopop.org" target="_blank" rel="noopener"><svg class="esv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>公式・チケット</a></div><span class="tbadge">🚇 モノレール Westlake → Seattle Center</span></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="card"><div class="ch"><div class="ci">🗿</div><div><div class="ctime">11:00頃</div><div class="ct">T-Mobile Park周辺 — イチロー像 ＆ Shopping</div></div></div><div class="cd">スタジアム外のイチロー像でフォト。グッズショップも。</div><div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=Ichiro+Statue+T-Mobile+Park+Seattle" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>イチロー像</a></div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="card"><div class="ch"><div class="ci">🍕</div><div><div class="ctime">12:00 昼食</div><div class="ct">Stevie's Famous Burien Pizza</div></div></div><div class="cd">地元で人気の本格ピザ。試合前のランチに。</div><div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=Stevie%27s+Famous+Burien+Pizza" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Stevie's Famous Burien Pizza</a></div></div></div>
+    <div class="tl-item"><div class="tl-dot r"></div><div class="card" style="border-color:rgba(255,213,79,.3)"><div class="ch"><div class="ci">⚾</div><div><div class="ctime" style="font-size:.88rem;color:var(--gold)">13:30〜 ⚾ PLAY BALL</div><div class="ct" style="font-size:.98rem">MLB — SEA vs TRO @ T-Mobile Park</div></div></div><div class="cd">シアトル・マリナーズ vs トロント・ブルージェイズ。<strong>本場アメリカ野球！</strong>ホットドッグ・ガーリックフライ必食。</div><div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=T-Mobile+Park+1250+1st+Ave+S+Seattle" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>T-Mobile Park</a><a class="lbtn" href="https://www.mlb.com/mariners/tickets" target="_blank" rel="noopener"><svg class="esv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>チケット</a></div><span class="tbadge">🚇 Link Light Rail「Stadium」駅直結</span></div></div>
+    <div class="tl-item"><div class="tl-dot g"></div><div class="card"><div class="ch"><div class="ci">🥩</div><div><div class="ctime">試合後 夜</div><div class="ct">Dinner — Metropolitan Grill</div></div></div><div class="cd">シアトル屈指のステーキハウス。<strong>要予約！</strong></div><div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=Metropolitan+Grill+Seattle" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Metropolitan Grill</a><a class="lbtn" href="https://www.themetropolitangrill.com" target="_blank" rel="noopener"><svg class="esv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>予約</a></div></div></div>
+  </div>
+</section>
+
+<!-- DAY 4 -->
+<section class="section" id="day4">
+  <div class="section-title">
+    <div class="day-num">04</div>
+    <div class="day-info"><div class="dlabel l-mat">🏆 試合当日</div><h2>7月6日（月）— FIFA World Cup🏆</h2><p>Vera's Burger → Lumen Field周辺 → Match 94!</p></div>
+  </div>
+  <div class="match-card">
+    <div class="mlabel">⚽ FIFA World Cup 2026™ — Round of 16 / Match 94</div>
+    <div class="mvs">TBD <span>VS</span> TBD</div>
+    <div class="mmeta">※ 7/1のラウンド32結果で対戦チーム決定</div>
+    <div class="div" style="margin:.7rem 0"></div>
+    <div class="mtime">17:00 PT</div>
+    <div class="mmeta">日本時間 7月7日（火）午前 09:00</div>
+    <div style="margin-top:.7rem"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=Lumen+Field+800+Occidental+Ave+S+Seattle" target="_blank" rel="noopener" style="font-size:.8rem;padding:7px 12px"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Lumen Field (800 Occidental Ave S)</a></div>
+  </div>
+  <div class="tl">
+    <div class="tl-item"><div class="tl-dot"></div><div class="card"><div class="ch"><div class="ci">🍔</div><div><div class="ctime">昼食</div><div class="ct">Vera's Burger Shack</div></div></div><div class="cd">地元人気のバーガーショップ。試合前のエネルギーチャージ！</div><div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=Vera%27s+Burger+Shack+Seattle" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Vera's Burger Shack</a></div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="card"><div class="ch"><div class="ci">🏠</div><div><div class="ctime">13:00頃</div><div class="ct">新宿泊先チェックイン</div></div></div><div class="cd">試合後の移動を考え<strong>ダウンタウン or Pioneer Square</strong>近くに手配。Lynnwood Villaから荷物移動。</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="card"><div class="ch"><div class="ci">🛍️</div><div><div class="ctime">15:00〜16:30</div><div class="ct">Lumen Field周辺 ショッピング</div></div></div><div class="cd">FIFA公式グッズ・スタジアム周辺。<strong>Bricks &amp; Minifigs</strong>でLEGO DCミニフィグも！</div><div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=Bricks+and+Minifigs+Seattle" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Bricks &amp; Minifigs</a></div></div></div>
+    <div class="tl-item"><div class="tl-dot r"></div><div class="card" style="border-color:rgba(0,230,118,.45);background:linear-gradient(135deg,#0f2a1a,#13243a)"><div class="ch"><div class="ci">🏆</div><div><div class="ctime" style="font-size:.92rem">⚽ KICK OFF — 17:00 PT</div><div class="ct" style="font-size:1rem;color:var(--green)">FIFA World Cup — Round of 16 / Match 94</div></div></div><div class="cd"><strong>Lumen Field</strong>（収容65,000人超）。世界最高峰の舞台を蓮太郎と一緒に！</div><div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=Lumen+Field+Seattle" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Lumen Field</a><a class="lbtn" href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026" target="_blank" rel="noopener"><svg class="esv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>FIFA公式</a></div><span class="tbadge">🚇 Link「Stadium」駅</span><span class="tbadge">🚶 Pioneer Squareから徒歩10分</span></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="card"><div class="ch"><div class="ci">🍽️</div><div><div class="ctime">試合後</div><div class="ct">自炊 or 近くで夕食</div></div></div><div class="cd">試合の余韻に浸りながら夕食。Pioneer Square周辺のテイクアウトも◎</div><div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=restaurants+Pioneer+Square+Seattle" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>周辺レストラン</a></div></div></div>
+  </div>
+</section>
+
+<!-- DAY 5 -->
+<section class="section" id="day5">
+  <div class="section-title">
+    <div class="day-num">05</div>
+    <div class="day-info"><div class="dlabel l-fre">最終観光日</div><h2>7月7日（火）— シアトル最終日</h2><p>ショッピング → The Sundbar → Packing</p></div>
+  </div>
+  <div class="tl">
+    <div class="tl-item"><div class="tl-dot"></div><div class="card"><div class="ch"><div class="ci">🛍️</div><div><div class="ctime">午前〜午後</div><div class="ct">Lumen Field周辺 ＆ 市内 お土産</div></div></div><div class="cd">WorldCup記念品はこの日が最後のチャンス！</div><div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=shops+near+Lumen+Field+Seattle" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Lumen Field周辺</a></div></div></div>
+    <div class="tl-item"><div class="tl-dot g"></div><div class="card"><div class="ch"><div class="ci">🍸</div><div><div class="ctime">夕食</div><div class="ct">The Sundbar</div></div></div><div class="cd">旅の最後の夜、蓮太郎との思い出の締めくくりに。</div><div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=The+Sundbar+Seattle" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>The Sundbar</a></div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="card"><div class="ch"><div class="ci">📦</div><div><div class="ctime">夜</div><div class="ct">Packing（荷物まとめ）</div></div></div><div class="cd">翌朝の出発に備えてパッキング完了。</div><div class="tips"><h4>💡 帰国前チェック</h4><ul><li>スーツケース重量確認（通常23kg上限）</li><li>液体物100ml以下 → 透明ジップ袋 or 預け荷物へ</li><li>Visit Japan Web に登録しておくとスムーズ</li></ul></div></div></div>
+  </div>
+</section>
+
+<!-- DAY 6 -->
+<section class="section" id="day6">
+  <div class="section-title">
+    <div class="day-num">06</div>
+    <div class="day-info"><div class="dlabel l-ret">帰国日</div><h2>7月8日（水）— 帰国✈️</h2><p>SEA → NRT ／ NH115 13:25発</p></div>
+  </div>
+  <div class="fcard">
+    <div class="froute">
+      <div class="fairp"><div class="iata">SEA</div><div class="cname">タコマ国際</div></div>
+      <div class="fline"><div class="fcarr">全日本空輸 ANA NH115</div><div class="farrow" style="background:linear-gradient(to left,var(--border),var(--blue),var(--border))"></div><div class="fdur">約10時間</div></div>
+      <div class="fairp"><div class="iata">NRT</div><div class="cname">成田国際空港</div></div>
+    </div>
+    <div class="div"></div>
+    <div class="irow"><span class="lbl">出発（現地時間）</span><span class="val hl">13:25 PT</span></div>
+    <div class="irow"><span class="lbl">フライト番号</span><span class="val">ANA NH115</span></div>
+    <div class="irow"><span class="lbl">到着（日本時間目安）</span><span class="val">7/9（木）17時頃</span></div>
+  </div>
+  <div class="tips"><h4>💡 逆算スケジュール</h4><ul><li><strong>10:00〜10:30</strong> — 宿を出発（Link Light Railで約40分）</li><li><strong>11:00〜11:30</strong> — SEAタック空港到着目標</li><li><strong>13:25</strong> — NH115 出発</li><li>空港のANAチェックインカウンターは出発2〜3時間前オープン</li></ul></div>
+  <div class="bgrp" style="margin-top:.8rem"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=Seattle-Tacoma+International+Airport" target="_blank" rel="noopener"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>SEAタック空港</a><span class="tbadge">🚇 Link Light Rail → Angle Lake 約40分</span></div>
+</section>
+
+<!-- STADIUM GUIDE -->
+<section class="section" id="rules">
+  <div class="sh">🏟️ スタジアム観戦ガイド</div>
+  <div class="match-card" style="text-align:left">
+    <div class="mlabel">📍 Lumen Field — 800 Occidental Ave S, Seattle, WA 98134</div>
+    <div class="bgrp" style="margin-top:.7rem"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=800+Occidental+Ave+S+Seattle+WA" target="_blank" rel="noopener" style="font-size:.8rem;padding:7px 12px"><svg class="psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Googleマップで開く</a><a class="lbtn" href="https://www.seattlefwc26.org/matches" target="_blank" rel="noopener" style="font-size:.8rem;padding:7px 12px"><svg class="esv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>Seattle WC26公式</a></div>
+  </div>
+  <div class="rules-grid">
+    <div class="ri"><div class="ric">👜</div><h4>持ち込み荷物</h4><p>クリアバッグのみ（12×6×12インチ以内）</p></div>
+    <div class="ri"><div class="ric">📷</div><h4>カメラ・電子機器</h4><p>スマホはOK。一眼・PC・タブレット禁止</p></div>
+    <div class="ri"><div class="ric">🥤</div><h4>飲み物</h4><p>未開封の水（クリアボトル）のみ可</p></div>
+    <div class="ri"><div class="ric">🍕</div><h4>食べ物</h4><p>クリアバッグ内OK。ピザは箱ごと可</p></div>
+    <div class="ri"><div class="ric">🎫</div><h4>再入場</h4><p>KO前のみ可。試合開始後は不可</p></div>
+    <div class="ri"><div class="ric">⏰</div><h4>到着目安</h4><p>KO2〜3時間前（14:00〜15:00）推奨</p></div>
+    <div class="ri"><div class="ric">🚇</div><h4>交通手段</h4><p>Link「Stadium」駅最寄り。駐車場は事前予約必須</p></div>
+    <div class="ri"><div class="ric">🌡️</div><h4>7月の気候</h4><p>最高気温24℃前後。夜は涼しい。上着持参を</p></div>
+  </div>
+</section>
+
+<!-- EMERGENCY -->
+<section class="section" id="sos">
+  <div class="sh">🆘 緊急連絡・有用情報</div>
+  <div class="eg">
+    <div class="ei"><div class="eic">🚑</div><div><h4>緊急（救急・警察・消防）</h4><p>📞 <strong>911</strong>（米国共通）</p></div></div>
+    <div class="ei"><div class="eic">🇯🇵</div><div><h4>在シアトル日本国総領事館</h4><p>📞 (206) 682-9107</p></div></div>
+    <div class="ei"><div class="eic">🏥</div><div><h4>最寄りER</h4><p>Harborview Medical Center（1st Ave &amp; Jefferson St）</p></div></div>
+    <div class="ei"><div class="eic">💱</div><div><h4>為替（参考）</h4><p>1 USD ≈ 150円前後（出発前に確認）</p></div></div>
+    <div class="ei"><div class="eic">📶</div><div><h4>通信</h4><p>eSIM / SIMフリー / 国際ローミングを事前設定</p></div></div>
+    <div class="ei"><div class="eic">🎫</div><div><h4>チケット管理</h4><p>FIFA公式アプリ保存 ＋ スクリーンショットでバックアップ</p></div></div>
+  </div>
+</section>
+
+<footer>
+  <div style="font-family:'Bebas Neue',cursive;font-size:1.8rem;letter-spacing:.1em;color:var(--green);margin-bottom:.4rem">SEATTLE 2026</div>
+  <p>⚽ Match 94 — Round of 16 — Lumen Field — July 6, 17:00 PT</p>
+  <p style="margin-top:.8rem"><a href="../" style="color:var(--muted);font-size:.78rem;text-decoration:none">← 旅のしおり Hub へ</a></p>
+</footer>
+
+<script>
+  // Highlight today's column in schedule
+  const today = new Date();
+  const dateMap = {'7-3':'sc-d1','7-4':'sc-d2','7-5':'sc-d3','7-6':'sc-d4','7-7':'sc-d5','7-8':'sc-d6'};
+  const key = `${today.getMonth()+1}-${today.getDate()}`;
+  if(dateMap[key]){ const el = document.getElementById(dateMap[key]); if(el){ el.classList.add('today'); el.querySelector('.day-head').insertAdjacentHTML('afterbegin','<div class="today-label">TODAY</div>'); el.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}); }}
+
+  // Nav highlight
+  const navBtns = document.querySelectorAll('.nav-btn[href^="#"]');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ navBtns.forEach(b=>b.classList.remove('active')); const a=document.querySelector(`.nav-btn[href="#${e.target.id}"]`); if(a){a.classList.add('active');a.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});} } });
+  },{rootMargin:'-30% 0px -60% 0px'});
+  document.querySelectorAll('section[id],div[id="sched"],div[id="acc"]').forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
