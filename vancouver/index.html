@@ -678,7 +678,20 @@ function showToast(){const t=document.getElementById('toast');t.classList.add('s
   if(el){el.classList.add('today-col');el.querySelector('.day-head').insertAdjacentHTML('afterbegin','<div class="today-pill">TODAY</div>');el.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}
 })();
 const nb=document.querySelectorAll('#snav .snav-btn[href^="#"]');
-const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){nb.forEach(b=>b.classList.remove('active'));const a=document.querySelector(`#snav .snav-btn[href="#${x.target.id}"]`);if(a){a.classList.add('active');a.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}}});},{rootMargin:'-25% 0px -65% 0px'});
+let scrolled=false;
+window.addEventListener('scroll',()=>{scrolled=true;},{once:true,passive:true});
+const obs=new IntersectionObserver(e=>{
+  if(!scrolled)return;   // ← 初期ロード時は無効
+  e.forEach(x=>{if(x.isIntersecting){
+    nb.forEach(b=>b.classList.remove('active'));
+    const a=document.querySelector(`#snav .snav-btn[href="#${x.target.id}"]`);
+    if(a){
+      a.classList.add('active');
+      const sn=document.getElementById('snav');
+      sn.scrollLeft=a.offsetLeft-sn.offsetWidth/2+a.offsetWidth/2; // ← scrollIntoView→scrollLeft に変更
+    }
+  }});
+},{rootMargin:'-30% 0px -60% 0px'});
 document.querySelectorAll('section[id],div[id]').forEach(s=>{if(s.id)obs.observe(s);});
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/fwc2026/sw.js').catch(()=>{}));}
 </script>
