@@ -60,7 +60,7 @@ input:checked+.tog-sl:before{transform:translateX(16px);}
 .bn-ic{font-size:1.25rem;line-height:1;}
 
 /* ─── HERO ─── */
-.hero{position:relative;min-height:48svh;display:flex;flex-direction:column;
+.hero{position:relative;min-height:calc(100svh - var(--sb-h) - var(--bn-h));display:flex;flex-direction:column;
   align-items:center;justify-content:center;text-align:center;padding:2rem 1.5rem 1.8rem;overflow:hidden;}
 .hero::before{content:'';position:absolute;inset:0;
   background:radial-gradient(ellipse at 50% 30%,rgba(0,120,70,.1),transparent 65%);pointer-events:none;}
@@ -384,7 +384,9 @@ body.pdt-mode .t-pdt{display:inline;}
           <div class="si tr">JL068 17:45 JST</div>
           <div class="si tr">SEA着 10:50 PDT</div>
           <div class="si hl">🚗 カツヒサ迎え</div>
-          <div class="si hl">🐟 Pike Place</div>
+          <div class="si hl">🐟 Pike Place 15:00</div>
+          <div class="si food">🛒 Costco 19:00</div>
+          <div class="si food">自炊 21:00</div>
           <div class="si acc">🏡 Lynnwood Villa</div>
         </div>
       </div>
@@ -392,6 +394,7 @@ body.pdt-mode .t-pdt{display:inline;}
         <div class="day-head">7/4<div class="dow">土 SAT</div></div>
         <div class="day-body">
           <div class="si hl">✈️ Boeing 14:00</div>
+          <div class="si food">自炊 夕食</div>
           <div class="si food">🎆 花火 22:00</div>
           <div class="si acc">🏡 Lynnwood Villa</div>
         </div>
@@ -400,6 +403,8 @@ body.pdt-mode .t-pdt{display:inline;}
         <div class="day-head">7/5<div class="dow">日 SUN</div></div>
         <div class="day-body">
           <div class="si hl">🦇 MoPOP 10:00</div>
+          <div class="si hl">⚾ イチロー像 11:00</div>
+          <div class="si food">🍕 Stevie's 12:00</div>
           <div class="si hl">⚾ MLB 13:30</div>
           <div class="si food">🥩 Metropolitan</div>
           <div class="si acc">🏡 Lynnwood Villa</div>
@@ -408,18 +413,20 @@ body.pdt-mode .t-pdt{display:inline;}
       <div class="day-col match-day" id="sc-d4">
         <div class="day-head">7/6<div class="dow">月 MON</div></div>
         <div class="day-body">
-          <div class="si food">🍔 Vera's Burger</div>
-          <div class="si acc">🏠 新宿泊先IN</div>
+          <div class="si food">🍔 Lunch 12:00</div>
+          <div class="si hl">🏟️ LF周辺 14:00</div>
           <div class="si match">🏆 Match94 17:00</div>
+          <div class="si acc">🏡 Lynnwood Villa</div>
         </div>
       </div>
       <div class="day-col" id="sc-d5">
         <div class="day-head">7/7<div class="dow">火 TUE</div></div>
         <div class="day-body">
-          <div class="si hl">🧱 Bricks&Minifigs</div>
-          <div class="si hl">🛍️ お土産</div>
-          <div class="si food">🍸 Sundbar</div>
-          <div class="si acc">🏠 新宿泊先</div>
+          <div class="si hl">🚪 Check Out 11:00</div>
+          <div class="si hl">🏟️ LF周辺</div>
+          <div class="si hl">🧱 Bricks&amp;Minifigs</div>
+          <div class="si food">🍸 Sundbar 18:00</div>
+          <div class="si food">📦 Packing 22:00</div>
         </div>
       </div>
       <div class="day-col travel-day" id="sc-d6">
@@ -501,7 +508,9 @@ body.pdt-mode .t-pdt{display:inline;}
 
     <div class="tl-item"><div class="dot gold"></div><div class="card katu-card"><div class="card-h"><div class="c-ic">🚗</div><div><div class="c-time" style="color:var(--gold)">10:50 PDT — SEAタック国際空港 ✨ 全員合流！</div><div class="c-t" style="color:var(--gold)">カツヒサが出迎え → 全員でLynnwood Villaへ！</div></div></div><div class="c-d">VAN組（芝・コウシ・勇介）は<strong>9:36 PDTにすでに到着済み</strong>。カツヒサもカルガリーから車で来て空港で待機中！山内・蓮太郎の到着（10:50 PDT）を迎えて、<strong>6名全員がカツヒサの車でLynnwood Villaへ出発！</strong></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Seattle-Tacoma+International+Airport" target="_blank">📍 SEAタック空港</a></div></div></div>
 
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🐟</div><div><div class="c-time pdt"><span class="t-pdt">午後 / Afternoon</span><span class="t-jst">午後 PDT（現地）</span></div><div class="c-t">Pike Place Market ＆ Golden Age Collectables</div></div></div><div class="c-d">シアトルの象徴的な市場 / Seattle's iconic public market。<strong>Golden Age Collectables</strong>でDCグッズも！</div><div style="margin-bottom:.4rem"><span class="ftag">☕ Starbucks 1号店 / 1st Store</span><span class="ftag">🦀 Pike Place Chowder</span></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Pike+Place+Market+Seattle" target="_blank">📍 Pike Place Market</a><a class="mbtn" href="https://maps.google.com/maps?daddr=Golden+Age+Collectables+Seattle" target="_blank">📍 Golden Age</a></div></div></div>
+    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🐟</div><div><div class="c-time pdt"><span class="t-pdt">15:00 PDT〜 / Afternoon</span><span class="t-jst">午後（PDT現地）</span></div><div class="c-t">Pike Place Market ＆ Golden Age Collectables</div></div></div><div class="c-d">シアトルの象徴的な市場 / Seattle's iconic public market。<strong>Golden Age Collectables</strong>でDCグッズも！</div><div style="margin:.3rem 0"><span class="ftag">☕ Starbucks 1号店</span><span class="ftag">🦀 Pike Place Chowder</span><span class="ftag">🍺 Pike Brewing Co.</span><span class="ftag">🦇 Golden Age Collectable</span></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Pike+Place+Market+Seattle" target="_blank">📍 Pike Place Market</a><a class="mbtn" href="https://maps.google.com/maps?daddr=Golden+Age+Collectables+Seattle" target="_blank">📍 Golden Age</a></div></div></div>
+    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🛒</div><div><div class="c-time pdt">19:00 PDT〜</div><div class="c-t">Market / Costco で買い出し</div></div></div><div class="c-d">Lynnwood近くのCostco or スーパーで食材購入。滞在中の自炊用。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Costco+Lynnwood+WA" target="_blank">📍 Costco Lynnwood</a></div></div></div>
+    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🍳</div><div><div class="c-time pdt">21:00 PDT / 夕食</div><div class="c-t">自炊 — Lynnwood Villa</div></div></div><div class="c-d">旅の初日はホームな夕食でゆっくり。時差ボケ対策に早めに就寝。</div></div></div>
   </div>
   <div class="tips"><h4>💡 到着日チェック / Arrival Checklist</h4><ul><li>ESTA（米国電子渡航認証）事前申請確認</li><li>パスポート有効期限：入国日から6ヶ月以上</li><li>eSIM / 国際ローミングをオン（空港Wi-Fiで起動）</li><li>FIFA公式アプリにチケット保存 ＋ スクリーンショット</li></ul></div>
 </section>
@@ -517,9 +526,10 @@ body.pdt-mode .t-pdt{display:inline;}
 
 <!-- DAY 3 -->
 <section class="sec" id="day3">
-  <div class="sec-header"><div class="day-num">03</div><div class="day-meta"><div class="dlbl l-exp">観光日 / Sightseeing</div><h2>7月5日（日）— MoPOP🦇 → MLB⚾</h2><p>Batman exhibit → Ichiro statue → Mariners game</p></div></div>
+  <div class="sec-header"><div class="day-num">03</div><div class="day-meta"><div class="dlbl l-exp">観光日 / Sightseeing</div><h2>7月5日（日）— MoPOP🦇 → イチロー像 → MLB⚾</h2><p>MoPOP 10:00 → T-Mobile周辺 11:00 → Stevie's 12:00 → MLB 13:30 → Metropolitan</p></div></div>
   <div class="tl">
     <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🦇</div><div><div class="c-time pdt"><span class="t-pdt">10:00 PDT〜</span><span class="t-jst">10:00 PDT（現地）</span></div><div class="c-t">Museum of Pop Culture（MoPOP）</div></div></div><div class="c-d"><strong>🦇 バットマン展示 / Batman Exhibit！ジョージ・クルーニー版バットスーツ（George Clooney's Batsuit）も展示中。</strong>DC・SF・音楽など多彩な展示。スペースニードル横。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Museum+of+Pop+Culture+Seattle+Center" target="_blank">📍 MoPOP</a><a class="lbtn" href="https://www.mopop.org" target="_blank">🔗 チケット / Tickets</a></div><span class="tbadge">🚇 モノレール Westlake→Seattle Center</span></div></div>
+    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🏟️</div><div><div class="c-time pdt">11:00 PDT〜</div><div class="c-t">T-Mobile Park周辺 — イチロー像 ＆ Shopping</div></div></div><div class="c-d">T-Mobile Park周辺を散策。<strong>イチロー像</strong>で記念写真！試合前にグッズショッピング。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Ichiro+Suzuki+Statue+Seattle" target="_blank">📍 イチロー像</a></div></div></div>
     <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🍕</div><div><div class="c-time pdt">12:00 PDT 昼食 / Lunch</div><div class="c-t">Stevie's Famous Burien Pizza</div></div></div><div class="c-d">地元で人気の本格ピザ / Local favorite pizza spot。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Stevie%27s+Famous+Burien+Pizza" target="_blank">📍 Stevie's Pizza</a></div></div></div>
     <div class="tl-item"><div class="dot r"></div><div class="card" style="border-color:rgba(255,213,79,.25)"><div class="card-h"><div class="c-ic">⚾</div><div><div class="c-time" style="color:var(--gold);font-size:.84rem"><span class="t-pdt">13:30 PDT — ⚾ PLAY BALL!</span><span class="t-jst">13:30 PDT — ⚾ 試合開始</span></div><div class="c-t" style="font-size:.93rem">MLB — SEA Mariners vs TOR Blue Jays @ T-Mobile Park</div></div></div><div class="c-d">本場アメリカ野球 / Real American baseball！ホットドッグ・ガーリックフライ必食！</div><div onclick="copyText('T-Mobile Park, 1250 1st Ave S, Seattle, WA 98134')" class="copy-row"><span class="copy-val">1250 1st Ave S, Seattle, WA 98134</span><span class="copy-ic">📋</span></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=T-Mobile+Park+Seattle" target="_blank">📍 T-Mobile Park</a></div><span class="tbadge">🚇 Link Light Rail「Stadium」駅直結</span></div></div>
     <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🥩</div><div><div class="c-time pdt">試合後 夜 / After game</div><div class="c-t">Dinner / 夕食 — Metropolitan Grill</div></div></div><div class="c-d">シアトル屈指のステーキハウス / Seattle's premier steakhouse。<strong>要予約！ Reservation required!</strong></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Metropolitan+Grill+Seattle" target="_blank">📍 Metropolitan Grill</a><a class="lbtn" href="https://www.themetropolitangrill.com" target="_blank">🔗 予約 / Reserve</a></div></div></div>
@@ -528,7 +538,7 @@ body.pdt-mode .t-pdt{display:inline;}
 
 <!-- DAY 4 -->
 <section class="sec" id="day4">
-  <div class="sec-header"><div class="day-num">04</div><div class="day-meta"><div class="dlbl l-mat">🏆 試合当日 / Match Day</div><h2>7月6日（月）— FIFA World Cup🏆</h2><p>Vera's Burger → Check-in → Match 94 Kick Off!</p></div></div>
+  <div class="sec-header"><div class="day-num">04</div><div class="day-meta"><div class="dlbl l-mat">🏆 試合当日 / Match Day</div><h2>7月6日（月）— FIFA World Cup🏆</h2><p>Lunch 12:00 → Lumen Field周辺 14:00 → Match 94 17:00!</p></div></div>
   <div class="match-card">
     <div class="ml">⚽ FIFA WORLD CUP 2026™ — ROUND OF 16</div>
     <div class="ml-ja">決勝ラウンド16強戦 / Match 94</div>
@@ -544,21 +554,22 @@ body.pdt-mode .t-pdt{display:inline;}
     <div style="margin-top:.45rem"><a class="mbtn" href="https://maps.google.com/maps?daddr=Lumen+Field+800+Occidental+Ave+S+Seattle" target="_blank" style="font-size:.78rem;padding:6px 11px">📍 Lumen Field へのルート / Directions</a></div>
   </div>
   <div class="tl">
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🍔</div><div><div class="c-time pdt">昼食 / Lunch</div><div class="c-t">Vera's Burger Shack</div></div></div><div class="c-d">地元人気バーガー / Local favorite. 試合前のチャージ！</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Vera%27s+Burger+Shack+Seattle" target="_blank">📍 Vera's</a></div></div></div>
-    <div class="tl-item"><div class="dot todo"></div><div class="card todo-card"><div class="card-h"><div class="c-ic">🏠</div><div><div class="c-time todo">13:00 PDT — 要予約 TODO BOOKING</div><div class="c-t" style="color:var(--red)">新宿泊先チェックイン / Hotel Check-in</div></div></div><div class="c-d">Pioneer Square / ダウンタウン周辺。Lumen Fieldまで徒歩圏内が便利。</div><div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=hotels+Pioneer+Square+Seattle" target="_blank" style="border-color:rgba(255,82,82,.3);color:var(--red);background:rgba(255,82,82,.08)">🔍 ホテルを探す</a></div></div></div>
+    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🍔</div><div><div class="c-time pdt">12:00 PDT — 昼食 / Lunch</div><div class="c-t">Vera's Burger Shack</div></div></div><div class="c-d">地元人気バーガー / Local favorite. 試合前のチャージ！</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Vera%27s+Burger+Shack+Seattle" target="_blank">📍 Vera's</a></div></div></div>
+    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🏟️</div><div><div class="c-time pdt">14:00 PDT〜</div><div class="c-t">Lumen Field周辺 Shopping</div></div></div><div class="c-d">スタジアム周辺のWCグッズ・お土産をゲット！試合前の最後のショッピング。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Lumen+Field+Seattle" target="_blank">📍 Lumen Field周辺</a></div></div></div>
     <div class="tl-item"><div class="dot r"></div><div class="card" style="border-color:rgba(0,230,118,.35);background:linear-gradient(135deg,rgba(0,50,25,.5),rgba(15,28,50,.6))"><div class="card-h"><div class="c-ic">🏆</div><div><div class="c-time" style="font-size:.86rem;color:var(--green)"><span class="t-pdt">⚽ KICK OFF — 17:00 PDT</span><span class="t-jst">⚽ キックオフ — 17:00 PDT（現地）</span></div><div class="c-t" style="color:var(--green);font-size:.93rem">FIFA WC — Round of 16 / 決勝16強 / Match 94</div></div></div><div class="c-d"><strong>Lumen Field</strong>（Seattle / 65,000+人）。蓮太郎と世界最高の舞台へ！</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Lumen+Field+Seattle" target="_blank">📍 Lumen Field</a></div><span class="tbadge">🚇 Link「Stadium」駅</span><span class="tbadge">🚶 Pioneer Squareから10分</span></div></div>
+    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🍳</div><div><div class="c-time pdt">試合後 / After match</div><div class="c-t">自炊 — Lynnwood Villa</div></div></div><div class="c-d">試合の余韻を楽しみながらLynnwood Villaで自炊夕食。明日のCheck Outに備えて早めに就寝。</div></div></div>
   </div>
 </section>
 
 <!-- DAY 5 -->
 <section class="sec" id="day5">
-  <div class="sec-header"><div class="day-num">05</div><div class="day-meta"><div class="dlbl l-free">最終観光日 / Last Day</div><h2>7月7日（火）— LEGO🧱 ＋ Last Shopping</h2><p>Bricks & Minifigs（蓮太郎メイン！） → Sundbar</p></div></div>
+  <div class="sec-header"><div class="day-num">05</div><div class="day-meta"><div class="dlbl l-free">最終観光日 / Last Full Day</div><h2>7月7日（火）— Check Out → LEGO🧱 → Sundbar</h2><p>Check Out 11:00 → Lumen Field周辺 → Bricks&Minifigs → Sundbar 18:00</p></div></div>
   <div class="tl">
-    <div class="tl-item"><div class="dot todo"></div><div class="card todo-card"><div class="card-h"><div class="c-ic">🏠</div><div><div class="c-time todo">要確認 TODO</div><div class="c-t" style="color:var(--red)">ホテル確認 / Hotel Check</div></div></div><div class="c-d">前日7/6の宿の連泊 or 新規チェックイン。Pioneer Square近辺が便利。</div></div></div>
-    <div class="tl-item"><div class="dot r"></div><div class="card" style="border-color:rgba(255,213,79,.3)"><div class="card-h"><div class="c-ic">🧱</div><div><div class="c-time" style="color:var(--gold)">午前 / Morning — 蓮太郎メインイベント！</div><div class="c-t" style="color:var(--gold)">Bricks & Minifigs — LEGO DC ミニフィグ探し！</div></div></div><div class="c-d"><strong>LEGO DCコレクションの宝庫 / DC LEGO paradise！</strong>バットマン・スーパーマン・ヴィランなど中古・レアLEGO専門店。蓮太郎と掘り出し物を探そう！</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Bricks+and+Minifigs+Seattle" target="_blank">📍 Bricks & Minifigs</a></div><div class="tips"><h4>💡 LEGO Shopping Tips</h4><ul><li>中古ミニフィグは状態確認してから購入 / Check condition before buying</li><li>DCキャラは人気 → 早めに訪問を</li><li>Golden Age Collectablesも近くで合わせて寄ろう</li></ul></div></div></div>
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🛍️</div><div><div class="c-time pdt">午後 / Afternoon</div><div class="c-t">Last Shopping / 最後のお土産</div></div></div><div class="c-d">WC記念グッズ・Seattle土産はこの日が最後のチャンス！</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Golden+Age+Collectables+Seattle" target="_blank">📍 Golden Age Collectables</a></div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🍸</div><div><div class="c-time pdt">夕食 / Dinner</div><div class="c-t">The Sundbar — Seattle最後の夜</div></div></div><div class="c-d">蓮太郎との旅の思い出の締めくくり。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=The+Sundbar+Seattle" target="_blank">📍 The Sundbar</a></div></div></div>
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">📦</div><div><div class="c-time pdt">夜 / Night</div><div class="c-t">Packing / 荷造り</div></div></div><div class="c-d">翌朝出発に備えてパッキング完了。</div><div class="tips"><h4>💡 帰国前チェック / Pre-departure Checklist</h4><ul><li>スーツケース重量確認（通常23kg上限）</li><li>液体物100ml以下 → 透明ジップ袋 or 預け荷物へ</li><li>LEGOやコレクターグッズはしっかり梱包</li><li>Visit Japan Web（税関申告）に登録</li></ul></div></div></div>
+    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🚪</div><div><div class="c-time pdt">11:00 PDT — Check Out</div><div class="c-t">Lynnwood Villa チェックアウト</div></div></div><div class="c-d">荷物をまとめてチェックアウト。お世話になったLynnwood Villaともお別れ。</div></div></div>
+    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🏟️</div><div><div class="c-time pdt">午前〜午後 / Morning</div><div class="c-t">Lumen Field周辺 Shopping</div></div></div><div class="c-d">昨日のMatch 94の余韻の中、Lumen Field周辺でWCグッズ・土産を購入。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Lumen+Field+Seattle" target="_blank">📍 Lumen Field周辺</a></div></div></div>
+    <div class="tl-item"><div class="dot r"></div><div class="card" style="border-color:rgba(255,213,79,.3)"><div class="card-h"><div class="c-ic">🧱</div><div><div class="c-time" style="color:var(--gold)">午後 / Afternoon — 蓮太郎メインイベント！</div><div class="c-t" style="color:var(--gold)">Bricks & Minifigs — LEGO DC ミニフィグ探し！</div></div></div><div class="c-d"><strong>LEGO DCコレクションの宝庫！</strong>バットマン・スーパーマン・ヴィランなど中古・レアLEGO専門店。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Bricks+and+Minifigs+Seattle" target="_blank">📍 Bricks & Minifigs</a><a class="mbtn" href="https://maps.google.com/maps?daddr=Golden+Age+Collectables+Seattle" target="_blank">📍 Golden Age</a></div></div></div>
+    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🍸</div><div><div class="c-time pdt">18:00 PDT — 夕食 / Dinner</div><div class="c-t">The Sundbar — VAN組と合同の最後の夜</div></div></div><div class="c-d">VAN組（芝・コウシ・勇介・カツヒサ）と合同夕食。シアトルでの旅の締めくくり。この後VAN組はバンクーバーへ出発。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=The+Sundbar+Seattle" target="_blank">📍 The Sundbar</a></div></div></div>
+    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">📦</div><div><div class="c-time pdt">22:00 PDT — 夜 / Night</div><div class="c-t">Packing / 荷造り</div></div></div><div class="c-d">翌朝出発に備えてパッキング完了。</div><div class="tips"><h4>💡 帰国前チェック / Pre-departure Checklist</h4><ul><li>スーツケース重量確認（通常23kg上限）</li><li>液体物100ml以下 → 透明ジップ袋 or 預け荷物へ</li><li>LEGOやコレクターグッズはしっかり梱包</li><li>Visit Japan Web（税関申告）に登録</li></ul></div></div></div>
   </div>
 </section>
 
