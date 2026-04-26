@@ -692,7 +692,13 @@ const obs=new IntersectionObserver(e=>{
     }
   }});
 },{rootMargin:'-30% 0px -60% 0px'});
-document.querySelectorAll('section[id],div[id]').forEach(s=>{if(s.id)obs.observe(s);});
+const navTargets = new Set([...nb].map(b=>b.getAttribute('href').slice(1)));
+let obsReady = false;
+setTimeout(()=>{ obsReady = true; }, 600); // 600ms待機
+// navリンク先IDのみ observe
+document.querySelectorAll('section[id],div[id]').forEach(s=>{
+  if(s.id && navTargets.has(s.id)) obs.observe(s);
+});
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/fwc2026/sw.js').catch(()=>{}));}
 </script>
 </body>
