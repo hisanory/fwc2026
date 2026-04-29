@@ -258,6 +258,27 @@ footer{text-align:center;padding:2rem 1rem 2rem;color:var(--muted);font-size:.68
 .t-pdt{display:none;}
 body.pdt-mode .t-jst{display:none;}
 body.pdt-mode .t-pdt{display:inline;}
+/* ─── CHANGELOG MODAL ─── */
+#changelog{position:fixed;top:calc(var(--sb-h) + 6px);right:.7rem;z-index:500;
+  background:rgba(7,16,29,.97);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+  border:1px solid rgba(0,230,118,.3);border-radius:14px;padding:1rem;width:min(90vw,340px);
+  display:none;max-height:75svh;overflow-y:auto;scrollbar-width:thin;}
+#changelog.show{display:block;}
+#changelog::-webkit-scrollbar{width:4px;}
+#changelog::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px;}
+.cl-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.7rem;}
+.cl-title{font-family:'Bebas Neue',cursive;font-size:1.1rem;letter-spacing:.08em;color:var(--green);}
+.cl-close{background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;}
+.cl-entry{border-left:2px solid rgba(0,230,118,.3);padding:.45rem .65rem;margin-bottom:.55rem;border-radius:0 8px 8px 0;background:rgba(255,255,255,.03);}
+.cl-date{font-size:.6rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px;}
+.cl-ver{font-size:.68rem;font-weight:700;color:var(--green);margin-bottom:3px;}
+.cl-items{list-style:none;display:flex;flex-direction:column;gap:2px;}
+.cl-items li{font-size:.68rem;color:var(--text);padding-left:.9em;position:relative;}
+.cl-items li::before{content:'›';position:absolute;left:0;color:var(--green);}
+.updated-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(0,230,118,.08);
+  border:1px solid rgba(0,230,118,.2);border-radius:100px;padding:3px 10px;
+  font-size:.62rem;color:var(--green);margin:0 1rem .8rem;}
+
 </style>
 </head>
 <body>
@@ -277,6 +298,75 @@ body.pdt-mode .t-pdt{display:inline;}
   <div class="sb-clk"><div class="sb-city">現地時間<br>PDT</div><div class="sb-time" id="clk-pdt">--:--</div></div>
   <div class="sb-div"></div>
   <div class="sb-clk"><div class="sb-city">Calgary<br>MDT</div><div class="sb-time" id="clk-mdt">--:--</div></div>
+  <div class="sb-div"></div>
+  <button onclick="document.getElementById('changelog').classList.toggle('show')" style="background:rgba(64,196,255,.1);border:1px solid rgba(64,196,255,.25);border-radius:100px;padding:3px 9px;font-size:.48rem;color:var(--blue);font-family:'Noto Sans JP',sans-serif;cursor:pointer;white-space:nowrap;flex-shrink:0">📋 更新履歴</button>
+</div>
+
+
+<!-- CHANGELOG MODAL / 変更履歴 -->
+<div id="changelog">
+  <div class="cl-header">
+    <div class="cl-title">📋 変更履歴</div>
+    <button class="cl-close" onclick="document.getElementById('changelog').classList.remove('show')">✕</button>
+  </div>
+
+  <div class="cl-entry">
+    <div class="cl-date">2025-04-29</div>
+    <div class="cl-ver">v3.2 — 7/8・7/9 日程入れ替え</div>
+    <ul class="cl-items">
+      <li>7/8：Capilano + Grouse Mountain → <strong>Gastown・Vera's・Lookout・Granville・Sundbar</strong></li>
+      <li>7/9：Gastown等 → <strong>Capilano + Grouse Mountain</strong></li>
+    </ul>
+  </div>
+
+  <div class="cl-entry">
+    <div class="cl-date">2025-04-29</div>
+    <div class="cl-ver">v3.1 — ESTA / eTA 不要を確認</div>
+    <ul class="cl-items">
+      <li>✅ <strong>ESTA（米国）不要</strong> — 今回の旅程では不要を確認</li>
+      <li>✅ <strong>eTA（カナダ）不要</strong> — 陸路（車）入国のため不要</li>
+    </ul>
+  </div>
+
+  <div class="cl-entry">
+    <div class="cl-date">2025-04-29</div>
+    <div class="cl-ver">v3.0 — カツヒサLINE情報反映</div>
+    <ul class="cl-items">
+      <li>宿泊地：Lynnwood → <strong>Burien</strong>（5人→6人対応）</li>
+      <li>7/3チェックイン：PM3:00から。11:00以降は荷物だけ置き可</li>
+      <li>カツヒサが先に荷物置き。皆は空港から電車で移動</li>
+      <li>7/4：<strong>レンタカー（6人以上乗り）1日借りる</strong>（Boeing移動用）</li>
+      <li>Surrey宿泊：<strong>キャンピングカー（洗濯機なし）</strong></li>
+      <li>洗濯可：Burien Villa滞在中＋バンクーバー後2日</li>
+      <li>カナダ入国：<strong>eTA不要</strong>（陸路・車入国のため）</li>
+      <li>SEA移動：電車・バス・Uber ／ VAN移動：車（カツヒサ）がメイン</li>
+    </ul>
+  </div>
+
+  <div class="cl-entry" style="border-left-color:rgba(64,196,255,.3)">
+    <div class="cl-date">2025-04-27</div>
+    <div class="cl-ver">v2.0 — PDFスケジュール完全反映</div>
+    <ul class="cl-items">
+      <li>7/4：MoPOP追加、Metropolitan Grill追加</li>
+      <li>7/5：MLB + Lumen Field Shopping + 自炊</li>
+      <li>7/6：Packing→Check Out→Stevie's→Match94→Surrey移動</li>
+      <li>7/7：Match 96 @ BC Place 13:00</li>
+      <li>7/8：Capilano + Grouse Mountain（同日）</li>
+      <li>7/9：Gastown→Vera's→Lookout→Granville→Sundbar→Packing</li>
+      <li>コウシ：YVR→YYC（Calgary）個別帰路追加</li>
+    </ul>
+  </div>
+
+  <div class="cl-entry" style="border-left-color:rgba(206,147,216,.3)">
+    <div class="cl-date">2025-04-26</div>
+    <div class="cl-ver">v1.0 — 初版公開</div>
+    <ul class="cl-items">
+      <li>DL166 / NH115 フライト確定反映</li>
+      <li>カツヒサ Calgary Base Camp セクション追加</li>
+      <li>全デザイン：Glassmorphism / Bento Grid / ライブ時計</li>
+      <li>JST⇄PDT トグル / タップコピー / PWA対応</li>
+    </ul>
+  </div>
 </div>
 
 <div id="toast">📋 コピーしました！</div>
@@ -292,6 +382,7 @@ body.pdt-mode .t-pdt{display:inline;}
     <span class="mchip">✈️ 勇介</span>
     <span class="mchip calgary">🚗 カツヒサ（Calgary）</span>
   </div>
+  <div class="updated-badge">🕐 最終更新: 2025年4月29日（v3.2）</div>
 </section>
 
 <!-- BENTO -->
@@ -331,7 +422,7 @@ body.pdt-mode .t-pdt{display:inline;}
     <div class="bento span3">
       <div class="b-en">SCHEDULE / 日程</div>
       <div class="b-val" style="font-size:.85rem">7/3(金)〜7/10(金) 出発 — 8泊</div>
-      <div class="b-sub">Seattle（Lynnwood Villa）3泊 → Vancouver（Surrey, BC）4泊 → 7/10夜 YVR発</div>
+      <div class="b-sub">Seattle（Burien Villa）3泊 → Vancouver（Surrey, BC）4泊 → 7/10夜 YVR発</div>
     </div>
   </div>
 </div>
@@ -340,7 +431,7 @@ body.pdt-mode .t-pdt{display:inline;}
 <div class="calgary-section" id="calgary">
   <div class="cgr-badge">🏔️ Base Camp Calgary / カルガリー拠点</div>
   <div class="cgr-h">カツヒサ — カルガリー在住 / Lives in Calgary, AB</div>
-  <p style="font-size:.76rem;color:var(--muted);margin-bottom:.5rem">カツヒサはカナダ・カルガリー在住。<strong style="color:var(--gold)">7/3に車でSEA空港へ向かい、全員を出迎え。</strong>宿泊（Lynnwood Villa・Surrey）はカツヒサが手配。</p>
+  <p style="font-size:.76rem;color:var(--muted);margin-bottom:.5rem">カツヒサはカナダ・カルガリー在住。<strong style="color:var(--gold)">7/3に車でSEA空港へ向かい、全員を出迎え。</strong>宿泊（Burien Villa・Surrey）はカツヒサが手配。<br><span style="font-size:.72rem;color:var(--blue)">🚇 SEAは電車・バス・Uberで移動 ／ 🚗 VANは車（カツヒサ）がメイン</span></p>
   <div style="font-size:.76rem;color:var(--text);margin-bottom:.38rem">🚗 Calgary → Seattle Airport ルート / Route</div>
   <div onclick="copyText('Calgary, AB → Lethbridge → Coutts Border / Sweetgrass → US-15 → Great Falls MT → Seattle, WA')" class="copy-row">
     <span class="copy-val">Calgary → Lethbridge → Coutts → US-15 → Great Falls → Seattle SEA Airport</span>
@@ -348,9 +439,9 @@ body.pdt-mode .t-pdt{display:inline;}
   </div>
   <div class="cgr-grid">
     <div class="cgr-item"><div class="cgr-ic">📍</div><div class="cgr-name">Calgary → SEA空港 / Airport</div><div class="cgr-det">約850km・10〜12時間 / 10-12 hours</div></div>
-    <div class="cgr-item"><div class="cgr-ic">🛂</div><div class="cgr-name">国境越え / Border</div><div class="cgr-det">Coutts（CA）→ Sweetgrass（US）</div></div>
-    <div class="cgr-item"><div class="cgr-ic">🏠</div><div class="cgr-name">宿泊手配 / Accommodation</div><div class="cgr-det">Lynnwood Villa & Surrey, BC 手配済</div></div>
-    <div class="cgr-item"><div class="cgr-ic">🚗</div><div class="cgr-name">7/3 ミッション</div><div class="cgr-det">SEA空港で全員ピックアップ！全員乗車後にLynnwoodへ</div></div>
+    <div class="cgr-item"><div class="cgr-ic">🛂</div><div class="cgr-name">国境越え / Border</div><div class="cgr-det">Coutts（CA）→ Sweetgrass（US）<br><span style="color:var(--green);font-size:.58rem">✅ 陸路入国はeTA不要！</span></div></div>
+    <div class="cgr-item"><div class="cgr-ic">🏠</div><div class="cgr-name">宿泊手配 / Accommodation</div><div class="cgr-det">Burien Villa & Surrey, BC 手配済</div></div>
+    <div class="cgr-item"><div class="cgr-ic">🚗</div><div class="cgr-name">7/3 ミッション</div><div class="cgr-det">SEA空港で全員ピックアップ！全員乗車後にBurienへ</div></div>
   </div>
   <div class="bgrp" style="margin-top:.55rem"><a class="lbtn" href="https://maps.google.com/maps?saddr=Calgary+AB&daddr=Seattle+WA" target="_blank">🗺️ Calgary→Seattle ルート確認</a></div>
 </div>
@@ -368,8 +459,8 @@ body.pdt-mode .t-pdt{display:inline;}
     <a class="snav-btn" href="#day3">Day3｜7/5⚾</a>
     <a class="snav-btn" href="#day4">Day4｜7/6🏆SEA</a>
     <a class="snav-btn" href="#day5">Day5｜7/7→VAN</a>
-    <a class="snav-btn" href="#day6">Day6｜7/8 Capilano</a>
-    <a class="snav-btn" href="#day7">Day7｜7/9 Grouse</a>
+    <a class="snav-btn" href="#day6">Day6｜7/8 Gastown</a>
+    <a class="snav-btn" href="#day7">Day7｜7/9 Capilano</a>
     <a class="snav-btn" href="#day8">Day8｜7/10🏆VAN→帰国</a>
     <a class="snav-btn" href="#rules">🏟️ 観戦Info</a>
     <a class="snav-btn" href="#sos">🆘 緊急</a>
@@ -381,13 +472,13 @@ body.pdt-mode .t-pdt{display:inline;}
   <div class="sec-title">📅 SCHEDULE / 日程一覧 — VAN組</div>
   <div class="sched-scroll">
     <div class="sched-grid" id="schedGrid">
-      <div class="day-col travel-day" id="sc-d1"><div class="day-head">7/3<div class="dow">金 FRI</div></div><div class="day-body"><div class="si tr">DL166 HND 16:15 JST</div><div class="si tr">SEA着 9:36 PDT（同日）</div><div class="si shared">🚗 カツヒサ迎え</div><div class="si hl">🔑 Check in 13:00</div><div class="si hl">🐟 Pike Place 15:00</div><div class="si food">🛒 Costco 19:00</div><div class="si food">自炊 20:00</div><div class="si acc">🏡 Lynnwood</div></div></div>
-      <div class="day-col sea-day" id="sc-d2"><div class="day-head">7/4<div class="dow">土 SAT</div></div><div class="day-body"><div class="si hl">🦇 MoPOP 10:00</div><div class="si hl">✈️ Boeing 14:00</div><div class="si food">🥩 Metropolitan 19:00</div><div class="si food">🎆 花火 22:00</div><div class="si acc">🏡 Lynnwood</div></div></div>
-      <div class="day-col sea-day" id="sc-d3"><div class="day-head">7/5<div class="dow">日 SUN</div></div><div class="day-body"><div class="si hl">⚾ イチロー像 11:00</div><div class="si hl">⚾ MLB 13:30</div><div class="si hl">🏟️ LF周辺 17:00</div><div class="si food">自炊 19:00</div><div class="si acc">🏡 Lynnwood</div></div></div>
+      <div class="day-col travel-day" id="sc-d1"><div class="day-head">7/3<div class="dow">金 FRI</div></div><div class="day-body"><div class="si tr">DL166 HND 16:15 JST</div><div class="si tr">SEA着 9:36 PDT（同日）</div><div class="si shared">🚗 カツヒサ迎え</div><div class="si hl">🔑 Check in 13:00</div><div class="si hl">🐟 Pike Place 15:00</div><div class="si food">🛒 Costco 19:00</div><div class="si food">自炊 20:00</div><div class="si acc">🏡 Burien</div></div></div>
+      <div class="day-col sea-day" id="sc-d2"><div class="day-head">7/4<div class="dow">土 SAT</div></div><div class="day-body"><div class="si hl">🦇 MoPOP 10:00</div><div class="si hl">✈️ Boeing 14:00</div><div class="si food">🥩 Metropolitan 19:00</div><div class="si food">🎆 花火 22:00</div><div class="si acc">🏡 Burien</div></div></div>
+      <div class="day-col sea-day" id="sc-d3"><div class="day-head">7/5<div class="dow">日 SUN</div></div><div class="day-body"><div class="si hl">⚾ イチロー像 11:00</div><div class="si hl">⚾ MLB 13:30</div><div class="si hl">🏟️ LF周辺 17:00</div><div class="si food">自炊 19:00</div><div class="si acc">🏡 Burien</div></div></div>
       <div class="day-col match1-day" id="sc-d4"><div class="day-head">7/6<div class="dow">月 MON</div></div><div class="day-body"><div class="si">📦 Packing 10:00</div><div class="si hl">🚪 Check Out 11:00</div><div class="si food">🍕 Stevie's 12:00</div><div class="si hl">🏟️ LF周辺 15:00</div><div class="si match">🏆 Match94 17:00</div><div class="si tr">SEA→VAN 21:00</div><div class="si acc">🏠 Surrey着</div></div></div>
       <div class="day-col match2-day" id="sc-d5"><div class="day-head">7/7<div class="dow">火 TUE</div></div><div class="day-body"><div class="si hl">🏟️ BC Place周辺 11:00</div><div class="si match2">🏆 Match96 13:00</div><div class="si food">🛒 Whole Foods 17:00</div><div class="si food">自炊 19:00</div><div class="si acc">🏠 Surrey</div></div></div>
-      <div class="day-col" id="sc-d6"><div class="day-head">7/8<div class="dow">水 WED</div></div><div class="day-body"><div class="si hl">🌉 Capilano 10:00</div><div class="si hl">⛰️ Grouse Mtn 14:00</div><div class="si food">自炊 19:00</div><div class="si acc">🏠 Surrey</div></div></div>
-      <div class="day-col" id="sc-d7"><div class="day-head">7/9<div class="dow">木 THU</div></div><div class="day-body"><div class="si hl">🏘️ Gastown 10:00</div><div class="si food">🍔 Vera's 12:00</div><div class="si hl">🌆 Lookout 13:00</div><div class="si hl">🛒 Granville 15:00</div><div class="si food">🍸 Sundbar 18:00</div><div class="si acc">🏠 Surrey</div></div></div>
+      <div class="day-col" id="sc-d6"><div class="day-head">7/8<div class="dow">水 WED</div></div><div class="day-body"><div class="si hl">🏘️ Gastown 10:00</div><div class="si food">🍔 Vera's 12:00</div><div class="si hl">🌆 Lookout 13:00</div><div class="si hl">🛒 Granville 15:00</div><div class="si food">🍸 Sundbar 18:00</div><div class="si acc">🏠 Surrey</div></div></div>
+      <div class="day-col" id="sc-d7"><div class="day-head">7/9<div class="dow">木 THU</div></div><div class="day-body"><div class="si hl">🌉 Capilano 10:00</div><div class="si hl">⛰️ Grouse Mtn 14:00</div><div class="si food">自炊 19:00</div><div class="si acc">🏠 Surrey</div></div></div>
       <div class="day-col travel-day" id="sc-d8"><div class="day-head">7/10<div class="dow">金 FRI</div></div><div class="day-body"><div class="si hl">🚪 Check Out 10:00</div><div class="si tr">コウシ YVR→YYC 13:00</div><div class="si tr">🛫 NH115 16:30 PDT</div><div class="si tr">HND着 7/11 19:30</div><div class="si acc">✈️ 機中泊</div></div></div>
     </div>
   </div>
@@ -404,7 +495,7 @@ body.pdt-mode .t-pdt{display:inline;}
       <div class="rl flight"><div class="rl-ic">✈️</div><div class="rl-line"></div><div class="rl-lbl">DL166<br>〜9.5h</div></div>
       <div class="rs"><div class="rs-icon">🚗</div><div class="rs-bub katu-s"><div class="rs-name">SEA 空港<br>✨全員合流</div><div class="rs-tm gold">9:36→10:50<br>PDT 7/3</div><div class="rs-sub">カツヒサ待機中</div><a class="rs-map" style="color:var(--gold)" href="https://maps.google.com/maps?daddr=Seattle-Tacoma+International+Airport" target="_blank">📍</a></div></div>
       <div class="rl drive"><div class="rl-ic">🚗</div><div class="rl-line"></div><div class="rl-lbl">車<br>40min</div></div>
-      <div class="rs"><div class="rs-icon">🏡</div><div class="rs-bub shared-s"><div class="rs-name">Lynnwood Villa</div><div class="rs-tm g">7/3〜7/6</div><div class="rs-sub">カツヒサ手配</div><a class="rs-map" href="https://maps.google.com/maps?daddr=Lynnwood+WA" target="_blank">📍</a></div></div>
+      <div class="rs"><div class="rs-icon">🏡</div><div class="rs-bub shared-s"><div class="rs-name">Burien Villa</div><div class="rs-tm g">7/3〜7/6</div><div class="rs-sub">カツヒサ手配</div><a class="rs-map" href="https://maps.google.com/maps?daddr=Burien+WA" target="_blank">📍</a></div></div>
       <div class="rl drive"><div class="rl-ic">🚗</div><div class="rl-line"></div><div class="rl-lbl">15min</div></div>
       <div class="rs"><div class="rs-icon">✈️</div><div class="rs-bub shared-s"><div class="rs-name">Boeing<br>Everett</div><div class="rs-tm g">7/4 14:00</div><a class="rs-map" href="https://maps.google.com/maps?daddr=Boeing+Future+of+Flight+Everett" target="_blank">📍</a></div></div>
       <div class="rl walk"><div class="rl-ic">🦇</div><div class="rl-line"></div><div class="rl-lbl">7/5</div></div>
@@ -433,16 +524,16 @@ body.pdt-mode .t-pdt{display:inline;}
   <div class="acc-card">
     <div class="acc-icon">🏡</div>
     <div>
-      <div class="acc-name">The Lynnwood Villa（SEA組と共同 / Shared with SEA group）</div>
-      <div class="acc-det">7/3(金)〜7/6(月) — Lynnwood, WA ／ <strong style="color:var(--gold)">カツヒサ手配</strong></div>
-      <div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Lynnwood+WA" target="_blank">📍 Lynnwoodエリア</a></div>
+      <div class="acc-name">The Burien Villa（SEA組と共同 / Shared with SEA group）</div>
+      <div class="acc-det">7/3(金)〜7/6(月) — Burien, WA ／ <strong style="color:var(--gold)">カツヒサ手配</strong></div>
+      <div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Burien+WA" target="_blank">📍 Burienエリア</a></div>
     </div>
   </div>
   <div class="acc-card">
-    <div class="acc-icon">🏠</div>
+    <div class="acc-icon">🏕️</div>
     <div>
-      <div class="acc-name">Surrey, BC（Vancouver近郊 / Near Vancouver）</div>
-      <div class="acc-det">7/7(火)〜7/10(金) — Surrey ／ <strong style="color:var(--gold)">カツヒサ手配</strong></div>
+      <div class="acc-name">Surrey, BC — キャンピングカー🚐</div>
+      <div class="acc-det">7/7(火)〜7/10(金) — Surrey, BC ／ <strong style="color:var(--gold)">キャンピングカー</strong> ／ <strong style="color:var(--red)">⚠️ 洗濯機なし</strong></div>
       <div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Surrey+British+Columbia+Canada" target="_blank">📍 Surrey, BC</a></div>
     </div>
   </div>
@@ -466,24 +557,25 @@ body.pdt-mode .t-pdt{display:inline;}
 
   <div style="background:rgba(255,213,79,.05);border:1px solid rgba(255,213,79,.18);border-radius:12px;padding:.85rem;margin-bottom:.8rem;">
     <div style="font-size:.72rem;font-weight:700;color:var(--gold);margin-bottom:.45rem">🚗 カツヒサ — Calgary → SEA空港へ移動中</div>
-    <div style="font-size:.73rem;color:var(--muted)">カツヒサはCalgarryから約10〜12時間かけてSEA空港に到着予定。VAN組（9:36 PDT）とSEA組：山内・レンタロウ（10:50 PDT）の到着を待って、<strong style="color:var(--gold)">全員（6名）で車でLynnwood Villaへ出発！</strong></div>
+    <div style="font-size:.73rem;color:var(--muted)">カツヒサはCalgarryから約10〜12時間かけてSEA空港に到着予定。VAN組（9:36 PDT）とSEA組：山内・レンタロウ（10:50 PDT）の到着を待って、<strong style="color:var(--gold)">全員（6名）で車でBurien Villaへ出発！</strong></div>
     <div class="bgrp" style="margin-top:.45rem"><a class="lbtn" href="https://maps.google.com/maps?saddr=Calgary+AB&daddr=Seattle-Tacoma+International+Airport" target="_blank">🗺️ Calgary→SEA空港ルート</a></div>
   </div>
 
   <div class="tl">
     <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🛫</div><div><div class="c-time jst"><span class="t-jst">16:05 JST — 羽田出発 / Depart HND</span><span class="t-pdt">16:05 JST（00:05 PDT）— Depart HND</span></div><div class="c-t">Delta Air Lines DL166</div></div></div><div class="c-d">出発3時間前（13:05 JST）には空港着を / Be at airport 3hrs before departure。</div></div></div>
-    <div class="tl-item"><div class="dot gold"></div><div class="card katu-card"><div class="card-h"><div class="c-ic">🚗</div><div><div class="c-time" style="color:var(--gold)">9:36 PDT → 10:50 PDT — SEAタック空港 ✨ 全員集合！</div><div class="c-t" style="color:var(--gold)">カツヒサ出迎え → 6名全員でLynnwood Villaへ出発！</div></div></div><div class="c-d">VAN組（芝・コウシ・勇介）が9:36 PDT着。SEA組（山内・レンタロウ）が10:50 PDT着。<strong>カツヒサが全員を出迎え、車でLynnwood Villaへ！</strong></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Seattle-Tacoma+International+Airport" target="_blank">📍 SEAタック空港</a></div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🏡</div><div><div class="c-time pdt">午後 / Afternoon</div><div class="c-t">Lynnwood Villa チェックイン</div></div></div><div class="c-d">荷物を下ろして一息。</div></div></div>
+    <div class="tl-item"><div class="dot gold"></div><div class="card katu-card"><div class="card-h"><div class="c-ic">🚗</div><div><div class="c-time" style="color:var(--gold)">9:36 PDT → 10:50 PDT — SEAタック空港 ✨ 全員集合！</div><div class="c-t" style="color:var(--gold)">カツヒサ出迎え → 6名全員でBurien Villaへ出発！</div></div></div><div class="c-d">VAN組（芝・コウシ・勇介）が9:36 PDT着。SEA組（山内・レンタロウ）が10:50 PDT着。<strong>カツヒサが全員を出迎え、車でBurien Villaへ！</strong></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Seattle-Tacoma+International+Airport" target="_blank">📍 SEAタック空港</a></div></div></div>
+    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🏡</div><div><div class="c-time pdt">PM 3:00 PDT — 正式チェックイン</div><div class="c-t">Burien Villa チェックイン</div></div></div><div class="c-d"><strong>チェックインはPM3:00から</strong>。ただし<strong>11:00以降は荷物だけ置かせてもらえる</strong>。カツヒサが先に荷物を置いてくれる間、皆は空港から電車でPike Placeへ！</div></div></div>
     <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🐟</div><div><div class="c-time pdt">15:00 PDT〜 / Pike Place Market</div><div class="c-t">Pike Place Market</div></div></div><div class="c-d">シアトルの象徴的な市場。</div><div style="margin:.3rem 0"><span class="ftag">☕ Starbucks 1号店</span><span class="ftag">🦀 Pike Place Chowder</span><span class="ftag">🍺 Pike Brewing Co.</span></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Pike+Place+Market+Seattle" target="_blank">📍 Pike Place Market</a></div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🛒</div><div><div class="c-time pdt">19:00 PDT〜</div><div class="c-t">Market / Costco で買い出し</div></div></div><div class="c-d">Lynnwood近くのCostco or スーパーで食材購入。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Costco+Lynnwood+WA" target="_blank">📍 Costco Lynnwood</a></div></div></div>
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🍳</div><div><div class="c-time pdt">21:00 / 夕食</div><div class="c-t">自炊 — Lynnwood Villa</div></div></div><div class="c-d">旅の初日はホームな夕食でゆっくり。</div></div></div>
+    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🛒</div><div><div class="c-time pdt">19:00 PDT〜</div><div class="c-t">Market / Costco で買い出し</div></div></div><div class="c-d">Burien近くのCostco or スーパーで食材購入。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Costco+Burien+WA" target="_blank">📍 Costco Burien</a></div></div></div>
+    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🍳</div><div><div class="c-time pdt">21:00 / 夕食</div><div class="c-t">自炊 — Burien Villa</div></div></div><div class="c-d">旅の初日はホームな夕食でゆっくり。</div></div></div>
   </div>
-  <div class="tips"><h4>💡 出発前チェック / Pre-trip Checklist</h4><ul><li>ESTA（米国電子渡航認証）事前申請確認</li><li>eTA（カナダ電子渡航認証）も必須！ / Canada eTA required!</li><li>パスポート有効期限：入国日から6ヶ月以上</li><li>米国・カナダ両対応eSIM / SIMを準備</li></ul></div>
+  <div class="tips"><h4>💡 出発前チェック / Pre-trip Checklist</h4><ul><li>✅ <strong>ESTA不要</strong>（今回は不要）</li><li>✅ <strong>eTA不要</strong>（陸路・車でカナダ入国のため）</li><li>パスポート有効期限：入国日から6ヶ月以上</li><li>米国・カナダ両対応eSIM / SIMを準備</li></ul></div>
 </section>
 
 <!-- DAY 2 -->
 <section class="sec" id="day2">
-  <div class="sec-header"><div class="day-num">02</div><div class="day-meta"><div class="dlbl l-sh">観光 / Sightseeing</div><h2>7月4日（土）— MoPOP🦇 + Boeing✈️ + 花火🎆</h2><p>MoPOP 10:00 → Lunch → Boeing 14:00 → Metropolitan 19:00 → 花火 22:00</p></div></div>
+  <div class="sec-header"><div class="day-num">02</div><div class="day-meta"><div class="dlbl l-sh">観光 / Sightseeing</div><h2>7月4日（土）— MoPOP🦇 + Boeing✈️ + 花火🎆</h2><p>MoPOP 10:00 → Lunch → 🚗 レンタカー → Boeing 14:00 → Metropolitan 19:00 → 花火 22:00</p></div></div>
+  <div class="card" style="border-color:rgba(255,213,79,.3);background:rgba(40,30,0,.25);margin-bottom:.7rem"><div class="card-h"><div class="c-ic">🚗</div><div><div class="c-time jst" style="color:var(--gold)">7/4 終日 — レンタカー手配</div><div class="c-t" style="color:var(--gold)">6人以上乗り レンタカー 1日借りる</div></div></div><div class="c-d">Boeingがある<strong>Everettは北方向</strong>で電車では不便のため、7/4のみ6人以上乗れるレンタカーを1日レンタル。MoPOP後のBoeing往復・Metropolitan Grillへの移動に使用。返却は夜。</div></div>
   <div class="shared-badge">🟢 山内・レンタロウ（SEA組）と共行動 / With SEA group</div>
   <div class="tl">
     <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🦇</div><div><div class="c-time pdt"><span class="t-pdt">10:00 PDT〜</span><span class="t-jst">10:00 PDT（現地）</span></div><div class="c-t">Museum of Pop Culture（MoPOP）</div></div></div><div class="c-d">DC・SF・音楽・スポーツ・科学など多彩な展示が揃うポップカルチャーの殿堂。スペースニードル横のフランク・ゲーリー設計建築も必見。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Museum+of+Pop+Culture+Seattle" target="_blank">📍 MoPOP</a><a class="lbtn" href="https://www.mopop.org" target="_blank">🔗 チケット</a></div><span class="tbadge">🚇 モノレール Westlake→Seattle Center</span></div></div>
@@ -502,7 +594,7 @@ body.pdt-mode .t-pdt{display:inline;}
     <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🏟️</div><div><div class="c-time pdt">11:00 PDT〜</div><div class="c-t">T-Mobile Park周辺 — イチロー像 ＆ Shopping</div></div></div><div class="c-d">T-Mobile Park周辺を散策。<strong>イチロー像</strong>で記念写真！試合前のグッズショッピング。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Ichiro+Suzuki+Statue+Seattle" target="_blank">📍 イチロー像</a></div></div></div>
     <div class="tl-item"><div class="dot r"></div><div class="card" style="border-color:rgba(255,213,79,.25)"><div class="card-h"><div class="c-ic">⚾</div><div><div class="c-time" style="color:var(--gold);font-size:.82rem"><span class="t-pdt">13:30 PDT — ⚾ PLAY BALL!</span><span class="t-jst">13:30 PDT — 試合開始</span></div><div class="c-t" style="font-size:.92rem">MLB — SEA Mariners vs TOR Blue Jays @ T-Mobile Park</div></div></div><div class="c-d">本場アメリカ野球！ホットドッグ・ガーリックフライ必食！</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=T-Mobile+Park+Seattle" target="_blank">📍 T-Mobile Park</a></div><span class="tbadge">🚇 Link「Stadium」駅直結</span></div></div>
     <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🏟️</div><div><div class="c-time pdt">17:00 PDT〜</div><div class="c-t">Lumen Field周辺 Shopping</div></div></div><div class="c-d">明日の試合（Match 94）に備えてLumen Field周辺のWCグッズをリサーチ・購入。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Lumen+Field+Seattle" target="_blank">📍 Lumen Field周辺</a></div></div></div>
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🍳</div><div><div class="c-time pdt">19:00 PDT / 夕食</div><div class="c-t">自炊 — Lynnwood Villa</div></div></div><div class="c-d">明日はPacking &amp; Check Outなので荷物整理も兼ねて。早めに就寝。</div></div></div>
+    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🍳</div><div><div class="c-time pdt">19:00 PDT / 夕食</div><div class="c-t">自炊 — Burien Villa</div></div></div><div class="c-d">明日はPacking &amp; Check Outなので荷物整理も兼ねて。早めに就寝。</div></div></div>
   </div>
 </section>
 
@@ -525,12 +617,12 @@ body.pdt-mode .t-pdt{display:inline;}
     <a class="mbtn" href="https://maps.google.com/maps?daddr=Lumen+Field+800+Occidental+Ave+S+Seattle" target="_blank" style="font-size:.76rem;padding:5px 10px;margin-top:.4rem;display:inline-flex">📍 Lumen Field へのルート</a>
   </div>
   <div class="tl">
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">📦</div><div><div class="c-time pdt">10:00 PDT — Packing / 荷造り</div><div class="c-t">荷造り完了 → チェックアウト準備</div></div></div><div class="c-d">今日でLynnwood Villaともお別れ。スーツケースをまとめる。</div></div></div>
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🚪</div><div><div class="c-time pdt">11:00 PDT — Check Out</div><div class="c-t">Lynnwood Villa チェックアウト</div></div></div><div class="c-d">カツヒサが車に全員の荷物を積み込む。今夜Surreyへ向かうため荷物は車中へ。</div></div></div>
+    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">📦</div><div><div class="c-time pdt">10:00 PDT — Packing / 荷造り</div><div class="c-t">荷造り完了 → チェックアウト準備</div></div></div><div class="c-d">今日でBurien Villaともお別れ。スーツケースをまとめる。</div></div></div>
+    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🚪</div><div><div class="c-time pdt">11:00 PDT — Check Out</div><div class="c-t">Burien Villa チェックアウト</div></div></div><div class="c-d">カツヒサが車に全員の荷物を積み込む。今夜Surreyへ向かうため荷物は車中へ。</div></div></div>
     <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🍕</div><div><div class="c-time pdt">12:00 PDT — Lunch / 昼食</div><div class="c-t">Stevie's Famous Burien Pizza</div></div></div><div class="c-d">試合前の腹ごしらえ！地元で人気の本格ピザ。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Stevie%27s+Famous+Burien+Pizza" target="_blank">📍 Stevie's Famous Burien Pizza</a></div></div></div>
     <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🏟️</div><div><div class="c-time pdt">15:00 PDT〜</div><div class="c-t">Lumen Field周辺 Shopping</div></div></div><div class="c-d">スタジアム周辺のWCグッズ・お土産をゲット！試合開始前の最後のチャンス。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Lumen+Field+Seattle" target="_blank">📍 Lumen Field周辺</a></div></div></div>
     <div class="tl-item"><div class="dot b2"></div><div class="card" style="border-color:rgba(0,230,118,.32);background:linear-gradient(135deg,rgba(0,40,20,.5),rgba(10,22,42,.6))"><div class="card-h"><div class="c-ic">🏆</div><div><div class="c-time" style="font-size:.84rem;color:var(--green)"><span class="t-pdt">⚽ KICK OFF — 17:00 PDT</span><span class="t-jst">⚽ キックオフ — 17:00 PDT（現地）</span></div><div class="c-t" style="color:var(--green)">FIFA WC — Round of 16 / 決勝16強 / Match 94 @ Lumen Field</div></div></div><div class="c-d"><strong>Lumen Field</strong>（Seattle）。VAN組 第1戦！6名全員で観戦。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Lumen+Field+Seattle" target="_blank">📍 Lumen Field</a></div><span class="tbadge">🚇 Link「Stadium」駅</span></div></div>
-    <div class="tl-item"><div class="dot b2"></div><div class="card" style="border-color:rgba(64,196,255,.22)"><div class="card-h"><div class="c-ic">🚗</div><div><div class="c-time" style="color:var(--blue)">21:00 PDT〜 — 試合後 即バンクーバーへ！</div><div class="c-t" style="color:var(--blue)">SEA → Peace Arch 国境越え → Surrey, BC</div></div></div><div class="c-d">カツヒサが運転。Peace Arch / Pacific Highway国境を越えてSurrey泊へ。<strong>明日はMatch 96！</strong></div><div onclick="copyText('Peace Arch Border Crossing, Blaine, WA 98230')" class="copy-row"><span class="copy-val">Peace Arch Border Crossing, Blaine, WA 98230</span><span class="copy-ic">📋</span></div><div class="bgrp"><a class="lbtn" href="https://maps.google.com/maps?saddr=Lumen+Field+Seattle&daddr=Surrey+BC+Canada" target="_blank">🗺️ Lumen Field→Surreyルート</a></div><div class="tips"><h4>💡 国境越え / Border Tips</h4><ul><li>パスポート＋eTA（カナダ）必携</li><li>月曜深夜は比較的スムーズ</li><li>カナダ入国後は CAD またはクレカ使用</li></ul></div></div></div>
+    <div class="tl-item"><div class="dot b2"></div><div class="card" style="border-color:rgba(64,196,255,.22)"><div class="card-h"><div class="c-ic">🚗</div><div><div class="c-time" style="color:var(--blue)">21:00 PDT〜 — 試合後 即バンクーバーへ！</div><div class="c-t" style="color:var(--blue)">SEA → Peace Arch 国境越え → Surrey, BC</div></div></div><div class="c-d">カツヒサが運転。Peace Arch / Pacific Highway国境を越えてSurrey泊へ。<strong>明日はMatch 96！</strong></div><div onclick="copyText('Peace Arch Border Crossing, Blaine, WA 98230')" class="copy-row"><span class="copy-val">Peace Arch Border Crossing, Blaine, WA 98230</span><span class="copy-ic">📋</span></div><div class="bgrp"><a class="lbtn" href="https://maps.google.com/maps?saddr=Lumen+Field+Seattle&daddr=Surrey+BC+Canada" target="_blank">🗺️ Lumen Field→Surreyルート</a></div><div class="tips"><h4>💡 国境越え / Border Tips</h4><ul><li>パスポートのみ ✅（eTA不要 / 陸路入国）</li><li>月曜深夜は比較的スムーズ</li><li>カナダ入国後は CAD またはクレカ使用</li></ul></div></div></div>
   </div>
 </section>
 
@@ -561,24 +653,24 @@ body.pdt-mode .t-pdt{display:inline;}
 
 <!-- DAY 6 -->
 <section class="sec" id="day6">
-  <div class="sec-header"><div class="day-num">06</div><div class="day-meta"><div class="dlbl l-van">VAN観光① / Vancouver</div><h2>7月8日（水）— Capilano🌉 + Grouse Mountain⛰️</h2><p>Capilano Park 10:00 → 移動 → Grouse Mountain 14:00 → 自炊</p></div></div>
-  <div class="tl">
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🌉</div><div><div class="c-time pdt">10:00 PDT〜</div><div class="c-t">Capilano Suspension Bridge Park / カピラノ吊り橋公園</div></div></div><div class="c-d">バンクーバー屈指の自然体験。高さ70mの吊り橋・森のCliffwalk。</div><div style="margin-bottom:.38rem"><span class="ftag">① Suspension Bridge</span><span class="ftag">② The Living Forest</span><span class="ftag">③ Cliffwalk</span><span class="ftag">④ Treetops Adventure</span></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Capilano+Suspension+Bridge+North+Vancouver" target="_blank">📍 Capilano Bridge</a><a class="lbtn" href="https://www.capbridge.com" target="_blank">🔗 公式予約</a></div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">⛰️</div><div><div class="c-time pdt">14:00 PDT〜</div><div class="c-t">Grouse Mountain / グラウスマウンテン</div></div></div><div class="c-d">バンクーバーの「空の遊び場」。ゴンドラ・ジップライン・山岳アクティビティ。</div><div style="margin-bottom:.38rem"><span class="ftag">① Sky Ride</span><span class="ftag">② Peak Chairlift</span><span class="ftag">③ Mountain Zipline</span><span class="ftag">④ Lumberjack Show</span><span class="ftag">⑤ Birds in Motion</span></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Grouse+Mountain+North+Vancouver" target="_blank">📍 Grouse Mountain</a><a class="lbtn" href="https://www.grousemountain.com" target="_blank">🔗 公式</a></div></div></div>
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🍳</div><div><div class="c-time pdt">19:00 PDT / 夕食</div><div class="c-t">自炊 — Surrey</div></div></div><div class="c-d">アクティビティ満載の一日の後は自炊でゆっくり。</div></div></div>
-  </div>
-</section>
-
-<!-- DAY 7 -->
-<section class="sec" id="day7">
-  <div class="sec-header"><div class="day-num">07</div><div class="day-meta"><div class="dlbl l-van">VAN観光② / Vancouver</div><h2>7月9日（木）— Gastown🏘️ → Vera's → Lookout → Granville → Sundbar🍸</h2><p>Gastown 10:00 → Vera's 12:00 → Lookout 13:00 → Granville 15:00 → Sundbar 18:00 → Packing</p></div></div>
+  <div class="sec-header"><div class="day-num">06</div><div class="day-meta"><div class="dlbl l-van">VAN観光① / Vancouver</div><h2>7月8日（水）— Gastown🏘️ → Vera's → Lookout → Granville → Sundbar🍸</h2><p>Gastown 10:00 → Vera's 12:00 → Lookout 13:00 → Granville 15:00 → Sundbar 18:00 → Packing</p></div></div>
   <div class="tl">
     <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🏘️</div><div><div class="c-time pdt">10:00 PDT〜</div><div class="c-t">Gastown 散策</div></div></div><div class="c-d">バンクーバー最古の地区。石畳・蒸気時計・おしゃれなショップが立ち並ぶ。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Gastown+Vancouver+BC" target="_blank">📍 Gastown</a></div></div></div>
     <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🍔</div><div><div class="c-time pdt">12:00 PDT — Lunch / 昼食</div><div class="c-t">Vera's Burger Shack</div></div></div><div class="c-d">バンクーバーの人気バーガーショップ。地元でも評判の本格バーガーをランチに！</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Vera%27s+Burger+Shack+Vancouver" target="_blank">📍 Vera's Burger Shack Vancouver</a></div></div></div>
     <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🌆</div><div><div class="c-time pdt">13:00 PDT〜</div><div class="c-t">Vancouver Lookout / バンクーバー展望台</div></div></div><div class="c-d">バンクーバーを360度一望できる展望台。街・山・海が一度に見える絶景。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Vancouver+Lookout+555+W+Hastings+St" target="_blank">📍 Vancouver Lookout</a></div></div></div>
     <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🛒</div><div><div class="c-time pdt">15:00 PDT〜</div><div class="c-t">Granville Island Public Market — お土産</div></div></div><div class="c-d">アーティスト・クラフト・フード・マーケット。カナダ土産はここで！</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Granville+Island+Public+Market+Vancouver" target="_blank">📍 Granville Island</a></div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🍸</div><div><div class="c-time pdt">18:00 PDT — Dinner / 夕食</div><div class="c-t">The Sundbar — バンクーバー最後の夜</div></div></div><div class="c-d">旅の締めくくりの夕食。明日は帰国。みんなで思い出を語ろう。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=The+Sundbar+Vancouver" target="_blank">📍 The Sundbar</a></div></div></div>
+    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🍸</div><div><div class="c-time pdt">18:00 PDT — Dinner / 夕食</div><div class="c-t">The Sundbar — バンクーバー最後の夜</div></div></div><div class="c-d">旅の締めくくりの夕食。明日は帰国準備。みんなで思い出を語ろう。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=The+Sundbar+Vancouver" target="_blank">📍 The Sundbar</a></div></div></div>
     <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">📦</div><div><div class="c-time pdt">22:00 PDT — Packing / 荷造り</div><div class="c-t">帰国準備 — 荷造り完了</div></div></div><div class="c-d">明朝Check Outに備えてパッキング。Visit Japan Web（税関申告）に登録を忘れずに。</div></div></div>
+  </div>
+</section>
+
+<!-- DAY 7 -->
+<section class="sec" id="day7">
+  <div class="sec-header"><div class="day-num">07</div><div class="day-meta"><div class="dlbl l-van">VAN観光② / Vancouver</div><h2>7月9日（木）— Capilano🌉 + Grouse Mountain⛰️</h2><p>Capilano Park 10:00 → 移動 → Grouse Mountain 14:00 → 自炊</p></div></div>
+  <div class="tl">
+    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🌉</div><div><div class="c-time pdt">10:00 PDT〜</div><div class="c-t">Capilano Suspension Bridge Park / カピラノ吊り橋公園</div></div></div><div class="c-d">バンクーバー屈指の自然体験。高さ70mの吊り橋・森のCliffwalk。</div><div style="margin-bottom:.38rem"><span class="ftag">① Suspension Bridge</span><span class="ftag">② The Living Forest</span><span class="ftag">③ Cliffwalk</span><span class="ftag">④ Treetops Adventure</span></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Capilano+Suspension+Bridge+North+Vancouver" target="_blank">📍 Capilano Bridge</a><a class="lbtn" href="https://www.capbridge.com" target="_blank">🔗 公式予約</a></div></div></div>
+    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">⛰️</div><div><div class="c-time pdt">14:00 PDT〜</div><div class="c-t">Grouse Mountain / グラウスマウンテン</div></div></div><div class="c-d">バンクーバーの「空の遊び場」。ゴンドラ・ジップライン・山岳アクティビティ。</div><div style="margin-bottom:.38rem"><span class="ftag">① Sky Ride</span><span class="ftag">② Peak Chairlift</span><span class="ftag">③ Mountain Zipline</span><span class="ftag">④ Lumberjack Show</span><span class="ftag">⑤ Birds in Motion</span></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Grouse+Mountain+North+Vancouver" target="_blank">📍 Grouse Mountain</a><a class="lbtn" href="https://www.grousemountain.com" target="_blank">🔗 公式</a></div></div></div>
+    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🍳</div><div><div class="c-time pdt">19:00 PDT / 夕食</div><div class="c-t">自炊 — Surrey</div></div></div><div class="c-d">アクティビティ満載の一日の後は自炊でゆっくり。明日は帰国準備・Packing。</div></div></div>
   </div>
 </section>
 
@@ -633,7 +725,7 @@ body.pdt-mode .t-pdt{display:inline;}
   <div class="rules-grid">
     <div class="ri"><div class="ric">⏰</div><h4>Arrive / 到着</h4><p>KO2〜3時間前（10:00〜）</p></div>
     <div class="ri"><div class="ric">🚇</div><h4>Transit</h4><p>SkyTrain「Stadium-Chinatown」</p></div>
-    <div class="ri"><div class="ric">🛂</div><h4>Canada eTA</h4><p>事前申請必須！ Required!</p></div>
+    <div class="ri"><div class="ric">🛂</div><h4>Canada eTA</h4><p>✅ 陸路（車）入国のため<strong>不要</strong>！パスポートのみ</p></div>
     <div class="ri"><div class="ric">💱</div><h4>Currency / 通貨</h4><p>CAD（カナダドル）/ クレカ可</p></div>
   </div>
 </section>
