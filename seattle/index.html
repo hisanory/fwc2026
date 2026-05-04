@@ -335,8 +335,18 @@ body.pdt-mode .t-pdt{display:inline;}
     <div class="cl-title">📋 変更履歴</div>
     <button class="cl-close" onclick="document.getElementById('changelog').classList.remove('show')">✕</button>
   </div>
+  <div class="cl-entry" style="border-left-color:rgba(0,230,118,.5);background:rgba(0,50,20,.1)">
+    <div class="cl-date">2026-05-04</div>
+    <div class="cl-ver">v4.0 — Mayflower Park Hotel 予約確定</div>
+    <ul class="cl-items">
+      <li>✅ <strong>Mayflower Park Hotel</strong> 予約確定</li>
+      <li>7/6(月) 16:00 IN → 7/8(水) 12:00 OUT / 2泊</li>
+      <li>📍 405 Olive Way, Seattle — Lumen Fieldまで徒歩10分</li>
+    </ul>
+  </div>
+
   <div class="cl-entry">
-    <div class="cl-date">2025-04-29</div>
+    <div class="cl-date">2026-04-29</div>
     <div class="cl-ver">v3.1 — ESTA / eTA 不要を確認</div>
     <ul class="cl-items">
       <li>✅ <strong>ESTA（米国）不要</strong> — 今回の旅程では不要を確認</li>
@@ -345,7 +355,7 @@ body.pdt-mode .t-pdt{display:inline;}
   </div>
 
   <div class="cl-entry">
-    <div class="cl-date">2025-04-29</div>
+    <div class="cl-date">2026-04-29</div>
     <div class="cl-ver">v3.0 — カツヒサLINE情報反映</div>
     <ul class="cl-items">
       <li>宿泊地：Lynnwood → <strong>Burien</strong>（5人→6人対応）</li>
@@ -355,7 +365,7 @@ body.pdt-mode .t-pdt{display:inline;}
     </ul>
   </div>
   <div class="cl-entry" style="border-left-color:rgba(64,196,255,.3)">
-    <div class="cl-date">2025-04-27</div>
+    <div class="cl-date">2026-04-27</div>
     <div class="cl-ver">v2.0 — PDFスケジュール完全反映</div>
     <ul class="cl-items">
       <li>7/4：MoPOP 10:00追加、Metropolitan Grill追加</li>
@@ -364,7 +374,7 @@ body.pdt-mode .t-pdt{display:inline;}
     </ul>
   </div>
   <div class="cl-entry" style="border-left-color:rgba(206,147,216,.3)">
-    <div class="cl-date">2025-04-26</div>
+    <div class="cl-date">2026-04-26</div>
     <div class="cl-ver">v1.0 — 初版公開</div>
     <ul class="cl-items">
       <li>JAL JL068 / JL067 フライト確定反映</li>
@@ -385,7 +395,7 @@ body.pdt-mode .t-pdt{display:inline;}
     <span class="mchip">👔 山内</span>
     <span class="mchip">🦇 蓮太郎</span>
   </div>
-  <div class="updated-badge">🕐 最終更新: 2025年4月29日（v3.1）</div>
+  <div class="updated-badge">🕐 最終更新: 2026年5月4日（v4.0）</div>
 </section>
 
 <!-- BENTO OVERVIEW / 旅程サマリー -->
@@ -419,8 +429,8 @@ body.pdt-mode .t-pdt{display:inline;}
     </div>
     <div class="bento span3">
       <div class="b-en">STAY / 宿泊</div>
-      <div class="b-val" style="font-size:.9rem">Burien Villa + 新宿泊先（要予約）</div>
-      <div class="b-sub">7/3〜7/6 Burien WA → 7/7 Pioneer Square / ダウンタウン</div>
+      <div class="b-val" style="font-size:.75rem">Burien Villa → Mayflower Park Hotel</div>
+      <div class="b-sub">7/3〜7/6 Burien WA → 7/6〜7/8 Olive Way, Seattle</div>
     </div>
   </div>
 </div>
@@ -548,12 +558,13 @@ body.pdt-mode .t-pdt{display:inline;}
       <div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Burien+WA" target="_blank">📍 Burienエリア</a></div>
     </div>
   </div>
-  <div class="acc-card" style="background:rgba(255,82,82,.04);border-color:rgba(255,82,82,.18);">
-    <div class="acc-icon">🔍</div>
+  <div class="acc-card" style="background:rgba(0,230,118,.04);border-color:rgba(0,230,118,.25);">
+    <div class="acc-icon">🏨</div>
     <div>
-      <div class="acc-name" style="color:var(--red)">7/7〜7/8 — 要予約 TODO BOOKING</div>
-      <div class="acc-det">Pioneer Square / ダウンタウン周辺推奨（Lumen Field・空港アクセス良好）</div>
-      <div class="bgrp"><a class="mbtn" href="https://www.google.com/maps/search/?api=1&query=hotels+Pioneer+Square+Seattle" target="_blank" style="border-color:rgba(255,82,82,.3);color:var(--red);background:rgba(255,82,82,.08)">🔍 ホテルを探す</a></div>
+      <div class="acc-name" style="color:var(--green)">✅ Mayflower Park Hotel — 予約済</div>
+      <div class="acc-det">7/6(月) 16:00 IN 〜 7/8(水) 12:00 OUT ／ 2泊・大人2名</div>
+      <div onclick="copyText('405 Olive Way, Seattle, WA 98101')" class="copy-row" style="margin-top:.4rem"><span class="copy-val">405 Olive Way, Seattle, WA 98101</span><span class="copy-ic">📋</span></div>
+      <div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=405+Olive+Way+Seattle+WA+98101" target="_blank">📍 Mayflower Park Hotel</a></div>
     </div>
   </div>
 </div>
@@ -629,7 +640,8 @@ body.pdt-mode .t-pdt{display:inline;}
   </div>
   <div class="tl">
     <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">📦</div><div><div class="c-time pdt">10:00 PDT — Packing / 荷造り</div><div class="c-t">荷造り → チェックアウト準備</div></div></div><div class="c-d">今日でBurien Villaともお別れ。スーツケースをまとめる。</div></div></div>
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🚪</div><div><div class="c-time pdt">11:00 PDT — Check Out</div><div class="c-t">Burien Villa チェックアウト</div></div></div><div class="c-d">荷物をまとめてチェックアウト。新宿泊先または荷物預かりへ。</div></div></div>
+    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🚪</div><div><div class="c-time pdt">11:00 PDT — Check Out</div><div class="c-t">Burien Villa チェックアウト</div></div></div><div class="c-d">荷物をまとめてチェックアウト。Mayflower Park Hotelへ先に荷物を預けに行く。</div></div></div>
+    <div class="tl-item"><div class="dot g"></div><div class="card" style="border-color:rgba(0,230,118,.25);background:rgba(0,40,20,.2)"><div class="card-h"><div class="c-ic">🏨</div><div><div class="c-time" style="color:var(--green)">16:00 PDT〜 / 荷物預け → 正式チェックイン</div><div class="c-t" style="color:var(--green)">Mayflower Park Hotel — チェックイン</div></div></div><div class="c-d">チェックインは16:00から。Lumen Fieldまで<strong>徒歩約10分</strong>の好立地！試合前に荷物を置いてそのままスタジアムへ。</div><div onclick="copyText('405 Olive Way, Seattle, WA 98101')" class="copy-row"><span class="copy-val">405 Olive Way, Seattle, WA 98101</span><span class="copy-ic">📋</span></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=405+Olive+Way+Seattle+WA+98101" target="_blank">📍 Mayflower Park Hotel</a></div></div></div>
     <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🍕</div><div><div class="c-time pdt">12:00 PDT — Lunch / 昼食</div><div class="c-t">Stevie's Famous Burien Pizza</div></div></div><div class="c-d">試合前の腹ごしらえ！地元で人気の本格ピザ。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Stevie%27s+Famous+Burien+Pizza" target="_blank">📍 Stevie's Famous Burien Pizza</a></div></div></div>
     <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🏟️</div><div><div class="c-time pdt">15:00 PDT〜</div><div class="c-t">Lumen Field周辺 Shopping</div></div></div><div class="c-d">スタジアム周辺のWCグッズ・お土産をゲット！</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Lumen+Field+Seattle" target="_blank">📍 Lumen Field周辺</a></div></div></div>
     <div class="tl-item"><div class="dot r"></div><div class="card" style="border-color:rgba(0,230,118,.35);background:linear-gradient(135deg,rgba(0,50,25,.5),rgba(15,28,50,.6))"><div class="card-h"><div class="c-ic">🏆</div><div><div class="c-time" style="font-size:.86rem;color:var(--green)"><span class="t-pdt">⚽ KICK OFF — 17:00 PDT</span><span class="t-jst">⚽ キックオフ — 17:00 PDT（現地）</span></div><div class="c-t" style="color:var(--green);font-size:.93rem">FIFA WC — Round of 16 / 決勝16強 / Match 94</div></div></div><div class="c-d"><strong>Lumen Field</strong>（Seattle / 65,000+人）。蓮太郎と世界最高の舞台へ！</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Lumen+Field+Seattle" target="_blank">📍 Lumen Field</a></div><span class="tbadge">🚇 Link「Stadium」駅</span><span class="tbadge">🚶 Pioneer Squareから10分</span></div></div>
@@ -640,7 +652,7 @@ body.pdt-mode .t-pdt{display:inline;}
 <section class="sec" id="day5">
   <div class="sec-header"><div class="day-num">05</div><div class="day-meta"><div class="dlbl l-free">最終観光日 / Last Full Day</div><h2>7月7日（火）— Check Out → LEGO🧱 → Sundbar</h2><p>Check Out 11:00 → Lumen Field周辺 → Bricks&Minifigs → Sundbar 18:00</p></div></div>
   <div class="tl">
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🚪</div><div><div class="c-time pdt">11:00 PDT — Check Out</div><div class="c-t">Burien Villa チェックアウト</div></div></div><div class="c-d">荷物をまとめてチェックアウト。お世話になったBurien Villaともお別れ。</div></div></div>
+    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🚪</div><div><div class="c-time pdt">11:00 PDT — Check Out</div><div class="c-t">Mayflower Park Hotel — チェックアウト翌日も滞在中</div></div></div><div class="c-d">今日はMayflower Park Hotel滞在。チェックアウトは7/8(水) 12:00まで。</div></div></div>
     <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🏟️</div><div><div class="c-time pdt">午前〜午後 / Morning</div><div class="c-t">Lumen Field周辺 Shopping</div></div></div><div class="c-d">昨日のMatch 94の余韻の中、Lumen Field周辺でWCグッズ・土産を購入。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Lumen+Field+Seattle" target="_blank">📍 Lumen Field周辺</a></div></div></div>
     <div class="tl-item"><div class="dot r"></div><div class="card" style="border-color:rgba(255,213,79,.3)"><div class="card-h"><div class="c-ic">🧱</div><div><div class="c-time" style="color:var(--gold)">午後 / Afternoon — 蓮太郎メインイベント！</div><div class="c-t" style="color:var(--gold)">Bricks & Minifigs — LEGO DC ミニフィグ探し！</div></div></div><div class="c-d"><strong>LEGO DCコレクションの宝庫！</strong>バットマン・スーパーマン・ヴィランなど中古・レアLEGO専門店。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Bricks+and+Minifigs+Seattle" target="_blank">📍 Bricks & Minifigs</a><a class="mbtn" href="https://maps.google.com/maps?daddr=Golden+Age+Collectables+Seattle" target="_blank">📍 Golden Age</a></div></div></div>
     <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🍸</div><div><div class="c-time pdt">18:00 PDT — 夕食 / Dinner</div><div class="c-t">The Sundbar — VAN組と合同の最後の夜</div></div></div><div class="c-d">VAN組（芝・コウシ・勇介・カツヒサ）と合同夕食。シアトルでの旅の締めくくり。この後VAN組はバンクーバーへ出発。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=The+Sundbar+Seattle" target="_blank">📍 The Sundbar</a></div></div></div>
@@ -662,7 +674,8 @@ body.pdt-mode .t-pdt{display:inline;}
     <div class="irow"><span class="lbl">到着 Arrival</span><span class="val"><strong>15:30</strong><span class="tz-tag tz-j">JST 日本時間</span>7/9(木)</span></div>
     <div class="irow"><span class="lbl">便名 Flight No.</span><span class="val">JAL JL067</span></div>
   </div>
-  <div class="tips"><h4>💡 逆算スケジュール / Timeline (PDT)</h4><ul><li>10:00〜10:30 PDT チェックアウト / Check-out</li><li>11:00〜11:30 PDT SEAタック到着目標</li><li>13:25 PDT JL067 出発 / Departure</li><li>JALチェックインは出発2〜3時間前</li></ul></div>
+  <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🏨</div><div><div class="c-time pdt">〜12:00 PDT — Check Out</div><div class="c-t">Mayflower Park Hotel チェックアウト</div></div></div><div class="c-d">チェックアウト期限は<strong>12:00</strong>。荷物をまとめてSEAタックへ！</div></div></div>
+  <div class="tips"><h4>💡 逆算スケジュール / Timeline (PDT)</h4><ul><li>〜12:00 PDT Mayflower Park Hotel チェックアウト</li><li>12:30〜13:00 PDT SEAタック空港へ出発</li><li>11:00〜11:30 PDT SEAタック到着目標</li><li>13:25 PDT JL067 出発 / Departure</li><li>JALチェックインは出発2〜3時間前</li></ul></div>
   <div class="bgrp" style="margin-top:.7rem"><a class="mbtn" href="https://maps.google.com/maps?daddr=Seattle-Tacoma+International+Airport" target="_blank">📍 SEAタック国際空港 / SEA-TAC Airport</a><span class="tbadge">🚇 Link → Angle Lake 約40分</span></div>
 </section>
 
