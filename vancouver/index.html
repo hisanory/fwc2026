@@ -2,929 +2,1419 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#40c4ff">
-<link rel="manifest" href="/fwc2026/manifest.json">
-<title>⚽ FWC2026 VAN組 — 旅のしおり</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>⚽ VAN組 — シアトル & バンクーバー 2026</title>
+<meta name="theme-color" content="#06090f">
+<link rel="manifest" href="../manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/ds.css">
+<script src="../assets/ic.js" defer></script>
 <style>
 :root{
-  --bg:#07101d;--bg2:#0a1524;--card:rgba(10,22,42,.75);
-  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.11);
-  --blue:#40c4ff;--blue2:#0a84d4;--green:#00e676;--gold:#ffd54f;
-  --red:#ff5252;--purple:#ce93d8;--text:#d8eeff;--muted:#5a80a0;
-  --glass:rgba(10,22,42,.72);--blur:blur(16px);
-  --sb-h:54px;--bn-h:64px;
+  --accent:#00e676;
+  --acc-o:rgba(0,230,118,.12);
+  --acc-m:rgba(0,230,118,.22);
+  --acc-glow:rgba(0,230,118,.14);
 }
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html{scroll-behavior:smooth;scroll-padding-top:calc(var(--sb-h)+4px);}
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;line-height:1.6;
-  padding-top:var(--sb-h);padding-bottom:calc(var(--bn-h)+env(safe-area-inset-bottom));
-  overflow-x:hidden;background-image:radial-gradient(ellipse at 50% -10%,rgba(0,60,110,.12),transparent 60%);}
+.member-chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px;justify-content:center;}
+.mchip{display:inline-flex;align-items:center;gap:6px;
+  padding:6px 12px;border-radius:100px;font-size:.7rem;font-weight:700;
+  background:rgba(0,230,118,.10);color:#fff;
+  border:1px solid rgba(0,230,118,.24);}
+.mchip.calgary{background:rgba(255,213,79,.10);border-color:rgba(255,213,79,.28);}
+.mchip-name{color:#fff;}
+.upd{display:inline-flex;align-items:center;gap:6px;margin-top:14px;
+  padding:5px 11px;border-radius:100px;font-size:.62rem;font-weight:600;
+  background:rgba(255,255,255,.04);color:var(--text2);
+  border:1px solid var(--line2);}
 
-#sb{position:fixed;top:0;left:0;right:0;height:var(--sb-h);z-index:300;
-  background:rgba(7,16,29,.95);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
-  border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 .8rem;gap:.35rem;}
-.sb-clk{display:flex;flex-direction:column;align-items:center;min-width:50px;}
-.sb-city{font-size:.46rem;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;line-height:1.1;}
-.sb-time{font-family:'Bebas Neue',cursive;font-size:1.15rem;color:var(--text);letter-spacing:.04em;line-height:1;}
-.sb-div{width:1px;height:26px;background:var(--border2);flex-shrink:0;}
-.sb-mid{flex:1;display:flex;justify-content:center;}
-.tz-tog{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:100px;padding:4px 9px;}
-.tz-lbl{font-size:.57rem;font-weight:700;color:var(--muted);transition:color .2s;line-height:1.2;text-align:center;}
-.tz-lbl.active{color:var(--blue);}
-.tog-sw{position:relative;width:34px;height:18px;flex-shrink:0;}
-.tog-sw input{opacity:0;width:0;height:0;position:absolute;}
-.tog-sl{position:absolute;inset:0;background:#1a3352;border-radius:18px;cursor:pointer;transition:.25s;}
-.tog-sl:before{content:'';position:absolute;width:12px;height:12px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.25s;}
-input:checked+.tog-sl{background:var(--blue2);}
-input:checked+.tog-sl:before{transform:translateX(16px);}
+/* Calgary base camp card */
+.calgary-card{
+  margin:0 16px 16px;
+  padding:16px 18px;
+  background:linear-gradient(135deg,rgba(60,40,0,.34),rgba(20,16,0,.4));
+  border:1px solid rgba(255,213,79,.28);
+  border-radius:16px;
+  backdrop-filter:blur(20px) saturate(140%);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
+}
+.calgary-eyebrow{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 11px;border-radius:100px;
+  background:rgba(255,213,79,.16);
+  color:var(--gold);
+  font-size:.62rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;border:1px solid rgba(255,213,79,.28);
+  margin-bottom:10px;
+}
+.calgary-h{
+  font-size:1rem;font-weight:900;color:#fff;line-height:1.2;
+  margin-bottom:6px;
+}
+.calgary-d{
+  font-size:.74rem;color:var(--text2);line-height:1.55;margin-bottom:10px;
+}
+.calgary-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;
+  margin-top:10px;
+}
+.cgr-item{
+  background:rgba(0,0,0,.3);border:1px solid var(--line);
+  border-radius:11px;padding:10px;
+}
+.cgr-ic{font-size:1rem;margin-bottom:4px;color:var(--gold);display:flex;align-items:center}
+.cgr-name{font-size:.7rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:3px;}
+.cgr-det{font-size:.62rem;color:var(--text2);line-height:1.35;}
 
-#toast{position:fixed;bottom:calc(var(--bn-h)+12px+env(safe-area-inset-bottom));left:50%;transform:translateX(-50%) translateY(8px);
-  background:rgba(64,196,255,.92);color:#000;padding:6px 18px;border-radius:100px;font-size:.78rem;font-weight:900;opacity:0;transition:all .25s;pointer-events:none;z-index:400;white-space:nowrap;}
-#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-#bn{position:fixed;bottom:0;left:0;right:0;height:var(--bn-h);z-index:300;
-  background:rgba(7,16,29,.96);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
-  border-top:1px solid var(--border);display:flex;align-items:flex-start;padding-top:8px;
-  padding-bottom:env(safe-area-inset-bottom);}
-.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--muted);text-decoration:none;font-size:.49rem;padding:0;transition:color .2s;}
-.bn-item.active,.bn-item:hover{color:var(--blue);}
-.bn-ic{font-size:1.2rem;line-height:1;}
-
-.hero{position:relative;min-height:calc(100svh - var(--sb-h) - var(--bn-h));display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem 1.5rem 1.8rem;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(0,60,110,.12),transparent 65%);pointer-events:none;}
-.hero-badge{display:inline-block;background:rgba(64,196,255,.08);border:1px solid rgba(64,196,255,.22);border-radius:100px;padding:4px 14px;font-size:.7rem;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.7rem;}
-.hero h1{font-family:'Bebas Neue',cursive;font-size:clamp(2.6rem,11vw,5rem);line-height:.9;letter-spacing:.04em;color:#fff;}
-.hero h1 em{color:var(--blue);font-style:normal;display:block;}
-.hero-sub{font-size:clamp(.78rem,2.7vw,.9rem);color:var(--gold);font-weight:700;margin-top:.5rem;}
-.member-chips{display:flex;gap:.38rem;flex-wrap:wrap;justify-content:center;margin-top:.7rem;}
-.mchip{background:rgba(64,196,255,.07);border:1px solid rgba(64,196,255,.2);border-radius:100px;padding:4px 10px;font-size:.7rem;font-weight:700;color:var(--blue);}
-.mchip.calgary{background:rgba(255,213,79,.07);border-color:rgba(255,213,79,.2);color:var(--gold);}
-
-.bento-wrap{padding:.5rem 1rem 1rem;max-width:640px;margin:0 auto;}
-.bento-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;}
-.bento{background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:16px;padding:.68rem;display:flex;flex-direction:column;justify-content:flex-end;min-height:74px;overflow:hidden;position:relative;}
-.bento.span2{grid-column:span 2;}
-.bento.span3{grid-column:span 3;}
-.bento.sea-m{border-color:rgba(0,230,118,.22);background:linear-gradient(135deg,rgba(0,40,20,.5),rgba(10,22,42,.7));}
-.bento.van-m{border-color:rgba(64,196,255,.28);background:linear-gradient(135deg,rgba(0,25,55,.5),rgba(10,22,42,.7));}
-.b-en{font-size:.49rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;}
-.b-ja{font-size:.47rem;color:var(--muted);opacity:.7;}
-.b-val{font-family:'Bebas Neue',cursive;font-size:1.1rem;color:#fff;line-height:1;margin:.1rem 0;letter-spacing:.04em;}
-.b-sub{font-size:.58rem;color:var(--muted);}
-.b-icon{font-size:1.7rem;position:absolute;top:.45rem;right:.45rem;opacity:.18;}
-
-#snav{background:rgba(7,16,29,.92);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border-bottom:1px solid var(--border);padding:.5rem .9rem;overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:200;}
-#snav::-webkit-scrollbar{display:none;}
-.snav-inner{display:flex;gap:.28rem;min-width:max-content;}
-.snav-btn{background:transparent;border:1px solid rgba(255,255,255,.07);border-radius:100px;padding:4px 9px;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-size:.66rem;cursor:pointer;transition:all .2s;white-space:nowrap;text-decoration:none;display:inline-block;}
-.snav-btn.active,.snav-btn:hover{background:rgba(64,196,255,.1);border-color:rgba(64,196,255,.3);color:var(--blue);}
-
-.sec-wrap{padding:1.1rem 1rem;max-width:760px;margin:0 auto;}
-.sec-title{font-family:'Bebas Neue',cursive;font-size:1.1rem;letter-spacing:.1em;color:var(--muted);margin-bottom:.6rem;}
-.sched-scroll{overflow-x:auto;scrollbar-width:thin;padding-bottom:.5rem;}
-.sched-scroll::-webkit-scrollbar{height:3px;}
-.sched-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px;}
-.sched-grid{display:flex;gap:.38rem;min-width:max-content;}
-.day-col{width:96px;border-radius:12px;overflow:hidden;border:1px solid var(--border);flex-shrink:0;background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);}
-.day-col.sea-day{border-color:rgba(0,230,118,.18);}
-.day-col.match1-day{border-color:rgba(0,230,118,.35);}
-.day-col.match2-day{border-color:rgba(64,196,255,.4);}
-.day-col.travel-day{border-color:rgba(64,196,255,.18);}
-.day-col.today-col{border-color:var(--gold);box-shadow:0 0 12px rgba(255,213,79,.1);}
-.day-head{padding:.38rem .45rem;font-size:.66rem;font-weight:900;text-align:center;line-height:1.2;background:rgba(255,255,255,.03);}
-.sea-day .day-head{background:rgba(0,230,118,.07);color:var(--green);}
-.match1-day .day-head{background:rgba(0,230,118,.1);color:var(--green);}
-.match2-day .day-head{background:rgba(64,196,255,.1);color:var(--blue);}
-.travel-day .day-head{background:rgba(64,196,255,.05);color:var(--blue);}
-.dow{font-size:.52rem;font-weight:400;opacity:.7;}
-.today-pill{background:var(--gold);color:#000;font-size:.49rem;font-weight:900;padding:1px 5px;border-radius:3px;display:inline-block;margin-bottom:1px;}
-.day-body{padding:.38rem .45rem;display:flex;flex-direction:column;gap:2px;}
-.si{font-size:.59rem;color:var(--muted);padding:1px 0;border-bottom:1px solid rgba(255,255,255,.03);line-height:1.3;}
-.si:last-child{border:none;}
-.si.hl{color:var(--text);}
-.si.match{color:var(--green);font-weight:700;}
-.si.match2{color:var(--blue);font-weight:700;}
-.si.food{color:var(--gold);}
-.si.tr{color:var(--blue);}
-.si.acc{color:var(--purple);}
-.si.shared{color:var(--green);font-size:.55rem;}
-
-.route-scroll{overflow-x:auto;scrollbar-width:thin;padding-bottom:.5rem;}
-.route-scroll::-webkit-scrollbar{height:3px;}
-.route-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px;}
-.route-flow{display:flex;align-items:center;min-width:max-content;padding:.4rem 0;}
-.rs{display:flex;flex-direction:column;align-items:center;width:84px;gap:3px;}
-.rs-icon{font-size:1.15rem;}
-.rs-bub{background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:10px;padding:.35rem .38rem;text-align:center;width:100%;}
-.rs-bub.match-s{border-color:rgba(0,230,118,.35);background:rgba(0,50,25,.4);}
-.rs-bub.match2-s{border-color:rgba(64,196,255,.4);background:rgba(0,30,60,.4);}
-.rs-bub.flight-s{border-color:rgba(64,196,255,.25);background:rgba(5,20,45,.4);}
-.rs-bub.shared-s{border-color:rgba(0,230,118,.18);background:rgba(0,30,15,.3);}
-.rs-bub.katu-s{border-color:rgba(255,213,79,.3);background:rgba(40,30,0,.4);}
-.rs-name{font-size:.61rem;font-weight:700;color:var(--text);line-height:1.2;}
-.rs-tm{font-size:.56rem;color:var(--blue);font-weight:700;margin-top:1px;}
-.rs-tm.g{color:var(--green);}
-.rs-tm.gold{color:var(--gold);}
-.rs-sub{font-size:.5rem;color:var(--muted);}
-.rs-map{font-size:.53rem;color:var(--blue);text-decoration:none;display:inline-flex;margin-top:1px;}
-.rl{display:flex;flex-direction:column;align-items:center;justify-content:center;width:54px;gap:2px;flex-shrink:0;}
-.rl-ic{font-size:.66rem;}
-.rl-line{width:100%;height:2px;border-radius:1px;}
-.rl.flight .rl-line{background:linear-gradient(to right,rgba(64,196,255,.2),var(--blue),rgba(64,196,255,.2));}
-.rl.drive .rl-line{background:linear-gradient(to right,rgba(255,213,79,.2),var(--gold),rgba(255,213,79,.2));}
-.rl.walk .rl-line{background:linear-gradient(to right,rgba(0,230,118,.2),var(--green),rgba(0,230,118,.2));}
-.rl.rail .rl-line{background:linear-gradient(to right,rgba(206,147,216,.2),var(--purple),rgba(206,147,216,.2));}
-.rl-lbl{font-size:.48rem;color:var(--muted);text-align:center;line-height:1.2;}
-
-.calgary-section{background:linear-gradient(135deg,rgba(40,30,0,.45),rgba(10,22,42,.65));border:1px solid rgba(255,213,79,.22);border-radius:18px;padding:1.1rem;margin:.5rem 1rem 1.5rem;max-width:640px;position:relative;overflow:hidden;backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);}
-.calgary-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 0%,rgba(255,213,79,.06),transparent 60%);pointer-events:none;}
-.cgr-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,213,79,.08);border:1px solid rgba(255,213,79,.2);border-radius:100px;padding:3px 10px;font-size:.66rem;color:var(--gold);font-weight:700;letter-spacing:.06em;margin-bottom:.6rem;}
-.cgr-h{font-family:'Bebas Neue',cursive;font-size:1.3rem;letter-spacing:.06em;color:var(--gold);margin-bottom:.4rem;}
-.cgr-grid{display:grid;grid-template-columns:1fr 1fr;gap:.42rem;margin-top:.6rem;}
-.cgr-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:.55rem;}
-.cgr-ic{font-size:.9rem;margin-bottom:2px;}
-.cgr-name{font-size:.68rem;font-weight:700;color:var(--text);}
-.cgr-det{font-size:.61rem;color:var(--muted);margin-top:1px;}
-
-.sec{padding:0 1rem 2.5rem;max-width:640px;margin:0 auto;}
-.sec-header{padding:2rem 0 1rem;display:flex;align-items:center;gap:.8rem;}
-.day-num{font-family:'Bebas Neue',cursive;font-size:2.8rem;line-height:1;color:var(--blue);min-width:50px;}
-.day-meta h2{font-size:.96rem;font-weight:900;color:#fff;line-height:1.2;}
-.day-meta p{font-size:.73rem;color:var(--muted);margin-top:1px;}
-.dlbl{display:inline-block;font-size:.61rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:3px;}
-.l-tr{background:rgba(64,196,255,.12);color:var(--blue);}
-.l-sh{background:rgba(0,230,118,.12);color:var(--green);}
-.l-exp{background:rgba(255,213,79,.12);color:var(--gold);}
-.l-mat{background:rgba(255,82,82,.16);color:var(--red);}
-.l-mat2{background:rgba(64,196,255,.18);color:var(--blue);}
-.l-van{background:rgba(206,147,216,.12);color:var(--purple);}
-.l-ret{background:rgba(255,213,79,.1);color:var(--gold);}
-
-.shared-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(0,230,118,.07);border:1px solid rgba(0,230,118,.18);border-radius:8px;padding:4px 10px;font-size:.68rem;color:var(--green);margin-bottom:.75rem;}
-
-.tl{position:relative;padding-left:1.7rem;}
-.tl::before{content:'';position:absolute;left:6px;top:4px;bottom:8px;width:2px;background:linear-gradient(to bottom,rgba(64,196,255,.4),rgba(64,196,255,.1),transparent);}
-.tl-item{position:relative;margin-bottom:.7rem;}
-.dot{position:absolute;left:-1.7rem;top:14px;width:13px;height:13px;border-radius:50%;background:var(--bg);border:2px solid rgba(64,196,255,.4);}
-.dot.g{border-color:var(--gold);background:rgba(255,213,79,.08);}
-.dot.r{border-color:var(--red);width:17px;height:17px;left:calc(-1.7rem - 2px);top:10px;background:rgba(255,82,82,.08);}
-.dot.b2{border-color:var(--blue);width:17px;height:17px;left:calc(-1.7rem - 2px);top:10px;background:rgba(64,196,255,.08);}
-.dot.gold{border-color:var(--gold);width:17px;height:17px;left:calc(-1.7rem - 2px);top:10px;background:rgba(255,213,79,.1);}
-
-.card{background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:14px;padding:.8rem .92rem;transition:border-color .2s;}
-.card:hover{border-color:rgba(64,196,255,.16);}
-.card.katu-card{border-color:rgba(255,213,79,.28);background:linear-gradient(135deg,rgba(40,30,0,.35),rgba(10,22,42,.6));}
-.card.warn-card{border-color:rgba(255,82,82,.2);background:rgba(50,10,10,.25);}
-.card-h{display:flex;align-items:flex-start;gap:8px;margin-bottom:.38rem;}
-.c-ic{font-size:1.2rem;line-height:1;flex-shrink:0;margin-top:2px;}
-.c-t{font-size:.86rem;font-weight:700;color:#fff;line-height:1.2;}
-.c-time{font-size:.68rem;font-weight:700;}
-.c-time.pdt{color:var(--blue);}
-.c-time.jst{color:var(--gold);}
-.c-d{font-size:.75rem;color:var(--muted);line-height:1.5;margin-bottom:.38rem;}
-.c-d strong{color:var(--text);}
-.copy-row{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:6px 10px;margin:.28rem 0;cursor:pointer;transition:background .15s;gap:.5rem;}
-.copy-row:hover{background:rgba(255,255,255,.07);}
-.copy-val{font-size:.71rem;color:var(--text);font-family:monospace;flex:1;}
-.copy-ic{font-size:.73rem;color:var(--muted);flex-shrink:0;}
-.bgrp{display:flex;flex-wrap:wrap;gap:5px;margin-top:.38rem;}
-.mbtn{display:inline-flex;align-items:center;gap:4px;background:rgba(0,230,118,.07);border:1px solid rgba(0,230,118,.2);border-radius:8px;padding:5px 10px;color:var(--green);text-decoration:none;font-size:.68rem;font-weight:700;font-family:'Noto Sans JP',sans-serif;transition:all .2s;}
-.mbtn:hover{background:rgba(0,230,118,.14);}
-.lbtn{display:inline-flex;align-items:center;gap:4px;background:rgba(64,196,255,.07);border:1px solid rgba(64,196,255,.18);border-radius:8px;padding:5px 10px;color:var(--blue);text-decoration:none;font-size:.68rem;font-weight:700;font-family:'Noto Sans JP',sans-serif;transition:all .2s;}
-.lbtn:hover{background:rgba(64,196,255,.14);}
-.tbadge{display:inline-flex;align-items:center;background:rgba(255,255,255,.05);border-radius:5px;padding:2px 7px;font-size:.62rem;color:var(--muted);margin:2px 2px 0 0;}
-.ftag{display:inline-flex;align-items:center;background:rgba(255,213,79,.07);border:1px solid rgba(255,213,79,.18);border-radius:5px;padding:2px 7px;font-size:.64rem;color:var(--gold);margin:2px;}
-
-.fc{background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:14px;padding:.88rem;margin-bottom:.75rem;}
-.fc-route{display:flex;align-items:center;justify-content:space-between;gap:.5rem;}
-.fa{text-align:center;}
-.iata{font-family:'Bebas Neue',cursive;font-size:1.65rem;color:#fff;letter-spacing:.06em;}
-.cname{font-size:.6rem;color:var(--muted);}
-.fline{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
-.fcarr{font-size:.63rem;color:var(--blue);font-weight:700;text-align:center;}
-.farrow{width:100%;height:2px;background:linear-gradient(to right,rgba(64,196,255,.2),var(--blue),rgba(64,196,255,.2));position:relative;}
-.farrow::after{content:'✈';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:.76rem;color:var(--blue);background:var(--bg2);padding:0 4px;border-radius:3px;}
-.fdur{font-size:.61rem;color:var(--muted);}
-.div{height:1px;background:var(--border);margin:.58rem 0;}
-.irow{display:flex;justify-content:space-between;align-items:flex-start;padding:4px 0;font-size:.72rem;border-bottom:1px solid rgba(255,255,255,.03);gap:.5rem;}
-.irow:last-child{border:none;}
-.irow .lbl{color:var(--muted);flex-shrink:0;}
-.irow .val{color:var(--text);font-weight:700;text-align:right;display:flex;flex-wrap:wrap;gap:3px;justify-content:flex-end;}
-.tz-tag{display:inline-block;border-radius:4px;padding:0 5px;font-size:.57rem;font-weight:700;}
-.tz-j{background:rgba(255,213,79,.1);border:1px solid rgba(255,213,79,.18);color:var(--gold);}
-.tz-p{background:rgba(64,196,255,.1);border:1px solid rgba(64,196,255,.18);color:var(--blue);}
-
-.match-card{background:linear-gradient(135deg,rgba(0,45,22,.7),rgba(10,22,42,.7));border:1px solid rgba(0,230,118,.28);border-radius:18px;padding:1.05rem;text-align:center;position:relative;overflow:hidden;margin-bottom:.75rem;backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);}
-.match-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,230,118,.07),transparent 55%);pointer-events:none;}
-.match2-card{background:linear-gradient(135deg,rgba(0,25,55,.7),rgba(10,22,42,.7));border:1px solid rgba(64,196,255,.35);border-radius:18px;padding:1.05rem;text-align:center;position:relative;overflow:hidden;margin-bottom:.75rem;backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);}
-.match2-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(64,196,255,.08),transparent 55%);pointer-events:none;}
-.ml{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green);font-weight:700;}
-.ml-ja{font-size:.58rem;color:rgba(0,230,118,.55);margin-top:1px;}
-.ml2{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700;}
-.ml2-ja{font-size:.58rem;color:rgba(64,196,255,.55);margin-top:1px;}
-.mvs{font-family:'Bebas Neue',cursive;font-size:2rem;letter-spacing:.1em;color:#fff;line-height:1;margin:.2rem 0;}
-.mvs span{color:var(--green);margin:0 .2em;}
-.mmeta{font-size:.71rem;color:var(--muted);}
-.mtime-wrap{margin:.4rem 0;}
-.mtime-en{font-size:.6rem;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;}
-.mtime{font-family:'Bebas Neue',cursive;font-size:1.6rem;color:var(--gold);letter-spacing:.05em;}
-.mtime-ja{font-size:.63rem;color:var(--muted);}
-
-.acc-card{background:rgba(255,213,79,.04);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid rgba(255,213,79,.16);border-radius:12px;padding:.68rem .82rem;display:flex;gap:.5rem;margin-bottom:.58rem;}
-.acc-icon{font-size:1.15rem;flex-shrink:0;}
-.acc-name{font-size:.82rem;font-weight:700;color:var(--gold);}
-.acc-det{font-size:.68rem;color:var(--muted);margin-top:1px;}
-.tips{background:rgba(255,213,79,.04);border:1px solid rgba(255,213,79,.14);border-radius:10px;padding:.68rem .82rem;margin-top:.5rem;}
-.tips h4{font-size:.66rem;font-weight:700;color:var(--gold);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.32rem;}
-.tips ul{list-style:none;display:flex;flex-direction:column;gap:3px;}
-.tips li{font-size:.7rem;color:var(--text);padding-left:1em;position:relative;}
-.tips li::before{content:'›';position:absolute;left:0;color:var(--gold);font-weight:700;}
-.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-top:.58rem;}
-.ri{background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:10px;padding:.58rem;}
-.ri .ric{font-size:.92rem;margin-bottom:2px;}
-.ri h4{font-size:.68rem;font-weight:700;color:var(--text);}
-.ri p{font-size:.61rem;color:var(--muted);margin-top:1px;}
-.sh{font-family:'Bebas Neue',cursive;font-size:1.15rem;letter-spacing:.08em;color:var(--muted);padding:1.8rem 0 .65rem;border-top:1px solid var(--border);margin-top:1rem;}
-.eg{display:grid;gap:.36rem;margin-top:.58rem;}
-.ei{display:flex;align-items:center;gap:.58rem;background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:10px;padding:.52rem .78rem;}
-.ei .eic{font-size:1.05rem;flex-shrink:0;}
-.ei h4{font-size:.74rem;font-weight:700;color:var(--text);}
-.ei p{font-size:.64rem;color:var(--muted);}
-footer{text-align:center;padding:2rem 1rem 2rem;color:var(--muted);font-size:.68rem;border-top:1px solid var(--border);margin-top:1rem;}
-
-.t-jst{display:inline;}
-.t-pdt{display:none;}
-body.pdt-mode .t-jst{display:none;}
-body.pdt-mode .t-pdt{display:inline;}
-/* ─── CHANGELOG MODAL ─── */
-#changelog{position:fixed;top:calc(var(--sb-h) + 6px);right:.7rem;z-index:500;
-  background:rgba(7,16,29,.97);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
-  border:1px solid rgba(0,230,118,.3);border-radius:14px;padding:1rem;width:min(90vw,340px);
-  display:none;max-height:75svh;overflow-y:auto;scrollbar-width:thin;}
-#changelog.show{display:block;}
-#changelog::-webkit-scrollbar{width:4px;}
-#changelog::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px;}
-.cl-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.7rem;}
-.cl-title{font-family:'Bebas Neue',cursive;font-size:1.1rem;letter-spacing:.08em;color:var(--green);}
-.cl-close{background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;}
-.cl-entry{border-left:2px solid rgba(0,230,118,.3);padding:.45rem .65rem;margin-bottom:.55rem;border-radius:0 8px 8px 0;background:rgba(255,255,255,.03);}
-.cl-date{font-size:.6rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px;}
-.cl-ver{font-size:.68rem;font-weight:700;color:var(--green);margin-bottom:3px;}
-.cl-items{list-style:none;display:flex;flex-direction:column;gap:2px;}
-.cl-items li{font-size:.68rem;color:var(--text);padding-left:.9em;position:relative;}
-.cl-items li::before{content:'›';position:absolute;left:0;color:var(--green);}
-.updated-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(0,230,118,.08);
-  border:1px solid rgba(0,230,118,.2);border-radius:100px;padding:3px 10px;
-  font-size:.62rem;color:var(--green);margin:0 1rem .8rem;}
-
+/* Sea group reference panel */
+.sea-ref{
+  margin:0 16px 16px;
+  padding:14px 16px;
+  background:linear-gradient(135deg,rgba(0,40,80,.22),rgba(10,22,42,.4));
+  border:1px solid rgba(72,197,255,.22);
+  border-radius:16px;
+  backdrop-filter:blur(20px) saturate(140%);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
+}
+.sea-ref-h{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 11px;border-radius:100px;
+  background:rgba(72,197,255,.14);color:#48c5ff;
+  font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid rgba(72,197,255,.26);
+  margin-bottom:10px;
+}
+.sea-ref-block{
+  background:rgba(0,0,0,.34);border:1px solid var(--line);
+  border-radius:11px;padding:10px 12px;margin-bottom:8px;
+}
+.sea-ref-block:last-child{margin-bottom:0}
+.sea-ref-lbl{font-size:.6rem;font-weight:700;color:#48c5ff;
+  letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
 </style>
 </head>
 <body>
 
 <!-- STATUS BAR -->
-<div id="sb">
-  <div class="sb-clk"><div class="sb-city">日本時間<br>JST</div><div class="sb-time" id="clk-jst">--:--</div></div>
-  <div class="sb-div"></div>
-  <div class="sb-mid">
-    <div class="tz-tog">
-      <span class="tz-lbl active" id="lbl-j">JST<br><span style="font-size:.42rem;font-weight:400">日本</span></span>
-      <label class="tog-sw"><input type="checkbox" id="tzTog" onchange="toggleTZ(this)"><span class="tog-sl"></span></label>
-      <span class="tz-lbl" id="lbl-p">PDT<br><span style="font-size:.42rem;font-weight:400">現地</span></span>
+<header class="sb">
+  <a href="../" class="sb-home" aria-label="ランディングへ戻る">
+    <span class="ic" data-ic="home" data-size="16"></span>
+  </a>
+  <div class="sb-brand">
+    <div>
+      <div class="sb-brand-mark">VAN組</div>
+      <div class="sb-brand-sub">FIFA WORLD CUP 2026</div>
     </div>
   </div>
-  <div class="sb-div"></div>
-  <div class="sb-clk"><div class="sb-city">現地時間<br>PDT</div><div class="sb-time" id="clk-pdt">--:--</div></div>
-  <div class="sb-div"></div>
-  <div class="sb-clk"><div class="sb-city">Calgary<br>MDT</div><div class="sb-time" id="clk-mdt">--:--</div></div>
-  <div class="sb-div"></div>
-  <button onclick="document.getElementById('changelog').classList.toggle('show')" style="background:rgba(64,196,255,.1);border:1px solid rgba(64,196,255,.25);border-radius:100px;padding:3px 9px;font-size:.48rem;color:var(--blue);font-family:'Noto Sans JP',sans-serif;cursor:pointer;white-space:nowrap;flex-shrink:0">📋 更新履歴</button>
-</div>
-
-
-<!-- CHANGELOG MODAL / 変更履歴 -->
-<div id="changelog">
-  <div class="cl-header">
-    <div class="cl-title">📋 変更履歴</div>
-    <button class="cl-close" onclick="document.getElementById('changelog').classList.remove('show')">✕</button>
-  </div>
-
-  <div class="cl-entry" style="border-left-color:rgba(0,230,118,.5);background:rgba(0,50,20,.1)">
-    <div class="cl-date">2026-05-04</div>
-    <div class="cl-ver">v4.0 — フライト・ホテル情報大幅追加</div>
-    <ul class="cl-items">
-      <li>SEA組（JL068）往路フライト情報カード追加</li>
-      <li>SEA組ホテル：Mayflower Park Hotel（405 Olive Way）情報追加</li>
-      <li>コウシ 7/10：YVR→YYC → YYC→YVR 〜17:30 に更新</li>
-      <li>コウシ帰国便：7/27 YVR 14:50発 / WestJet WS080 → 7/28 NRT T1 〜19:00着 追加</li>
-    </ul>
-  </div>
-
-  <div class="cl-entry">
-    <div class="cl-date">2026-04-29</div>
-    <div class="cl-ver">v3.2 — 7/8・7/9 日程入れ替え</div>
-    <ul class="cl-items">
-      <li>7/8：Capilano + Grouse Mountain → <strong>Gastown・Vera's・Lookout・Granville・Sundbar</strong></li>
-      <li>7/9：Gastown等 → <strong>Capilano + Grouse Mountain</strong></li>
-    </ul>
-  </div>
-
-  <div class="cl-entry">
-    <div class="cl-date">2026-04-29</div>
-    <div class="cl-ver">v3.1 — ESTA / eTA 不要を確認</div>
-    <ul class="cl-items">
-      <li>✅ <strong>ESTA（米国）不要</strong> — 今回の旅程では不要を確認</li>
-      <li>✅ <strong>eTA（カナダ）不要</strong> — 陸路（車）入国のため不要</li>
-    </ul>
-  </div>
-
-  <div class="cl-entry">
-    <div class="cl-date">2026-04-29</div>
-    <div class="cl-ver">v3.0 — カツヒサLINE情報反映</div>
-    <ul class="cl-items">
-      <li>宿泊地：Lynnwood → <strong>Burien</strong>（5人→6人対応）</li>
-      <li>7/3チェックイン：PM3:00から。11:00以降は荷物だけ置き可</li>
-      <li>カツヒサが先に荷物置き。皆は空港から電車で移動</li>
-      <li>7/4：<strong>レンタカー（6人以上乗り）1日借りる</strong>（Boeing移動用）</li>
-      <li>Surrey宿泊：<strong>キャンピングカー（洗濯機なし）</strong></li>
-      <li>洗濯可：Burien Villa滞在中＋バンクーバー後2日</li>
-      <li>カナダ入国：<strong>eTA不要</strong>（陸路・車入国のため）</li>
-      <li>SEA移動：電車・バス・Uber ／ VAN移動：車（カツヒサ）がメイン</li>
-    </ul>
-  </div>
-
-  <div class="cl-entry" style="border-left-color:rgba(64,196,255,.3)">
-    <div class="cl-date">2026-04-27</div>
-    <div class="cl-ver">v2.0 — PDFスケジュール完全反映</div>
-    <ul class="cl-items">
-      <li>7/4：MoPOP追加、Metropolitan Grill追加</li>
-      <li>7/5：MLB + Lumen Field Shopping + 自炊</li>
-      <li>7/6：Packing→Check Out→Stevie's→Match94→Surrey移動</li>
-      <li>7/7：Match 96 @ BC Place 13:00</li>
-      <li>7/8：Capilano + Grouse Mountain（同日）</li>
-      <li>7/9：Gastown→Vera's→Lookout→Granville→Sundbar→Packing</li>
-      <li>コウシ：YVR→YYC（Calgary）個別帰路追加</li>
-    </ul>
-  </div>
-
-  <div class="cl-entry" style="border-left-color:rgba(206,147,216,.3)">
-    <div class="cl-date">2026-04-26</div>
-    <div class="cl-ver">v1.0 — 初版公開</div>
-    <ul class="cl-items">
-      <li>DL166 / NH115 フライト確定反映</li>
-      <li>カツヒサ Calgary Base Camp セクション追加</li>
-      <li>全デザイン：Glassmorphism / Bento Grid / ライブ時計</li>
-      <li>JST⇄PDT トグル / タップコピー / PWA対応</li>
-    </ul>
-  </div>
-</div>
-
-<div id="toast">📋 コピーしました！</div>
+  <div class="sb-clk"><div class="sb-city">JST</div><div class="sb-time" id="clk-jst">--:--</div></div>
+  <div class="sb-sep"></div>
+  <div class="sb-clk"><div class="sb-city">PDT</div><div class="sb-time" id="clk-pdt">--:--</div></div>
+</header>
 
 <!-- HERO -->
 <section class="hero" id="top">
-  <div class="hero-badge">⚽ FIFA World Cup 2026™ — VAN組（2試合 / 2 Matches！）</div>
-  <h1>シアトル SEATTLE ＆<em>バンクーバー VANCOUVER</em></h1>
-  <p class="hero-sub">🏆🏆 芝 ＋ コウシ ＋ 勇介 ＋ 山内 ＋ レンタロウ ＋ カツヒサ — 旅のしおり</p>
-  <div class="member-chips">
-    <span class="mchip">✈️ 芝</span>
-    <span class="mchip">✈️ コウシ</span>
-    <span class="mchip">✈️ 勇介</span>
-    <span class="mchip">✈️ 山内</span>
-    <span class="mchip">✈️ レンタロウ</span>
-    <span class="mchip calgary">🚗 カツヒサ（Calgary）</span>
+  <div class="hero-eyebrow">
+    <span class="ic" data-ic="ticket" data-size="11"></span>
+    VAN組 ・ 2 MATCHES
   </div>
-  <div class="updated-badge">🕐 最終更新: 2026年5月4日（v4.0）</div>
+  <h1 class="hero-title">SEATTLE<br>&<em>VANCOUVER</em></h1>
+  <p class="hero-sub"><strong>芝 ＋ コウシ ＋ 勇介 ＋ カツヒサ</strong></p>
+
+  <div class="member-chips">
+    <span class="mchip"><span class="ic" data-ic="briefcase" data-size="12"></span><span class="mchip-name">芝</span></span>
+    <span class="mchip"><span class="ic" data-ic="briefcase" data-size="12"></span><span class="mchip-name">コウシ</span></span>
+    <span class="mchip"><span class="ic" data-ic="briefcase" data-size="12"></span><span class="mchip-name">勇介</span></span>
+    <span class="mchip calgary"><span class="ic" data-ic="car" data-size="12"></span><span class="mchip-name">カツヒサ ・ Calgary</span></span>
+  </div>
+
+  <div class="tz-toggle">
+    <button class="tz-btn active" id="lbl-j" onclick="setTZ(false)">JST 日本時間</button>
+    <button class="tz-btn" id="lbl-p" onclick="setTZ(true)">PDT 現地時間</button>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num accent">2</div>
+      <div class="hero-stat-lbl">Matches</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">8</div>
+      <div class="hero-stat-lbl">Days</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">4</div>
+      <div class="hero-stat-lbl">Members</div>
+    </div>
+  </div>
+
+  <span class="upd">
+    <span class="ic" data-ic="clock" data-size="11"></span>
+    最終更新: 2026年5月4日（v4.0）
+  </span>
 </section>
 
-<!-- BENTO -->
-<div class="bento-wrap">
-  <div class="bento-grid">
-    <div class="bento sea-m">
-      <div class="b-icon">🏆</div>
-      <div class="b-en">MATCH ① / 試合①</div>
-      <div class="b-val" style="font-size:.9rem">Match 94</div>
-      <div class="b-sub">7/6 Lumen Field / SEA</div>
-    </div>
-    <div class="bento van-m">
-      <div class="b-icon">🏆</div>
-      <div class="b-en">MATCH ② / 試合②</div>
-      <div class="b-val" style="font-size:.9rem">Match 96</div>
-      <div class="b-sub">7/10 BC Place / VAN</div>
-    </div>
-    <div class="bento">
-      <div class="b-en">MEMBERS / 人数</div>
-      <div class="b-val" style="font-size:.78rem;line-height:1.2">4名<br>4 members</div>
-    </div>
-    <div class="bento span2">
-      <div class="b-en">OUTBOUND / 往路（芝・コウシ・勇介）</div>
-      <div class="b-val" style="color:var(--blue);font-size:.88rem">DL166</div>
-      <div class="b-sub">HND 16:05 JST → SEA 9:36 PDT（同日 same day）</div>
-    </div>
-    <div class="bento" style="border-color:rgba(255,213,79,.18);background:rgba(40,30,0,.28)">
-      <div class="b-en">RETURN / 帰路</div>
-      <div class="b-val" style="color:var(--blue);font-size:.88rem">NH115</div>
-      <div class="b-sub">YVR 16:45 PDT → HND 19:00 JST(7/11)</div>
-    </div>
-    <div class="bento" style="border-color:rgba(255,213,79,.18);background:rgba(40,30,0,.26)">
-      <div class="b-en">PICKUP / 送迎</div>
-      <div class="b-val" style="color:var(--gold);font-size:.78rem">🚗 カツヒサ</div>
-      <div class="b-sub">7/3 SEA空港<br>全員合流！</div>
-    </div>
-    <div class="bento span3">
-      <div class="b-en">SCHEDULE / 日程</div>
-      <div class="b-val" style="font-size:.85rem">7/3(金)〜7/10(金) 出発 — 8泊</div>
-      <div class="b-sub">Seattle（Burien Villa）3泊 → Vancouver（Surrey, BC）4泊 → 7/10夜 YVR発</div>
-    </div>
-  </div>
-</div>
-
-<!-- CALGARY BASE CAMP -->
-<div class="calgary-section" id="calgary">
-  <div class="cgr-badge">🏔️ Base Camp Calgary / カルガリー拠点</div>
-  <div class="cgr-h">カツヒサ — カルガリー在住 / Lives in Calgary, AB</div>
-  <p style="font-size:.76rem;color:var(--muted);margin-bottom:.5rem">カツヒサはカナダ・カルガリー在住。<strong style="color:var(--gold)">7/3に車でSEA空港へ向かい、全員を出迎え。</strong>宿泊（Burien Villa・Surrey）はカツヒサが手配。<br><span style="font-size:.72rem;color:var(--blue)">🚇 SEAは電車・バス・Uberで移動 ／ 🚗 VANは車（カツヒサ）がメイン</span></p>
-  <div style="font-size:.76rem;color:var(--text);margin-bottom:.38rem">🚗 Calgary → Seattle Airport ルート / Route</div>
-  <div onclick="copyText('Calgary, AB → Lethbridge → Coutts Border / Sweetgrass → US-15 → Great Falls MT → Seattle, WA')" class="copy-row">
-    <span class="copy-val">Calgary → Lethbridge → Coutts → US-15 → Great Falls → Seattle SEA Airport</span>
-    <span class="copy-ic">📋</span>
-  </div>
-  <div class="cgr-grid">
-    <div class="cgr-item"><div class="cgr-ic">📍</div><div class="cgr-name">Calgary → SEA空港 / Airport</div><div class="cgr-det">約850km・10〜12時間 / 10-12 hours</div></div>
-    <div class="cgr-item"><div class="cgr-ic">🛂</div><div class="cgr-name">国境越え / Border</div><div class="cgr-det">Coutts（CA）→ Sweetgrass（US）<br><span style="color:var(--green);font-size:.58rem">✅ 陸路入国はeTA不要！</span></div></div>
-    <div class="cgr-item"><div class="cgr-ic">🏠</div><div class="cgr-name">宿泊手配 / Accommodation</div><div class="cgr-det">Burien Villa & Surrey, BC 手配済</div></div>
-    <div class="cgr-item"><div class="cgr-ic">🚗</div><div class="cgr-name">7/3 ミッション</div><div class="cgr-det">SEA空港で全員ピックアップ！全員乗車後にBurienへ</div></div>
-  </div>
-  <div class="bgrp" style="margin-top:.55rem"><a class="lbtn" href="https://maps.google.com/maps?saddr=Calgary+AB&daddr=Seattle+WA" target="_blank">🗺️ Calgary→Seattle ルート確認</a></div>
-</div>
-
-<!-- SEA組 参照情報 -->
-<div style="background:rgba(0,230,118,.04);border:1px solid rgba(0,230,118,.18);border-radius:16px;padding:1rem;margin:.5rem 1rem 1.2rem;max-width:640px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)">
-  <div style="font-family:'Bebas Neue',cursive;font-size:1rem;letter-spacing:.08em;color:var(--green);margin-bottom:.6rem">✈️ SEA組（山内・蓮太郎）— 参照情報</div>
-  <!-- JL068 フライト -->
-  <div style="background:rgba(10,22,42,.6);border:1px solid rgba(64,196,255,.2);border-radius:10px;padding:.65rem .8rem;margin-bottom:.5rem">
-    <div style="font-size:.65rem;font-weight:700;color:var(--blue);margin-bottom:.35rem">✈️ 往路 — Japan Airlines / 日本航空 JL068</div>
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:.3rem 0">
-      <div style="text-align:center"><div style="font-family:'Bebas Neue',cursive;font-size:1.5rem;color:#fff">NRT</div><div style="font-size:.58rem;color:var(--muted)">東京・成田</div></div>
-      <div style="flex:1;text-align:center"><div style="font-size:.6rem;color:var(--blue)">9時間5分 / 9h 5min</div><div style="height:2px;background:linear-gradient(to right,rgba(64,196,255,.2),var(--blue),rgba(64,196,255,.2));position:relative;margin:.25rem 0"><span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:.7rem;color:var(--blue);background:var(--bg2);padding:0 3px">✈</span></div></div>
-      <div style="text-align:center"><div style="font-family:'Bebas Neue',cursive;font-size:1.5rem;color:#fff">SEA</div><div style="font-size:.58rem;color:var(--muted)">シアトル</div></div>
-    </div>
-    <div style="display:flex;justify-content:space-between;font-size:.68rem;border-top:1px solid rgba(255,255,255,.06);padding-top:.3rem;margin-top:.3rem">
-      <span style="color:var(--muted)">出発 / Depart</span>
-      <span style="color:var(--text);font-weight:700">17:45 <span style="background:rgba(255,213,79,.1);border:1px solid rgba(255,213,79,.2);color:var(--gold);border-radius:4px;padding:0 5px;font-size:.58rem">JST 日本時間</span> 7/3(金)</span>
-    </div>
-    <div style="display:flex;justify-content:space-between;font-size:.68rem;padding-top:.25rem">
-      <span style="color:var(--muted)">到着 / Arrive</span>
-      <span style="color:var(--text);font-weight:700">10:50 <span style="background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.2);color:var(--green);border-radius:4px;padding:0 5px;font-size:.58rem">PDT 現地時間</span> 7/3(金) <span style="font-size:.58rem;color:var(--muted)">※JST 7/4 02:55</span></span>
-    </div>
-  </div>
-  <!-- Mayflower Park Hotel -->
-  <div style="background:rgba(10,22,42,.6);border:1px solid rgba(0,230,118,.25);border-radius:10px;padding:.65rem .8rem">
-    <div style="font-size:.65rem;font-weight:700;color:var(--green);margin-bottom:.35rem">🏨 SEA組 ホテル — Mayflower Park Hotel ✅予約済</div>
-    <div style="font-size:.72rem;color:var(--text);font-weight:700">7/6(月) 16:00 IN → 7/8(水) 12:00 OUT ／ 2泊・大人2名</div>
-    <div onclick="copyText('405 Olive Way, Seattle, WA 98101')" style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:5px 9px;margin:.35rem 0;cursor:pointer"><span style="font-size:.7rem;color:var(--text);font-family:monospace">405 Olive Way, Seattle, WA 98101</span><span style="font-size:.75rem;color:var(--muted)">📋</span></div>
-    <a href="https://maps.google.com/maps?daddr=405+Olive+Way+Seattle+WA+98101" target="_blank" style="display:inline-flex;align-items:center;gap:4px;background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);border-radius:8px;padding:4px 9px;color:var(--green);text-decoration:none;font-size:.67rem;font-weight:700">📍 Mayflower Park Hotel</a>
-  </div>
-</div>
-
-
 <!-- SECTION NAV -->
-<nav id="snav">
+<nav class="snav">
   <div class="snav-inner">
-    <a class="snav-btn" href="#top">🏠 TOP</a>
-    <a class="snav-btn" href="#calgary">🏔️ Calgary</a>
-    <a class="snav-btn" href="#sched">📅 日程</a>
-    <a class="snav-btn" href="#route">🗺️ ルート</a>
-    <a class="snav-btn" href="#acc">🏡 宿泊</a>
-    <a class="snav-btn" href="#day1">Day1｜7/3</a>
-    <a class="snav-btn" href="#day2">Day2｜7/4🎆</a>
-    <a class="snav-btn" href="#day3">Day3｜7/5⚾</a>
-    <a class="snav-btn" href="#day4">Day4｜7/6🏆SEA</a>
-    <a class="snav-btn" href="#day5">Day5｜7/7→VAN</a>
-    <a class="snav-btn" href="#day6">Day6｜7/8 Gastown</a>
-    <a class="snav-btn" href="#day7">Day7｜7/9 Capilano</a>
-    <a class="snav-btn" href="#day8">Day8｜7/10🏆VAN→帰国</a>
-    <a class="snav-btn" href="#koushi-return">✈️ コウシ帰国</a>
-    <a class="snav-btn" href="#rules">🏟️ 観戦Info</a>
-    <a class="snav-btn" href="#sos">🆘 緊急</a>
+    <button class="snav-btn active" data-target="top">
+      <span class="ic" data-ic="home" data-size="11"></span>TOP
+    </button>
+    <button class="snav-btn" data-target="overview">
+      <span class="ic" data-ic="list" data-size="11"></span>概要
+    </button>
+    <button class="snav-btn" data-target="calgary">
+      <span class="ic" data-ic="mountain" data-size="11"></span>Calgary
+    </button>
+    <button class="snav-btn" data-target="acc">
+      <span class="ic" data-ic="hotel" data-size="11"></span>宿泊
+    </button>
+    <button class="snav-btn" data-target="days">
+      <span class="ic" data-ic="calendar" data-size="11"></span>旅程
+    </button>
+    <button class="snav-btn" data-target="rules">
+      <span class="ic" data-ic="building" data-size="11"></span>観戦Info
+    </button>
+    <button class="snav-btn" data-target="sos">
+      <span class="ic" data-ic="alert-triangle" data-size="11"></span>緊急
+    </button>
   </div>
 </nav>
 
-<!-- SCHEDULE TABLE -->
-<div class="sec-wrap" id="sched">
-  <div class="sec-title">📅 SCHEDULE / 日程一覧 — VAN組</div>
-  <div class="sched-scroll">
-    <div class="sched-grid" id="schedGrid">
-      <div class="day-col travel-day" id="sc-d1"><div class="day-head">7/3<div class="dow">金 FRI</div></div><div class="day-body"><div class="si tr">DL166 HND 16:15 JST</div><div class="si tr">SEA着 9:36 PDT（同日）</div><div class="si shared">🚗 カツヒサ迎え</div><div class="si hl">🔑 Check in 13:00</div><div class="si hl">🐟 Pike Place 15:00</div><div class="si food">🛒 Costco 19:00</div><div class="si food">自炊 20:00</div><div class="si acc">🏡 Burien</div></div></div>
-      <div class="day-col sea-day" id="sc-d2"><div class="day-head">7/4<div class="dow">土 SAT</div></div><div class="day-body"><div class="si hl">🦇 MoPOP 10:00</div><div class="si hl">✈️ Boeing 14:00</div><div class="si food">🥩 Metropolitan 19:00</div><div class="si food">🎆 花火 22:00</div><div class="si acc">🏡 Burien</div></div></div>
-      <div class="day-col sea-day" id="sc-d3"><div class="day-head">7/5<div class="dow">日 SUN</div></div><div class="day-body"><div class="si hl">⚾ イチロー像 11:00</div><div class="si hl">⚾ MLB 13:30</div><div class="si hl">🏟️ LF周辺 17:00</div><div class="si food">自炊 19:00</div><div class="si acc">🏡 Burien</div></div></div>
-      <div class="day-col match1-day" id="sc-d4"><div class="day-head">7/6<div class="dow">月 MON</div></div><div class="day-body"><div class="si">📦 Packing 10:00</div><div class="si hl">🚪 Check Out 11:00</div><div class="si food">🍕 Stevie's 12:00</div><div class="si hl">🏟️ LF周辺 15:00</div><div class="si match">🏆 Match94 17:00</div><div class="si tr">SEA→VAN 21:00</div><div class="si acc">🏠 Surrey着</div></div></div>
-      <div class="day-col match2-day" id="sc-d5"><div class="day-head">7/7<div class="dow">火 TUE</div></div><div class="day-body"><div class="si hl">🏟️ BC Place周辺 11:00</div><div class="si match2">🏆 Match96 13:00</div><div class="si food">🛒 Whole Foods 17:00</div><div class="si food">自炊 19:00</div><div class="si acc">🏠 Surrey</div></div></div>
-      <div class="day-col" id="sc-d6"><div class="day-head">7/8<div class="dow">水 WED</div></div><div class="day-body"><div class="si hl">🏘️ Gastown 10:00</div><div class="si food">🍔 Vera's 12:00</div><div class="si hl">🌆 Lookout 13:00</div><div class="si hl">🛒 Granville 15:00</div><div class="si food">🍸 Sundbar 18:00</div><div class="si acc">🏠 Surrey</div></div></div>
-      <div class="day-col" id="sc-d7"><div class="day-head">7/9<div class="dow">木 THU</div></div><div class="day-body"><div class="si hl">🌉 Capilano 10:00</div><div class="si hl">⛰️ Grouse Mtn 14:00</div><div class="si food">自炊 19:00</div><div class="si acc">🏠 Surrey</div></div></div>
-      <div class="day-col travel-day" id="sc-d8"><div class="day-head">7/10<div class="dow">金 FRI</div></div><div class="day-body"><div class="si hl">🚪 Check Out 10:00</div><div class="si tr">コウシ YYC→YVR 〜17:30</div><div class="si tr">🛫 NH115 16:30 PDT</div><div class="si tr">HND着 7/11 19:30</div><div class="si acc">✈️ 機中泊</div></div></div>
-    </div>
-  </div>
+<!-- ═══ OVERVIEW ═══ -->
+<div class="sec-title" id="overview">
+  <span class="sec-tit-ic"><span class="ic" data-ic="trophy" data-size="16"></span></span>
+  OVERVIEW
+  <span class="sec-title-sub">2試合 ・ 往復</span>
 </div>
 
-<!-- ROUTE MAP -->
-<div class="sec-wrap" id="route">
-  <div class="sec-title">🗺️ ROUTE MAP / 移動行程マップ</div>
-  <div class="route-scroll">
-    <div class="route-flow">
-      <div class="rs"><div class="rs-icon">🚗</div><div class="rs-bub katu-s"><div class="rs-name">Calgary, AB</div><div class="rs-tm gold">カツヒサ出発</div><div class="rs-sub">7/3 早朝</div></div></div>
-      <div class="rl drive"><div class="rl-ic">🛣️</div><div class="rl-line"></div><div class="rl-lbl">US-15<br>〜11h</div></div>
-      <div class="rs"><div class="rs-icon">🛫</div><div class="rs-bub flight-s"><div class="rs-name">羽田 HND</div><div class="rs-tm">16:05 <span class="tz-tag tz-j">JST</span></div><div class="rs-sub">7/3(金)</div></div></div>
-      <div class="rl flight"><div class="rl-ic">✈️</div><div class="rl-line"></div><div class="rl-lbl">DL166<br>〜9.5h</div></div>
-      <div class="rs"><div class="rs-icon">🚗</div><div class="rs-bub katu-s"><div class="rs-name">SEA 空港<br>✨全員合流</div><div class="rs-tm gold">9:36→10:50<br>PDT 7/3</div><div class="rs-sub">カツヒサ待機中</div><a class="rs-map" style="color:var(--gold)" href="https://maps.google.com/maps?daddr=Seattle-Tacoma+International+Airport" target="_blank">📍</a></div></div>
-      <div class="rl drive"><div class="rl-ic">🚗</div><div class="rl-line"></div><div class="rl-lbl">車<br>40min</div></div>
-      <div class="rs"><div class="rs-icon">🏡</div><div class="rs-bub shared-s"><div class="rs-name">Burien Villa</div><div class="rs-tm g">7/3〜7/6</div><div class="rs-sub">カツヒサ手配</div><a class="rs-map" href="https://maps.google.com/maps?daddr=Burien+WA" target="_blank">📍</a></div></div>
-      <div class="rl drive"><div class="rl-ic">🚗</div><div class="rl-line"></div><div class="rl-lbl">15min</div></div>
-      <div class="rs"><div class="rs-icon">✈️</div><div class="rs-bub shared-s"><div class="rs-name">Boeing<br>Everett</div><div class="rs-tm g">7/4 14:00</div><a class="rs-map" href="https://maps.google.com/maps?daddr=Boeing+Future+of+Flight+Everett" target="_blank">📍</a></div></div>
-      <div class="rl walk"><div class="rl-ic">🦇</div><div class="rl-line"></div><div class="rl-lbl">7/5</div></div>
-      <div class="rs"><div class="rs-icon">🦇</div><div class="rs-bub shared-s"><div class="rs-name">MoPOP<br>Seattle</div><div class="rs-tm g">7/5 10:00</div><a class="rs-map" href="https://maps.google.com/maps?daddr=Museum+of+Pop+Culture+Seattle" target="_blank">📍</a></div></div>
-      <div class="rl rail"><div class="rl-ic">🚇</div><div class="rl-line"></div><div class="rl-lbl">Link</div></div>
-      <div class="rs"><div class="rs-icon">🏆</div><div class="rs-bub match-s"><div class="rs-name">Lumen Field</div><div class="rs-tm g">7/6 17:00</div><div class="rs-sub">Match 94</div><a class="rs-map" href="https://maps.google.com/maps?daddr=Lumen+Field+Seattle" target="_blank">📍</a></div></div>
-      <div class="rl drive"><div class="rl-ic">🚗</div><div class="rl-line"></div><div class="rl-lbl">国境越え<br>2〜3h</div></div>
-      <div class="rs"><div class="rs-icon">🏠</div><div class="rs-bub"><div class="rs-name">Surrey, BC</div><div class="rs-tm">7/7〜7/10</div><div class="rs-sub">カツヒサ手配</div><a class="rs-map" href="https://maps.google.com/maps?daddr=Surrey+British+Columbia" target="_blank">📍</a></div></div>
-      <div class="rl drive"><div class="rl-ic">🚗</div><div class="rl-line"></div><div class="rl-lbl">7/8</div></div>
-      <div class="rs"><div class="rs-icon">🌉</div><div class="rs-bub"><div class="rs-name">Capilano<br>Park</div><div class="rs-tm">7/8 AM</div><a class="rs-map" href="https://maps.google.com/maps?daddr=Capilano+Suspension+Bridge+North+Vancouver" target="_blank">📍</a></div></div>
-      <div class="rl drive"><div class="rl-ic">🚗</div><div class="rl-line"></div><div class="rl-lbl">7/9</div></div>
-      <div class="rs"><div class="rs-icon">⛰️</div><div class="rs-bub"><div class="rs-name">Grouse<br>Mountain</div><div class="rs-tm">7/9 AM</div><a class="rs-map" href="https://maps.google.com/maps?daddr=Grouse+Mountain+North+Vancouver" target="_blank">📍</a></div></div>
-      <div class="rl rail"><div class="rl-ic">🚇</div><div class="rl-line"></div><div class="rl-lbl">SkyTrain</div></div>
-      <div class="rs"><div class="rs-icon">🏆</div><div class="rs-bub match2-s"><div class="rs-name">BC Place<br>Vancouver</div><div class="rs-tm">7/10 13:00</div><div class="rs-sub">Match 96</div><a class="rs-map" href="https://maps.google.com/maps?daddr=BC+Place+Stadium+Vancouver" target="_blank">📍</a></div></div>
-      <div class="rl rail"><div class="rl-ic">⚡</div><div class="rl-line"></div><div class="rl-lbl">Canada<br>Line 急いで!</div></div>
-      <div class="rs"><div class="rs-icon">🛫</div><div class="rs-bub flight-s"><div class="rs-name">Vancouver<br>YVR</div><div class="rs-tm">16:45 PDT<br>7/10</div><a class="rs-map" href="https://maps.google.com/maps?daddr=Vancouver+International+Airport" target="_blank">📍</a></div></div>
-      <div class="rl flight"><div class="rl-ic">✈️</div><div class="rl-line"></div><div class="rl-lbl">NH115<br>〜10h</div></div>
-      <div class="rs"><div class="rs-icon">🛬</div><div class="rs-bub flight-s"><div class="rs-name">羽田 HND</div><div class="rs-tm" style="color:var(--gold)">19:00 <span class="tz-tag tz-j">JST</span></div><div class="rs-sub">7/11(土)</div></div></div>
+<div class="card-grid" style="padding-top:0">
+
+  <!-- Match 1 hero -->
+  <div class="vc vc-match auto">
+    <div class="vc-bg"></div>
+    <div class="vc-scrim"></div>
+    <div class="match-hero">
+      <div class="ml">FIFA WORLD CUP 2026™ ・ ROUND OF 16</div>
+      <div class="ml-ja">MATCH ① / 7月6日 ・ Lumen Field</div>
+      <div class="mvs">TBD<span>VS</span>TBD</div>
+      <div class="mmeta">7/1グループ戦結果で対戦チーム決定</div>
+      <div class="div-line"></div>
+      <div class="mtime-en">KICK OFF / Match 94</div>
+      <div class="mtime">17:00<span style="font-size:1rem;color:var(--green);margin-left:8px">PDT</span></div>
+      <div class="mtime-ja">日本時間: 7/7(火) 09:00 JST</div>
     </div>
-  </div>
-</div>
-
-<!-- ACCOMMODATION -->
-<div class="sec-wrap" id="acc">
-  <div class="sec-title">🏡 ACCOMMODATION / 宿泊</div>
-  <div class="acc-card">
-    <div class="acc-icon">🏡</div>
-    <div>
-      <div class="acc-name">The Burien Villa（SEA組と共同 / Shared with SEA group）</div>
-      <div class="acc-det">7/3(金)〜7/6(月) — Burien, WA ／ <strong style="color:var(--gold)">カツヒサ手配</strong></div>
-      <div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Burien+WA" target="_blank">📍 Burienエリア</a></div>
-    </div>
-  </div>
-  <div class="acc-card">
-    <div class="acc-icon">🏕️</div>
-    <div>
-      <div class="acc-name">Surrey, BC — キャンピングカー🚐</div>
-      <div class="acc-det">7/7(火)〜7/10(金) — Surrey, BC ／ <strong style="color:var(--gold)">キャンピングカー</strong> ／ <strong style="color:var(--red)">⚠️ 洗濯機なし</strong></div>
-      <div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Surrey+British+Columbia+Canada" target="_blank">📍 Surrey, BC</a></div>
-    </div>
-  </div>
-</div>
-
-<!-- DAY 1 -->
-<section class="sec" id="day1">
-  <div class="sec-header"><div class="day-num">01</div><div class="day-meta"><div class="dlbl l-tr">出発・同日着 / Depart & Arrive Same Day!</div><h2>7月3日（金）— 羽田発 → SEA同日着 → 全員合流！</h2><p>HND 16:05 JST発 → SEA 9:36 PDT着（同日 / same calendar day！）</p></div></div>
-  <div class="fc">
-    <div class="fc-route">
-      <div class="fa"><div class="iata">HND</div><div class="cname">東京・羽田<br>Haneda</div></div>
-      <div class="fline"><div class="fcarr">Delta Air Lines / デルタ航空 DL166</div><div class="farrow"></div><div class="fdur">約9時間半 / ~9.5hrs</div></div>
-      <div class="fa"><div class="iata">SEA</div><div class="cname">シアトル<br>Seattle</div></div>
-    </div>
-    <div class="div"></div>
-    <div class="irow"><span class="lbl">搭乗者 / Passengers</span><span class="val">芝・コウシ・勇介（3名）</span></div>
-    <div class="irow"><span class="lbl">出発 / Depart</span><span class="val"><strong>16:05</strong><span class="tz-tag tz-j">JST 日本時間</span>7/3(金)</span></div>
-    <div class="irow"><span class="lbl">到着 / Arrive</span><span class="val"><strong>9:36</strong><span class="tz-tag tz-p">PDT 現地時間</span>7/3(金) <span style="font-size:.58rem;color:var(--green);font-weight:700">同日着！</span></span></div>
-    <div class="irow"><span class="lbl">なぜ同日？</span><span class="val" style="font-size:.65rem;color:var(--muted)">時差+16h: 16:05JST-16h = 00:05PDT → +9.5h飛行 = 9:36PDT</span></div>
-  </div>
-
-  <div style="background:rgba(255,213,79,.05);border:1px solid rgba(255,213,79,.18);border-radius:12px;padding:.85rem;margin-bottom:.8rem;">
-    <div style="font-size:.72rem;font-weight:700;color:var(--gold);margin-bottom:.45rem">🚗 カツヒサ — Calgary → SEA空港へ移動中</div>
-    <div style="font-size:.73rem;color:var(--muted)">カツヒサはCalgarryから約10〜12時間かけてSEA空港に到着予定。VAN組（9:36 PDT）とSEA組：山内・レンタロウ（10:50 PDT）の到着を待って、<strong style="color:var(--gold)">全員（6名）で車でBurien Villaへ出発！</strong></div>
-    <div class="bgrp" style="margin-top:.45rem"><a class="lbtn" href="https://maps.google.com/maps?saddr=Calgary+AB&daddr=Seattle-Tacoma+International+Airport" target="_blank">🗺️ Calgary→SEA空港ルート</a></div>
-  </div>
-
-  <div class="tl">
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🛫</div><div><div class="c-time jst"><span class="t-jst">16:05 JST — 羽田出発 / Depart HND</span><span class="t-pdt">16:05 JST（00:05 PDT）— Depart HND</span></div><div class="c-t">Delta Air Lines DL166</div></div></div><div class="c-d">出発3時間前（13:05 JST）には空港着を / Be at airport 3hrs before departure。</div></div></div>
-    <div class="tl-item"><div class="dot gold"></div><div class="card katu-card"><div class="card-h"><div class="c-ic">🚗</div><div><div class="c-time" style="color:var(--gold)">9:36 PDT → 10:50 PDT — SEAタック空港 ✨ 全員集合！</div><div class="c-t" style="color:var(--gold)">カツヒサ出迎え → 6名全員でBurien Villaへ出発！</div></div></div><div class="c-d">VAN組（芝・コウシ・勇介）が9:36 PDT着。SEA組（山内・レンタロウ）が10:50 PDT着。<strong>カツヒサが全員を出迎え、車でBurien Villaへ！</strong></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Seattle-Tacoma+International+Airport" target="_blank">📍 SEAタック空港</a></div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🏡</div><div><div class="c-time pdt">PM 3:00 PDT — 正式チェックイン</div><div class="c-t">Burien Villa チェックイン</div></div></div><div class="c-d"><strong>チェックインはPM3:00から</strong>。ただし<strong>11:00以降は荷物だけ置かせてもらえる</strong>。カツヒサが先に荷物を置いてくれる間、皆は空港から電車でPike Placeへ！</div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🐟</div><div><div class="c-time pdt">15:00 PDT〜 / Pike Place Market</div><div class="c-t">Pike Place Market</div></div></div><div class="c-d">シアトルの象徴的な市場。</div><div style="margin:.3rem 0"><span class="ftag">☕ Starbucks 1号店</span><span class="ftag">🦀 Pike Place Chowder</span><span class="ftag">🍺 Pike Brewing Co.</span></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Pike+Place+Market+Seattle" target="_blank">📍 Pike Place Market</a></div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🛒</div><div><div class="c-time pdt">19:00 PDT〜</div><div class="c-t">Market / Costco で買い出し</div></div></div><div class="c-d">Burien近くのCostco or スーパーで食材購入。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Costco+Burien+WA" target="_blank">📍 Costco Burien</a></div></div></div>
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🍳</div><div><div class="c-time pdt">21:00 / 夕食</div><div class="c-t">自炊 — Burien Villa</div></div></div><div class="c-d">旅の初日はホームな夕食でゆっくり。</div></div></div>
-  </div>
-  <div class="tips"><h4>💡 出発前チェック / Pre-trip Checklist</h4><ul><li>✅ <strong>ESTA不要</strong>（今回は不要）</li><li>✅ <strong>eTA不要</strong>（陸路・車でカナダ入国のため）</li><li>パスポート有効期限：入国日から6ヶ月以上</li><li>米国・カナダ両対応eSIM / SIMを準備</li></ul></div>
-</section>
-
-<!-- DAY 2 -->
-<section class="sec" id="day2">
-  <div class="sec-header"><div class="day-num">02</div><div class="day-meta"><div class="dlbl l-sh">観光 / Sightseeing</div><h2>7月4日（土）— MoPOP🦇 + Boeing✈️ + 花火🎆</h2><p>MoPOP 10:00 → Lunch → 🚗 レンタカー → Boeing 14:00 → Metropolitan 19:00 → 花火 22:00</p></div></div>
-  <div class="card" style="border-color:rgba(255,213,79,.3);background:rgba(40,30,0,.25);margin-bottom:.7rem"><div class="card-h"><div class="c-ic">🚗</div><div><div class="c-time jst" style="color:var(--gold)">7/4 終日 — レンタカー手配</div><div class="c-t" style="color:var(--gold)">6人以上乗り レンタカー 1日借りる</div></div></div><div class="c-d">Boeingがある<strong>Everettは北方向</strong>で電車では不便のため、7/4のみ6人以上乗れるレンタカーを1日レンタル。MoPOP後のBoeing往復・Metropolitan Grillへの移動に使用。返却は夜。</div></div>
-  <div class="shared-badge">🟢 山内・レンタロウ（SEA組）と共行動 / With SEA group</div>
-  <div class="tl">
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🦇</div><div><div class="c-time pdt"><span class="t-pdt">10:00 PDT〜</span><span class="t-jst">10:00 PDT（現地）</span></div><div class="c-t">Museum of Pop Culture（MoPOP）</div></div></div><div class="c-d">DC・SF・音楽・スポーツ・科学など多彩な展示が揃うポップカルチャーの殿堂。スペースニードル横のフランク・ゲーリー設計建築も必見。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Museum+of+Pop+Culture+Seattle" target="_blank">📍 MoPOP</a><a class="lbtn" href="https://www.mopop.org" target="_blank">🔗 チケット</a></div><span class="tbadge">🚇 モノレール Westlake→Seattle Center</span></div></div>
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🍽️</div><div><div class="c-time pdt">12:00 PDT — Lunch / 昼食</div><div class="c-t">Seattle Center周辺でランチ</div></div></div><div class="c-d">MoPOP観覧後、Seattle Center周辺でランチ休憩。</div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">✈️</div><div><div class="c-time pdt"><span class="t-pdt">14:00 PDT〜</span><span class="t-jst">14:00 PDT（現地）</span></div><div class="c-t">Boeing Future of Flight Aviation Center &amp; Boeing Tour</div></div></div><div class="c-d">世界最大の旅客機製造工場！777・787・737の製造ラインを間近に。宿から車で約15分。<strong>事前予約推奨。</strong></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Boeing+Future+of+Flight+Everett+WA" target="_blank">📍 Boeing Everett</a><a class="lbtn" href="https://www.futureofflight.org" target="_blank">🔗 公式予約</a></div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🥩</div><div><div class="c-time pdt">19:00 PDT — Dinner / 夕食</div><div class="c-t">Metropolitan Grill</div></div></div><div class="c-d">シアトル屈指のステーキハウス。Boeing観覧後の豪華ディナー。<strong>要予約！</strong></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Metropolitan+Grill+Seattle" target="_blank">📍 Metropolitan Grill</a><a class="lbtn" href="https://www.themetropolitangrill.com" target="_blank">🔗 予約</a></div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🎆</div><div><div class="c-time pdt"><span class="t-pdt">22:00 PDT〜</span><span class="t-jst">22:00 PDT（現地）</span></div><div class="c-t">South Lake Union Park — 独立記念日花火🇺🇸</div></div></div><div class="c-d">7月4日・アメリカ独立記念日。湖面に映る花火が絶景。人混み覚悟で早めに場所取りを。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=South+Lake+Union+Park+Seattle" target="_blank">📍 South Lake Union</a></div></div></div>
-  </div>
-</section>
-
-<!-- DAY 3 -->
-<section class="sec" id="day3">
-  <div class="sec-header"><div class="day-num">03</div><div class="day-meta"><div class="dlbl l-sh">観光 / Sightseeing</div><h2>7月5日（日）— イチロー像⚾ → MLB → Lumen Field周辺</h2><p>T-Mobile Park周辺 11:00 → MLB 13:30 → Lumen Field Shopping 17:00 → 自炊</p></div></div>
-  <div class="shared-badge">🟢 山内・レンタロウ（SEA組）と共行動 / With SEA group</div>
-  <div class="tl">
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🏟️</div><div><div class="c-time pdt">11:00 PDT〜</div><div class="c-t">T-Mobile Park周辺 — イチロー像 ＆ Shopping</div></div></div><div class="c-d">T-Mobile Park周辺を散策。<strong>イチロー像</strong>で記念写真！試合前のグッズショッピング。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Ichiro+Suzuki+Statue+Seattle" target="_blank">📍 イチロー像</a></div></div></div>
-    <div class="tl-item"><div class="dot r"></div><div class="card" style="border-color:rgba(255,213,79,.25)"><div class="card-h"><div class="c-ic">⚾</div><div><div class="c-time" style="color:var(--gold);font-size:.82rem"><span class="t-pdt">13:30 PDT — ⚾ PLAY BALL!</span><span class="t-jst">13:30 PDT — 試合開始</span></div><div class="c-t" style="font-size:.92rem">MLB — SEA Mariners vs TOR Blue Jays @ T-Mobile Park</div></div></div><div class="c-d">本場アメリカ野球！ホットドッグ・ガーリックフライ必食！</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=T-Mobile+Park+Seattle" target="_blank">📍 T-Mobile Park</a></div><span class="tbadge">🚇 Link「Stadium」駅直結</span></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🏟️</div><div><div class="c-time pdt">17:00 PDT〜</div><div class="c-t">Lumen Field周辺 Shopping</div></div></div><div class="c-d">明日の試合（Match 94）に備えてLumen Field周辺のWCグッズをリサーチ・購入。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Lumen+Field+Seattle" target="_blank">📍 Lumen Field周辺</a></div></div></div>
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🍳</div><div><div class="c-time pdt">19:00 PDT / 夕食</div><div class="c-t">自炊 — Burien Villa</div></div></div><div class="c-d">明日はPacking &amp; Check Outなので荷物整理も兼ねて。早めに就寝。</div></div></div>
-  </div>
-</section>
-
-<!-- DAY 4 -->
-<section class="sec" id="day4">
-  <div class="sec-header"><div class="day-num">04</div><div class="day-meta"><div class="dlbl l-mat">🏆 試合① / Match Day 1</div><h2>7月6日（月）— Check Out → Match 94🏆 → Surrey！</h2><p>Packing 10:00 → Check Out 11:00 → Stevie's 12:00 → Match 94 17:00 → SEA→VAN 21:00</p></div></div>
-  <div class="shared-badge">🟢 山内・レンタロウ（SEA組）と共行動（Match 94まで）/ With SEA group until Match 94</div>
-  <div class="match-card">
-    <div class="ml">⚽ FIFA WORLD CUP 2026™ — ROUND OF 16</div>
-    <div class="ml-ja">決勝ラウンド16強戦 / Match 94 @ Seattle — Lumen Field</div>
-    <div class="mvs">TBD <span>VS</span> TBD</div>
-    <div class="mmeta">7/1グループ戦結果で対戦チーム決定</div>
-    <div class="div" style="margin:.5rem 0"></div>
-    <div class="mtime-wrap">
-      <div class="mtime-en">KICK OFF / キックオフ</div>
-      <div class="mtime"><span class="t-pdt">17:00 PDT</span><span class="t-jst">17:00 PDT（現地）</span></div>
-      <div class="mtime-ja"><span class="t-jst">日本時間: 7/7(火) 09:00 JST</span><span class="t-pdt">Japan: 7/7 09:00 JST</span></div>
-    </div>
-    <div onclick="copyText('Lumen Field, 800 Occidental Ave S, Seattle, WA 98134')" class="copy-row" style="margin-top:.6rem"><span class="copy-val">800 Occidental Ave S, Seattle, WA 98134</span><span class="copy-ic">📋</span></div>
-    <a class="mbtn" href="https://maps.google.com/maps?daddr=Lumen+Field+800+Occidental+Ave+S+Seattle" target="_blank" style="font-size:.76rem;padding:5px 10px;margin-top:.4rem;display:inline-flex">📍 Lumen Field へのルート</a>
-  </div>
-  <div class="tl">
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">📦</div><div><div class="c-time pdt">10:00 PDT — Packing / 荷造り</div><div class="c-t">荷造り完了 → チェックアウト準備</div></div></div><div class="c-d">今日でBurien Villaともお別れ。スーツケースをまとめる。</div></div></div>
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🚪</div><div><div class="c-time pdt">11:00 PDT — Check Out</div><div class="c-t">Burien Villa チェックアウト</div></div></div><div class="c-d">カツヒサが車に全員の荷物を積み込む。今夜Surreyへ向かうため荷物は車中へ。</div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🍕</div><div><div class="c-time pdt">12:00 PDT — Lunch / 昼食</div><div class="c-t">Stevie's Famous Burien Pizza</div></div></div><div class="c-d">試合前の腹ごしらえ！地元で人気の本格ピザ。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Stevie%27s+Famous+Burien+Pizza" target="_blank">📍 Stevie's Famous Burien Pizza</a></div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🏟️</div><div><div class="c-time pdt">15:00 PDT〜</div><div class="c-t">Lumen Field周辺 Shopping</div></div></div><div class="c-d">スタジアム周辺のWCグッズ・お土産をゲット！試合開始前の最後のチャンス。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Lumen+Field+Seattle" target="_blank">📍 Lumen Field周辺</a></div></div></div>
-    <div class="tl-item"><div class="dot b2"></div><div class="card" style="border-color:rgba(0,230,118,.32);background:linear-gradient(135deg,rgba(0,40,20,.5),rgba(10,22,42,.6))"><div class="card-h"><div class="c-ic">🏆</div><div><div class="c-time" style="font-size:.84rem;color:var(--green)"><span class="t-pdt">⚽ KICK OFF — 17:00 PDT</span><span class="t-jst">⚽ キックオフ — 17:00 PDT（現地）</span></div><div class="c-t" style="color:var(--green)">FIFA WC — Round of 16 / 決勝16強 / Match 94 @ Lumen Field</div></div></div><div class="c-d"><strong>Lumen Field</strong>（Seattle）。VAN組 第1戦！6名全員で観戦。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Lumen+Field+Seattle" target="_blank">📍 Lumen Field</a></div><span class="tbadge">🚇 Link「Stadium」駅</span></div></div>
-    <div class="tl-item"><div class="dot b2"></div><div class="card" style="border-color:rgba(64,196,255,.22)"><div class="card-h"><div class="c-ic">🚗</div><div><div class="c-time" style="color:var(--blue)">21:00 PDT〜 — 試合後 即バンクーバーへ！</div><div class="c-t" style="color:var(--blue)">SEA → Peace Arch 国境越え → Surrey, BC</div></div></div><div class="c-d">カツヒサが運転。Peace Arch / Pacific Highway国境を越えてSurrey泊へ。<strong>明日はMatch 96！</strong></div><div onclick="copyText('Peace Arch Border Crossing, Blaine, WA 98230')" class="copy-row"><span class="copy-val">Peace Arch Border Crossing, Blaine, WA 98230</span><span class="copy-ic">📋</span></div><div class="bgrp"><a class="lbtn" href="https://maps.google.com/maps?saddr=Lumen+Field+Seattle&daddr=Surrey+BC+Canada" target="_blank">🗺️ Lumen Field→Surreyルート</a></div><div class="tips"><h4>💡 国境越え / Border Tips</h4><ul><li>パスポートのみ ✅（eTA不要 / 陸路入国）</li><li>月曜深夜は比較的スムーズ</li><li>カナダ入国後は CAD またはクレカ使用</li></ul></div></div></div>
-  </div>
-</section>
-
-<!-- DAY 5 -->
-<section class="sec" id="day5">
-  <div class="sec-header"><div class="day-num">05</div><div class="day-meta"><div class="dlbl l-mat2">🏆 試合② / Match Day 2</div><h2>7月7日（火）— Match 96🏆 @ BC Place, Vancouver</h2><p>BC Place周辺 11:00 → Match 96 13:00 PDT → Whole Foods → 自炊</p></div></div>
-  <div class="match2-card">
-    <div class="ml2">⚽ FIFA WORLD CUP 2026™ — ROUND OF 16</div>
-    <div class="ml2-ja">決勝ラウンド16強戦 / Match 96 @ Vancouver — BC Place</div>
-    <div class="mvs" style="font-family:'Bebas Neue',cursive;font-size:2rem;color:#fff;line-height:1;margin:.2rem 0">TBD <span style="color:var(--blue);margin:0 .2em">VS</span> TBD</div>
-    <div class="mmeta">対戦チームは大会進行により決定</div>
-    <div class="div" style="margin:.45rem 0"></div>
-    <div class="mtime-wrap">
-      <div class="mtime-en">KICK OFF / キックオフ</div>
-      <div class="mtime" style="color:var(--blue)"><span class="t-pdt">13:00 PDT</span><span class="t-jst">13:00 PDT（現地）</span></div>
-      <div class="mtime-ja"><span class="t-jst">日本時間: 7/8(水) 05:00 JST</span><span class="t-pdt">Japan: 7/8 05:00 JST</span></div>
-    </div>
-    <div onclick="copyText('BC Place Stadium, 777 Pacific Blvd, Vancouver, BC V6B 4Y8')" class="copy-row" style="margin-top:.6rem"><span class="copy-val">777 Pacific Blvd, Vancouver, BC V6B 4Y8</span><span class="copy-ic">📋</span></div>
-    <a class="lbtn" href="https://maps.google.com/maps?daddr=BC+Place+Stadium+777+Pacific+Blvd+Vancouver" target="_blank" style="font-size:.76rem;padding:5px 10px;margin-top:.4rem;display:inline-flex">📍 BC Place へのルート</a>
-  </div>
-  <div class="tl">
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🏟️</div><div><div class="c-time pdt">11:00 PDT〜</div><div class="c-t">BC Place周辺 Shopping</div></div></div><div class="c-d">試合前にBC Place周辺のWCグッズ・お土産をゲット！キックオフ2時間前には入場ゲートへ。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=BC+Place+Stadium+Vancouver" target="_blank">📍 BC Place周辺</a></div><span class="tbadge">🚇 SkyTrain「Stadium-Chinatown」駅</span></div></div>
-    <div class="tl-item"><div class="dot b2"></div><div class="card" style="border-color:rgba(64,196,255,.38);background:linear-gradient(135deg,rgba(0,20,50,.5),rgba(10,22,42,.6))"><div class="card-h"><div class="c-ic">🏆</div><div><div class="c-time" style="font-size:.84rem;color:var(--blue)"><span class="t-pdt">⚽ KICK OFF — 13:00 PDT</span><span class="t-jst">⚽ キックオフ — 13:00 PDT（現地）</span></div><div class="c-t" style="color:var(--blue)">FIFA WC — Round of 16 / 決勝16強 / Match 96 @ BC Place</div></div></div><div class="c-d"><strong>BC Place Stadium</strong>（Vancouver）。VAN組 第2戦！2試合観戦達成🏆🏆</div><div class="bgrp"><a class="lbtn" href="https://maps.google.com/maps?daddr=BC+Place+Stadium+Vancouver" target="_blank">📍 BC Place</a></div><span class="tbadge">🚇 SkyTrain「Stadium-Chinatown」駅</span></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🛒</div><div><div class="c-time pdt">17:00 PDT〜</div><div class="c-t">Whole Foods / Costco — 買い出し</div></div></div><div class="c-d">Surrey滞在中の食材を購入。試合の興奮を語りながらショッピング。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Whole+Foods+Market+Vancouver" target="_blank">📍 Whole Foods Vancouver</a></div></div></div>
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🍳</div><div><div class="c-time pdt">19:00 PDT / 夕食</div><div class="c-t">自炊 — Surrey</div></div></div><div class="c-d">2試合観戦の余韻を楽しみながらみんなで自炊夕食。</div></div></div>
-  </div>
-</section>
-
-<!-- DAY 6 -->
-<section class="sec" id="day6">
-  <div class="sec-header"><div class="day-num">06</div><div class="day-meta"><div class="dlbl l-van">VAN観光① / Vancouver</div><h2>7月8日（水）— Gastown🏘️ → Vera's → Lookout → Granville → Sundbar🍸</h2><p>Gastown 10:00 → Vera's 12:00 → Lookout 13:00 → Granville 15:00 → Sundbar 18:00 → Packing</p></div></div>
-  <div class="tl">
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🏘️</div><div><div class="c-time pdt">10:00 PDT〜</div><div class="c-t">Gastown 散策</div></div></div><div class="c-d">バンクーバー最古の地区。石畳・蒸気時計・おしゃれなショップが立ち並ぶ。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Gastown+Vancouver+BC" target="_blank">📍 Gastown</a></div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🍔</div><div><div class="c-time pdt">12:00 PDT — Lunch / 昼食</div><div class="c-t">Vera's Burger Shack</div></div></div><div class="c-d">バンクーバーの人気バーガーショップ。地元でも評判の本格バーガーをランチに！</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Vera%27s+Burger+Shack+Vancouver" target="_blank">📍 Vera's Burger Shack Vancouver</a></div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🌆</div><div><div class="c-time pdt">13:00 PDT〜</div><div class="c-t">Vancouver Lookout / バンクーバー展望台</div></div></div><div class="c-d">バンクーバーを360度一望できる展望台。街・山・海が一度に見える絶景。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Vancouver+Lookout+555+W+Hastings+St" target="_blank">📍 Vancouver Lookout</a></div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🛒</div><div><div class="c-time pdt">15:00 PDT〜</div><div class="c-t">Granville Island Public Market — お土産</div></div></div><div class="c-d">アーティスト・クラフト・フード・マーケット。カナダ土産はここで！</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Granville+Island+Public+Market+Vancouver" target="_blank">📍 Granville Island</a></div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🍸</div><div><div class="c-time pdt">18:00 PDT — Dinner / 夕食</div><div class="c-t">The Sundbar — バンクーバー最後の夜</div></div></div><div class="c-d">旅の締めくくりの夕食。明日は帰国準備。みんなで思い出を語ろう。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=The+Sundbar+Vancouver" target="_blank">📍 The Sundbar</a></div></div></div>
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">📦</div><div><div class="c-time pdt">22:00 PDT — Packing / 荷造り</div><div class="c-t">帰国準備 — 荷造り完了</div></div></div><div class="c-d">明朝Check Outに備えてパッキング。Visit Japan Web（税関申告）に登録を忘れずに。</div></div></div>
-  </div>
-</section>
-
-<!-- DAY 7 -->
-<section class="sec" id="day7">
-  <div class="sec-header"><div class="day-num">07</div><div class="day-meta"><div class="dlbl l-van">VAN観光② / Vancouver</div><h2>7月9日（木）— Capilano🌉 + Grouse Mountain⛰️</h2><p>Capilano Park 10:00 → 移動 → Grouse Mountain 14:00 → 自炊</p></div></div>
-  <div class="tl">
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">🌉</div><div><div class="c-time pdt">10:00 PDT〜</div><div class="c-t">Capilano Suspension Bridge Park / カピラノ吊り橋公園</div></div></div><div class="c-d">バンクーバー屈指の自然体験。高さ70mの吊り橋・森のCliffwalk。</div><div style="margin-bottom:.38rem"><span class="ftag">① Suspension Bridge</span><span class="ftag">② The Living Forest</span><span class="ftag">③ Cliffwalk</span><span class="ftag">④ Treetops Adventure</span></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Capilano+Suspension+Bridge+North+Vancouver" target="_blank">📍 Capilano Bridge</a><a class="lbtn" href="https://www.capbridge.com" target="_blank">🔗 公式予約</a></div></div></div>
-    <div class="tl-item"><div class="dot g"></div><div class="card"><div class="card-h"><div class="c-ic">⛰️</div><div><div class="c-time pdt">14:00 PDT〜</div><div class="c-t">Grouse Mountain / グラウスマウンテン</div></div></div><div class="c-d">バンクーバーの「空の遊び場」。ゴンドラ・ジップライン・山岳アクティビティ。</div><div style="margin-bottom:.38rem"><span class="ftag">① Sky Ride</span><span class="ftag">② Peak Chairlift</span><span class="ftag">③ Mountain Zipline</span><span class="ftag">④ Lumberjack Show</span><span class="ftag">⑤ Birds in Motion</span></div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Grouse+Mountain+North+Vancouver" target="_blank">📍 Grouse Mountain</a><a class="lbtn" href="https://www.grousemountain.com" target="_blank">🔗 公式</a></div></div></div>
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🍳</div><div><div class="c-time pdt">19:00 PDT / 夕食</div><div class="c-t">自炊 — Surrey</div></div></div><div class="c-d">アクティビティ満載の一日の後は自炊でゆっくり。明日は帰国準備・Packing。</div></div></div>
-  </div>
-</section>
-
-<!-- DAY 8 = DEPARTURE -->
-<section class="sec" id="day8">
-  <div class="sec-header"><div class="day-num">08</div><div class="day-meta"><div class="dlbl l-ret">帰国日 / Return Day</div><h2>7月10日（金）— Check Out → 各自帰路へ✈️</h2><p>Check Out 10:00 → コウシ YYC→YVR 〜17:30 / 芝・勇介 NH115 YVR→HND 16:30</p></div></div>
-  <div style="background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:14px;padding:.85rem;margin:.75rem 0;">
-    <div style="font-size:.68rem;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.5rem">🛫 RETURN ROUTES / 各自の帰路</div>
-    <div style="background:rgba(64,196,255,.06);border:1px solid rgba(64,196,255,.2);border-radius:10px;padding:.65rem .8rem;margin-bottom:.5rem;">
-      <div style="font-size:.7rem;font-weight:700;color:var(--blue);margin-bottom:.35rem">✈️ 芝・勇介 — ANA NH115 YVR → HND</div>
-      <div class="irow"><span class="lbl">出発 Depart</span><span class="val"><strong>16:30〜</strong><span class="tz-tag tz-p">PDT</span>バンクーバー YVR 7/10(金)</span></div>
-      <div class="irow"><span class="lbl">到着 Arrive</span><span class="val"><strong>〜19:30</strong><span class="tz-tag tz-j">JST</span>羽田 HND 7/11(土)</span></div>
-    </div>
-    <div style="background:rgba(255,213,79,.06);border:1px solid rgba(255,213,79,.2);border-radius:10px;padding:.65rem .8rem;margin-bottom:.5rem;">
-      <div style="font-size:.7rem;font-weight:700;color:var(--gold);margin-bottom:.35rem">✈️ コウシ — カルガリー(YYC) → バンクーバー(YVR)</div>
-      <div class="irow"><span class="lbl">出発</span><span class="val">カルガリー国際 YYC 7/10(金)</span></div>
-      <div class="irow"><span class="lbl">到着 Arrive</span><span class="val"><strong>〜17:30</strong><span class="tz-tag tz-p">PDT</span>バンクーバー国際 YVR 7/10</span></div>
-      <div style="font-size:.65rem;color:var(--muted);margin-top:.3rem">📌 VAN着後はバンクーバー残留 → 7/27-28 WestJet WS080で帰国</div>
-    </div>
-    <div style="background:rgba(255,213,79,.04);border:1px solid rgba(255,213,79,.14);border-radius:10px;padding:.65rem .8rem;">
-      <div style="font-size:.7rem;font-weight:700;color:var(--gold);margin-bottom:.2rem">🚗 カツヒサ — 車でCalgaryへ帰宅</div>
-      <div style="font-size:.68rem;color:var(--muted)">試合後、車でBC州〜Alberta州を走りCalgaryへ。お世話になりました！</div>
-    </div>
-  </div>
-  <div class="tl">
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🚪</div><div><div class="c-time pdt">10:00 PDT — Check Out</div><div class="c-t">Surrey チェックアウト</div></div></div><div class="c-d">荷物をまとめてチェックアウト。コウシは空港へ直行（YVR 13:00出発）。</div></div></div>
-    <div class="tl-item"><div class="dot"></div><div class="card"><div class="card-h"><div class="c-ic">🚗</div><div><div class="c-time pdt">11:00 PDT — 移動</div><div class="c-t">Surrey → YVR バンクーバー国際空港</div></div></div><div class="c-d">SkyTrain Canada LineまたはカツヒサがYVRまで送迎。</div><div class="bgrp"><a class="mbtn" href="https://maps.google.com/maps?daddr=Vancouver+International+Airport+YVR" target="_blank">📍 バンクーバー国際空港 YVR</a></div><span class="tbadge">🚇 Canada Line → YVR-Airport Station</span></div></div>
-    <div class="tl-item"><div class="dot r"></div><div class="card" style="border-color:rgba(255,213,79,.2)"><div class="card-h"><div class="c-ic">✈️</div><div><div class="c-time" style="color:var(--gold)">16:30 PDT — YVR出発 / 芝・勇介</div><div class="c-t" style="color:var(--gold)">ANA NH115 → 羽田 7/11(土) 〜19:30 JST着</div></div></div><div class="c-d">お疲れ様でした！2試合観戦完了🏆🏆 バンクーバーから帰国！</div></div></div>
-  </div>
-</section>
-
-
-<!-- コウシ 帰国フライト（7/27-28） -->
-<section class="sec" id="koushi-return">
-  <div class="sec-header">
-    <div class="day-num" style="font-size:2rem;color:var(--gold)">✈️</div>
-    <div class="day-meta">
-      <div class="dlbl" style="background:rgba(255,213,79,.12);color:var(--gold)">コウシ 帰国 / Koushi Return</div>
-      <h2>7月27日（月）〜 7月28日（火）— コウシ 帰国✈️</h2>
-      <p>WestJet WS080 YVR → 成田 NRT Terminal 1</p>
+    <div class="vc-actions" style="padding-top:12px">
+      <a class="vc-btn vc-btn-green" href="https://maps.google.com/maps?daddr=Lumen+Field+Seattle" target="_blank">
+        <span class="ic" data-ic="map-pin" data-size="11"></span>Lumen Field
+      </a>
+      <button class="vc-btn vc-btn-copy" onclick="copyText('Lumen Field, 800 Occidental Ave S, Seattle, WA 98134')">
+        <span class="ic" data-ic="copy" data-size="11"></span>住所コピー
+      </button>
     </div>
   </div>
 
-  <div class="fc" style="border-color:rgba(255,213,79,.25)">
-    <div style="font-size:.67rem;font-weight:700;color:var(--gold);margin-bottom:.5rem">✈️ WestJet Airlines / ウエストジェット航空 WS080</div>
-    <div class="fc-route">
-      <div class="fa"><div class="iata">YVR</div><div class="cname">バンクーバー</div></div>
-      <div class="fline">
-        <div class="fcarr">WestJet WS080</div>
-        <div class="farrow" style="background:linear-gradient(to right,rgba(255,213,79,.2),var(--gold),rgba(255,213,79,.2))"></div>
-        <div class="fdur">約10時間</div>
+  <!-- Match 2 hero -->
+  <div class="vc vc-match auto" style="border-color:rgba(72,197,255,.36)">
+    <div class="vc-bg" style="background:radial-gradient(ellipse at top right,rgba(72,197,255,.20),transparent 60%)"></div>
+    <div class="vc-scrim"></div>
+    <div class="match-hero">
+      <div class="ml" style="color:#48c5ff">FIFA WORLD CUP 2026™ ・ ROUND OF 16</div>
+      <div class="ml-ja">MATCH ② / 7月7日 ・ BC Place</div>
+      <div class="mvs">TBD<span style="color:#48c5ff">VS</span>TBD</div>
+      <div class="mmeta">対戦チームは大会進行により決定</div>
+      <div class="div-line"></div>
+      <div class="mtime-en">KICK OFF / Match 96</div>
+      <div class="mtime">13:00<span style="font-size:1rem;color:#48c5ff;margin-left:8px">PDT</span></div>
+      <div class="mtime-ja">日本時間: 7/8(水) 05:00 JST</div>
+    </div>
+    <div class="vc-actions" style="padding-top:12px">
+      <a class="vc-btn vc-btn-accent" href="https://maps.google.com/maps?daddr=BC+Place+Stadium+Vancouver" target="_blank">
+        <span class="ic" data-ic="map-pin" data-size="11"></span>BC Place
+      </a>
+      <button class="vc-btn vc-btn-copy" onclick="copyText('BC Place Stadium, 777 Pacific Blvd, Vancouver, BC V6B 4Y8')">
+        <span class="ic" data-ic="copy" data-size="11"></span>住所コピー
+      </button>
+    </div>
+  </div>
+
+  <!-- Outbound flight -->
+  <div class="vc vc-flight auto">
+    <div class="vc-bg"></div>
+    <div class="vc-scrim"></div>
+    <div class="vc-content" style="padding-bottom:10px">
+      <div class="vc-eyebrow" style="color:var(--blue)">
+        <span class="ic" data-ic="plane-takeoff" data-size="12"></span>
+        OUTBOUND ・ 往路（芝・コウシ・勇介）
       </div>
-      <div class="fa"><div class="iata">NRT</div><div class="cname">東京・成田<br>Terminal 1</div></div>
     </div>
-    <div class="div"></div>
-    <div class="irow">
-      <span class="lbl">出発 Depart</span>
-      <span class="val"><strong>14:50</strong><span class="tz-tag tz-p">PDT</span>バンクーバー YVR 7/27(月)</span>
+    <div class="vc-flight-route">
+      <div class="vc-iata">HND</div>
+      <div class="vc-arrow-line"></div>
+      <div class="vc-iata">SEA</div>
     </div>
-    <div class="irow">
-      <span class="lbl">到着 Arrive</span>
-      <span class="val"><strong>〜19:00</strong><span class="tz-tag tz-j">JST</span>成田 NRT Terminal 1 7/28(火)</span>
+    <div class="vc-flight-meta">DELTA AIR LINES DL166 ・ ~9.5h ・ 同日着 same day</div>
+    <div class="vc-flight-row">
+      <div class="col">
+        <div class="lbl">Departure</div>
+        <strong>16:05<span class="tz-tag j">JST</span></strong>
+        <div style="font-size:.62rem;color:var(--muted)">7/3(金)</div>
+      </div>
+      <div class="col" style="text-align:right;align-items:flex-end">
+        <div class="lbl">Arrival</div>
+        <strong>9:36<span class="tz-tag p">PDT</span></strong>
+        <div style="font-size:.62rem;color:var(--muted)">7/3(金) ・ 同日</div>
+      </div>
     </div>
   </div>
 
-  <div class="tl">
-    <div class="tl-item"><div class="dot g"></div>
-      <div class="card" style="border-color:rgba(255,213,79,.2);background:rgba(40,30,0,.25)">
-        <div class="card-h"><div class="c-ic">🚗</div>
-          <div>
-            <div class="c-time" style="color:var(--gold)">7/27(月) — YVR 空港へ</div>
-            <div class="c-t" style="color:var(--gold)">カルガリー国際 14:50〜 YVR発 / コウシ</div>
+  <!-- Return flight -->
+  <div class="vc vc-flight auto">
+    <div class="vc-bg"></div>
+    <div class="vc-scrim"></div>
+    <div class="vc-content" style="padding-bottom:10px">
+      <div class="vc-eyebrow" style="color:var(--blue)">
+        <span class="ic" data-ic="plane-landing" data-size="12"></span>
+        RETURN ・ 復路（芝・勇介）
+      </div>
+    </div>
+    <div class="vc-flight-route">
+      <div class="vc-iata">YVR</div>
+      <div class="vc-arrow-line"></div>
+      <div class="vc-iata">HND</div>
+    </div>
+    <div class="vc-flight-meta">ANA NH115 ・ ~10h</div>
+    <div class="vc-flight-row">
+      <div class="col">
+        <div class="lbl">Departure</div>
+        <strong>16:30<span class="tz-tag p">PDT</span></strong>
+        <div style="font-size:.62rem;color:var(--muted)">7/10(金)</div>
+      </div>
+      <div class="col" style="text-align:right;align-items:flex-end">
+        <div class="lbl">Arrival</div>
+        <strong>~19:00<span class="tz-tag j">JST</span></strong>
+        <div style="font-size:.62rem;color:var(--muted)">7/11(土)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pickup card -->
+  <div class="vc vc-travel mid">
+    <div class="vc-bg"></div>
+    <div class="vc-scrim"></div>
+    <div class="vc-content">
+      <div class="vc-eyebrow" style="color:var(--gold)">
+        <span class="ic" data-ic="car" data-size="12"></span>
+        AIRPORT PICKUP ・ 空港送迎
+      </div>
+      <div class="vc-title">カツヒサが<br>SEA空港でお迎え</div>
+      <div class="vc-sub">7/3 ・ Calgary→SEA約10〜12時間。VAN組（9:36 PDT）→ SEA組（10:50 PDT）合流後、6名全員でBurien Villaへ。</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ CALGARY BASE CAMP ═══ -->
+<div class="sec-title" id="calgary">
+  <span class="sec-tit-ic" style="background:rgba(255,213,79,.14);color:var(--gold);border-color:rgba(255,213,79,.28)">
+    <span class="ic" data-ic="mountain" data-size="16"></span>
+  </span>
+  CALGARY BASE CAMP
+  <span class="sec-title-sub">カツヒサ拠点</span>
+</div>
+
+<div class="calgary-card" id="calgary-c">
+  <div class="calgary-eyebrow">
+    <span class="ic" data-ic="map-pin" data-size="11"></span>
+    Lives in Calgary, AB
+  </div>
+  <div class="calgary-h">カツヒサ — カナダ・カルガリー在住</div>
+  <p class="calgary-d">
+    <strong style="color:var(--gold)">7/3に車でSEA空港へ向かい、6名全員を出迎え</strong>。宿泊（Burien Villa・Surrey）も手配。
+    <br><span style="color:#48c5ff;font-size:.72rem">🚇 SEAは電車・バス・Uber ／ 🚗 VANは車（カツヒサ）がメイン</span>
+  </p>
+  <div class="copy-row" onclick="copyText('Calgary, AB → Lethbridge → Coutts Border → US-15 → Great Falls MT → Seattle, WA')">
+    <span class="copy-val">Calgary → Coutts → Great Falls → Seattle</span>
+    <span class="copy-ic ic" data-ic="copy" data-size="13"></span>
+  </div>
+  <div class="calgary-grid">
+    <div class="cgr-item">
+      <div class="cgr-ic"><span class="ic" data-ic="map-pin" data-size="14"></span></div>
+      <div class="cgr-name">Calgary → SEA空港</div>
+      <div class="cgr-det">約850km・10〜12時間</div>
+    </div>
+    <div class="cgr-item">
+      <div class="cgr-ic"><span class="ic" data-ic="flag" data-size="14"></span></div>
+      <div class="cgr-name">国境越え / Border</div>
+      <div class="cgr-det">Coutts(CA)→Sweetgrass(US)<br><span style="color:var(--green)">✅ 陸路eTA不要</span></div>
+    </div>
+    <div class="cgr-item">
+      <div class="cgr-ic"><span class="ic" data-ic="hotel" data-size="14"></span></div>
+      <div class="cgr-name">宿泊手配</div>
+      <div class="cgr-det">Burien Villa &amp; Surrey, BC</div>
+    </div>
+    <div class="cgr-item">
+      <div class="cgr-ic"><span class="ic" data-ic="car" data-size="14"></span></div>
+      <div class="cgr-name">7/3 ミッション</div>
+      <div class="cgr-det">SEA空港で全員ピックアップ → Burienへ</div>
+    </div>
+  </div>
+  <div style="margin-top:12px">
+    <a class="vc-btn vc-btn-accent" href="https://maps.google.com/maps?saddr=Calgary+AB&daddr=Seattle+WA" target="_blank" style="border-color:rgba(255,213,79,.32);color:var(--gold);background:rgba(255,213,79,.10)">
+      <span class="ic" data-ic="navigation" data-size="11"></span>Calgary→Seattle ルート
+    </a>
+  </div>
+</div>
+
+<!-- SEA group reference info -->
+<div class="sea-ref">
+  <div class="sea-ref-h">
+    <span class="ic" data-ic="users" data-size="11"></span>
+    SEA組（山内・蓮太郎）参照情報
+  </div>
+  <div class="sea-ref-block">
+    <div class="sea-ref-lbl">✈️ 往路 ・ JL068 NRT→SEA</div>
+    <div style="display:flex;justify-content:space-between;font-size:.7rem"><span style="color:var(--muted)">出発</span><span style="color:#fff;font-weight:700">17:45 <span class="tz-tag j">JST</span> 7/3</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:.7rem;margin-top:3px"><span style="color:var(--muted)">到着</span><span style="color:#fff;font-weight:700">10:50 <span class="tz-tag p">PDT</span> 7/3</span></div>
+  </div>
+  <div class="sea-ref-block" style="border-color:rgba(0,230,118,.22)">
+    <div class="sea-ref-lbl" style="color:var(--green)">🏨 SEA組ホテル ・ Mayflower Park Hotel ✅予約済</div>
+    <div style="font-size:.72rem;color:#fff;font-weight:700">7/6(月) 16:00 IN → 7/8(水) 12:00 OUT ／ 2泊</div>
+    <div class="copy-row" style="margin-top:7px" onclick="copyText('405 Olive Way, Seattle, WA 98101')">
+      <span class="copy-val">405 Olive Way, Seattle, WA 98101</span>
+      <span class="copy-ic ic" data-ic="copy" data-size="13"></span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ACCOMMODATION ═══ -->
+<div class="sec-title" id="acc">
+  <span class="sec-tit-ic"><span class="ic" data-ic="hotel" data-size="16"></span></span>
+  ACCOMMODATION
+  <span class="sec-title-sub">宿泊</span>
+</div>
+
+<div class="card-grid" style="padding-top:0">
+
+  <div class="vc vc-hotel mid">
+    <div class="vc-bg"></div>
+    <div class="vc-scrim"></div>
+    <div class="vc-content">
+      <div class="vc-eyebrow" style="color:var(--gold)">
+        <span class="ic" data-ic="bed" data-size="12"></span>
+        STAY 1 ・ 7/3 — 7/6 ・ Burien
+      </div>
+      <div class="vc-title">THE BURIEN VILLA</div>
+      <div class="vc-sub">Burien, WA ／ カツヒサ手配・3泊 ・ SEA組と共同</div>
+    </div>
+    <div class="vc-actions">
+      <a class="vc-btn vc-btn-accent" href="https://maps.google.com/maps?daddr=Burien+WA" target="_blank">
+        <span class="ic" data-ic="map-pin" data-size="11"></span>Burienエリア
+      </a>
+    </div>
+  </div>
+
+  <div class="vc vc-hotel mid" style="border-color:rgba(0,230,118,.32)">
+    <div class="vc-bg"></div>
+    <div class="vc-scrim"></div>
+    <div class="vc-content">
+      <div class="vc-eyebrow" style="color:var(--green)">
+        <span class="ic" data-ic="bed" data-size="12"></span>
+        STAY 2 ・ 7/6 — 7/10 ・ Surrey, BC
+      </div>
+      <div class="vc-title" style="color:var(--green)">SURREY ・<br>キャンピングカー</div>
+      <div class="vc-sub">Surrey, BC ／ 4泊 ・ <strong style="color:var(--red)">⚠️ 洗濯機なし</strong></div>
+    </div>
+    <div class="vc-actions">
+      <a class="vc-btn vc-btn-green" href="https://maps.google.com/maps?daddr=Surrey+British+Columbia+Canada" target="_blank">
+        <span class="ic" data-ic="map-pin" data-size="11"></span>Surrey, BC
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ ITINERARY ═══ -->
+<div class="sec-title" id="days">
+  <span class="sec-tit-ic"><span class="ic" data-ic="calendar" data-size="16"></span></span>
+  ITINERARY
+  <span class="sec-title-sub">8日間 ・ 旅程</span>
+</div>
+
+<div class="card-grid" style="padding-top:0;gap:10px" id="dayList">
+
+  <!-- DAY 1 -->
+  <div class="day-card travel" id="day1" data-anchor>
+    <button class="day-head">
+      <div class="day-num"><span class="day-num-pre">DAY</span>01</div>
+      <div class="day-title">
+        <span class="day-label travel">
+          <span class="ic" data-ic="plane" data-size="10"></span>出発・同日着
+        </span>
+        <div class="day-h2">羽田発 → SEA同日着 → 全員合流！</div>
+        <div class="day-date">7月3日 (金) ・ HND 16:05 JST → SEA 9:36 PDT</div>
+      </div>
+      <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
+    </button>
+    <div class="day-body">
+      <div class="day-map">
+        <div class="day-map-cap"><span class="ic" data-ic="map-pin" data-size="10"></span>SEATAC → BURIEN VILLA</div>
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Seattle-Tacoma+International+Airport&z=11&output=embed"></iframe>
+      </div>
+
+      <div class="day-section">
+        <div class="day-section-title">
+          <span class="ic" data-ic="plane-takeoff" data-size="13"></span>FLIGHT ・ DL166
+        </div>
+        <div class="vc vc-flight auto" style="margin:0 0 8px">
+          <div class="vc-bg"></div>
+          <div class="vc-scrim"></div>
+          <div class="vc-flight-route" style="padding-top:18px">
+            <div class="vc-iata">HND</div>
+            <div class="vc-arrow-line"></div>
+            <div class="vc-iata">SEA</div>
+          </div>
+          <div class="vc-flight-meta">DELTA AIR LINES DL166 ・ ~9.5h</div>
+          <div class="vc-flight-row">
+            <div class="col">
+              <div class="lbl">Departure</div>
+              <strong>16:05<span class="tz-tag j">JST</span></strong>
+              <div style="font-size:.62rem;color:var(--muted)">7/3(金)</div>
+            </div>
+            <div class="col" style="text-align:right;align-items:flex-end">
+              <div class="lbl">Arrival</div>
+              <strong>9:36<span class="tz-tag p">PDT</span></strong>
+              <div style="font-size:.62rem;color:var(--green)">同日着！</div>
+            </div>
+          </div>
+          <div style="padding:0 16px 12px;font-size:.62rem;color:var(--muted)">
+            なぜ同日？ 時差+16h: 16:05JST-16h = 00:05PDT → +9.5h = 9:36PDT
           </div>
         </div>
-        <div class="c-d">WestJet WS080に搭乗。YVR 14:50 PDT 出発。</div>
-        <div class="bgrp">
-          <a class="mbtn" href="https://maps.google.com/maps?daddr=Vancouver+International+Airport+YVR" target="_blank" style="border-color:rgba(255,213,79,.3);color:var(--gold);background:rgba(40,30,0,.3)">📍 バンクーバー国際空港 YVR</a>
-        </div>
       </div>
-    </div>
-    <div class="tl-item"><div class="dot r"></div>
-      <div class="card" style="border-color:rgba(255,213,79,.3);background:rgba(40,30,0,.3)">
-        <div class="card-h"><div class="c-ic">🛬</div>
-          <div>
-            <div class="c-time" style="color:var(--gold)">7/28(火) 〜19:00 JST — 成田着</div>
-            <div class="c-t" style="color:var(--gold)">WestJet WS080 → 成田 NRT Terminal 1</div>
+
+      <div class="day-section">
+        <div class="day-section-title">
+          <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE
+        </div>
+        <div class="inline-tl" style="padding:0">
+          <div class="itl-item">
+            <div class="itl-dot tr"></div>
+            <div class="itl-body">
+              <div class="itl-time blue"><span class="t-jst">16:05 JST — 羽田出発</span><span class="t-pdt">16:05 JST — Haneda Departure</span></div>
+              <div class="itl-title">Delta Air Lines DL166</div>
+              <div class="itl-sub">出発3時間前（13:05 JST）には空港着を。</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot food"></div>
+            <div class="itl-body">
+              <div class="itl-time gold">9:36 → 10:50 PDT — SEAタック空港 ・ 全員合流！</div>
+              <div class="itl-title">カツヒサ出迎え → 6名全員でBurien Villaへ</div>
+              <div class="itl-sub">VAN組（芝・コウシ・勇介）が9:36 PDT着。SEA組（山内・蓮太郎）が10:50 PDT着。<strong>カツヒサが全員を出迎え、車でBurien Villaへ！</strong></div>
+              <div class="tags">
+                <span class="tag"><a href="https://maps.google.com/maps?daddr=Seattle-Tacoma+International+Airport" target="_blank" style="display:flex;align-items:center;gap:4px"><span class="ic" data-ic="map-pin" data-size="10"></span>SEA-TAC</a></span>
+              </div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot match"></div>
+            <div class="itl-body">
+              <div class="itl-time green">11:00 PDT〜 — 荷物事前預け</div>
+              <div class="itl-title">Burien Villa</div>
+              <div class="itl-sub"><strong>正式チェックインはPM3:00から</strong>。11:00以降は荷物だけ置かせてもらえる。皆は到着後そのまま電車でPike Placeへ直行。</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">15:00 PDT〜</div>
+              <div class="itl-title">Pike Place Market</div>
+              <div class="itl-sub">シアトルの象徴的な市場。</div>
+              <div class="tags">
+                <span class="tag food">Starbucks 1号店</span>
+                <span class="tag food">Pike Place Chowder</span>
+                <span class="tag food">Pike Brewing Co.</span>
+              </div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">19:00 PDT</div>
+              <div class="itl-title">Costco / Burien で買い出し</div>
+              <div class="itl-sub">滞在中の自炊用食材を購入。</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">21:00 PDT</div>
+              <div class="itl-title">自炊 — Burien Villa</div>
+              <div class="itl-sub">旅の初日はホームな夕食でゆっくり。</div>
+            </div>
           </div>
         </div>
-        <div class="c-d">成田国際空港 Terminal 1 着。お疲れ様でした、コウシ！</div>
-        <div onclick="copyText('Narita International Airport Terminal 1, NRT')" class="copy-row">
-          <span class="copy-val">成田国際空港 Terminal 1 (NRT)</span>
-          <span class="copy-ic">📋</span>
+      </div>
+
+      <div class="tips">
+        <h4><span class="ic" data-ic="info" data-size="13"></span>出発前チェック / Pre-trip</h4>
+        <ul>
+          <li><strong>ESTA不要</strong>（今回は不要）</li>
+          <li><strong>eTA不要</strong>（陸路・車でカナダ入国のため）</li>
+          <li>パスポート有効期限：入国日から6ヶ月以上</li>
+          <li>米国・カナダ両対応eSIM / SIMを準備</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day-card" id="day2" data-anchor>
+    <button class="day-head">
+      <div class="day-num"><span class="day-num-pre">DAY</span>02</div>
+      <div class="day-title">
+        <span class="day-label">
+          <span class="ic" data-ic="camera" data-size="10"></span>観光日
+        </span>
+        <div class="day-h2">MoPOP + Boeing + 独立記念日花火</div>
+        <div class="day-date">7月4日 (土) ・ Independence Day 🇺🇸</div>
+      </div>
+      <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
+    </button>
+    <div class="day-body">
+      <div class="day-map">
+        <div class="day-map-cap"><span class="ic" data-ic="map-pin" data-size="10"></span>SEATTLE CENTER → EVERETT</div>
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Boeing+Future+of+Flight+Everett+WA&z=10&output=embed"></iframe>
+      </div>
+
+      <div class="day-section">
+        <div class="day-section-title">
+          <span class="ic" data-ic="car" data-size="13"></span>レンタカー手配
+        </div>
+        <div class="inline-tl" style="padding:0">
+          <div class="itl-item">
+            <div class="itl-dot food"></div>
+            <div class="itl-body">
+              <div class="itl-time gold">7/4 終日</div>
+              <div class="itl-title">6人以上乗りレンタカー 1日レンタル</div>
+              <div class="itl-sub">Boeingがある<strong>Everettは北方向</strong>で電車では不便のため、7/4のみ6人以上乗れるレンタカーを1日レンタル。返却は夜。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-section">
+        <div class="day-section-title">
+          <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE ・ SEA組と共行動
+        </div>
+        <div class="inline-tl" style="padding:0">
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">10:00 PDT</div>
+              <div class="itl-title">Museum of Pop Culture (MoPOP)</div>
+              <div class="itl-sub">DC・SF・音楽・スポーツ・科学などポップカルチャーの殿堂。スペースニードル横、フランク・ゲーリー設計。</div>
+              <div class="tags">
+                <span class="tag tr">🚇 モノレール Westlake → Seattle Center</span>
+              </div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot food"></div>
+            <div class="itl-body">
+              <div class="itl-time gold">12:00 PDT</div>
+              <div class="itl-title">Seattle Center周辺でランチ</div>
+              <div class="itl-sub">Boeing Everettへ移動前にランチ。</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">14:00 PDT</div>
+              <div class="itl-title">Boeing Future of Flight ＆ Tour</div>
+              <div class="itl-sub">世界最大の旅客機製造工場。<strong>777・787・737</strong>の製造ラインを間近に。事前予約推奨。</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot food"></div>
+            <div class="itl-body">
+              <div class="itl-time gold">19:00 PDT</div>
+              <div class="itl-title">Metropolitan Grill</div>
+              <div class="itl-sub">シアトル屈指のステーキハウス。Boeing観覧後の豪華ディナー。<strong>要予約！</strong></div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot match"></div>
+            <div class="itl-body">
+              <div class="itl-time green">22:00 PDT</div>
+              <div class="itl-title">South Lake Union Park ・ 独立記念日花火 🇺🇸</div>
+              <div class="itl-sub">7月4日・アメリカ独立記念日。湖面に映る花火が絶景。</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- STADIUM GUIDES -->
-<section class="sec" id="rules">
-  <div class="sh">🏟️ STADIUM INFO / 観戦ガイド</div>
-  <div style="font-size:.8rem;font-weight:700;color:var(--green);margin-bottom:.4rem">① Lumen Field — Seattle（Match 94 / 7/6）</div>
-  <div class="match-card" style="text-align:left;margin-bottom:1rem;">
-    <div class="ml">📍 800 OCCIDENTAL AVE S, SEATTLE, WA 98134</div>
-    <div onclick="copyText('800 Occidental Ave S, Seattle, WA 98134')" class="copy-row" style="margin:.55rem 0"><span class="copy-val">800 Occidental Ave S, Seattle, WA 98134</span><span class="copy-ic">📋</span></div>
-    <a class="mbtn" href="https://maps.google.com/maps?daddr=800+Occidental+Ave+S+Seattle" target="_blank" style="font-size:.76rem">📍 Google Maps</a>
-  </div>
-  <div class="rules-grid" style="margin-bottom:1rem">
-    <div class="ri"><div class="ric">👜</div><h4>Bags / 持込</h4><p>クリアバッグのみ（12×6×12in）</p></div>
-    <div class="ri"><div class="ric">⏰</div><h4>Arrive / 到着</h4><p>KO2〜3時間前推奨</p></div>
-    <div class="ri"><div class="ric">🚇</div><h4>Transit</h4><p>Link「Stadium」駅直結</p></div>
-    <div class="ri"><div class="ric">🎫</div><h4>Tickets</h4><p>FIFA公式アプリ ＋ スクショ</p></div>
-  </div>
-  <div style="font-size:.8rem;font-weight:700;color:var(--blue);margin-bottom:.4rem">② BC Place — Vancouver（Match 96 / 7/10）</div>
-  <div class="match2-card" style="text-align:left;margin-bottom:1rem;">
-    <div class="ml2">📍 777 PACIFIC BLVD, VANCOUVER, BC V6B 4Y8</div>
-    <div onclick="copyText('777 Pacific Blvd, Vancouver, BC V6B 4Y8')" class="copy-row" style="margin:.55rem 0"><span class="copy-val">777 Pacific Blvd, Vancouver, BC V6B 4Y8</span><span class="copy-ic">📋</span></div>
-    <a class="lbtn" href="https://maps.google.com/maps?daddr=BC+Place+Stadium+777+Pacific+Blvd+Vancouver" target="_blank" style="font-size:.76rem">📍 Google Maps</a>
-  </div>
-  <div class="rules-grid">
-    <div class="ri"><div class="ric">⏰</div><h4>Arrive / 到着</h4><p>KO2〜3時間前（10:00〜）</p></div>
-    <div class="ri"><div class="ric">🚇</div><h4>Transit</h4><p>SkyTrain「Stadium-Chinatown」</p></div>
-    <div class="ri"><div class="ric">🛂</div><h4>Canada eTA</h4><p>✅ 陸路（車）入国のため<strong>不要</strong>！パスポートのみ</p></div>
-    <div class="ri"><div class="ric">💱</div><h4>Currency / 通貨</h4><p>CAD（カナダドル）/ クレカ可</p></div>
-  </div>
-</section>
+  <!-- DAY 3 -->
+  <div class="day-card" id="day3" data-anchor>
+    <button class="day-head">
+      <div class="day-num"><span class="day-num-pre">DAY</span>03</div>
+      <div class="day-title">
+        <span class="day-label">
+          <span class="ic" data-ic="camera" data-size="10"></span>観光日
+        </span>
+        <div class="day-h2">イチロー像 → MLB → Lumen Field周辺</div>
+        <div class="day-date">7月5日 (日)</div>
+      </div>
+      <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
+    </button>
+    <div class="day-body">
+      <div class="day-map">
+        <div class="day-map-cap"><span class="ic" data-ic="map-pin" data-size="10"></span>T-MOBILE PARK → LUMEN FIELD</div>
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=T-Mobile+Park+Seattle&z=15&output=embed"></iframe>
+      </div>
 
-<!-- EMERGENCY -->
-<section class="sec" id="sos">
-  <div class="sh">🆘 EMERGENCY / 緊急連絡</div>
-  <div class="eg">
-    <div class="ei"><div class="eic">🚑</div><div><h4>Emergency / 緊急（米国・カナダ）</h4><p>📞 <strong>911</strong>（US & Canada）</p></div></div>
-    <div class="ei"><div class="eic">🇯🇵</div><div><h4>在バンクーバー日本国総領事館</h4><p><span onclick="copyText('(604) 684-9820')" style="cursor:pointer">📞 (604) 684-9820 📋</span></p></div></div>
-    <div class="ei"><div class="eic">🇯🇵</div><div><h4>在シアトル日本国総領事館</h4><p><span onclick="copyText('(206) 682-9107')" style="cursor:pointer">📞 (206) 682-9107 📋</span></p></div></div>
-    <div class="ei"><div class="eic">💱</div><div><h4>Exchange Rate / 為替</h4><p>1 USD ≈ 150円 ／ 1 CAD ≈ 110円</p></div></div>
-    <div class="ei"><div class="eic">📶</div><div><h4>SIM / 通信</h4><p>米国・カナダ両対応eSIM事前準備</p></div></div>
-    <div class="ei"><div class="eic">📵</div><div><h4>Offline / オフライン</h4><p>機内モードでも閲覧可（PWA対応）</p></div></div>
+      <div class="day-section">
+        <div class="day-section-title">
+          <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE ・ SEA組と共行動
+        </div>
+        <div class="inline-tl" style="padding:0">
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">11:00 PDT</div>
+              <div class="itl-title">T-Mobile Park周辺 ・ イチロー像</div>
+              <div class="itl-sub"><strong>イチロー像</strong>で記念写真！試合前のグッズショッピング。</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot food"></div>
+            <div class="itl-body">
+              <div class="itl-time gold">13:30 PDT — ⚾ PLAY BALL!</div>
+              <div class="itl-title">MLB ・ SEA Mariners vs TOR Blue Jays</div>
+              <div class="itl-sub">本場アメリカ野球！ホットドッグ・ガーリックフライ必食。</div>
+              <div class="tags">
+                <span class="tag tr">🚇 Link「Stadium」駅直結</span>
+              </div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">17:00 PDT</div>
+              <div class="itl-title">Lumen Field周辺 Shopping</div>
+              <div class="itl-sub">明日のMatch 94に備えてWCグッズをリサーチ・購入。</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">19:00 PDT</div>
+              <div class="itl-title">自炊 — Burien Villa</div>
+              <div class="itl-sub">明日はPacking & Check Out。早めに就寝。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</section>
+
+  <!-- DAY 4 — MATCH 1 -->
+  <div class="day-card match open" id="day4" data-anchor>
+    <button class="day-head">
+      <div class="day-num"><span class="day-num-pre">DAY</span>04</div>
+      <div class="day-title">
+        <span class="day-label match">
+          <span class="ic" data-ic="trophy" data-size="10"></span>MATCH ① ・ SEATTLE
+        </span>
+        <div class="day-h2">Check Out → Match 94 🏆 → Surrey！</div>
+        <div class="day-date">7月6日 (月) ・ Kick Off 17:00 PDT</div>
+      </div>
+      <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
+    </button>
+    <div class="day-body">
+      <div class="day-map">
+        <div class="day-map-cap"><span class="ic" data-ic="map-pin" data-size="10"></span>LUMEN FIELD ・ MATCH 94</div>
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Lumen+Field+800+Occidental+Ave+S+Seattle&z=16&output=embed"></iframe>
+      </div>
+
+      <div class="day-section">
+        <div class="day-section-title">
+          <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE
+        </div>
+        <div class="inline-tl" style="padding:0">
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">10:00 PDT</div>
+              <div class="itl-title">Packing / 荷造り</div>
+              <div class="itl-sub">Burien Villaともお別れ。スーツケースをまとめる。</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">11:00 PDT</div>
+              <div class="itl-title">Burien Villa チェックアウト</div>
+              <div class="itl-sub">カツヒサが車に全員の荷物を積み込む。今夜Surreyへ向かうため荷物は車中へ。</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot food"></div>
+            <div class="itl-body">
+              <div class="itl-time gold">12:00 PDT</div>
+              <div class="itl-title">Stevie's Famous Burien Pizza</div>
+              <div class="itl-sub">試合前の腹ごしらえ。地元で人気の本格ピザ。</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot match"></div>
+            <div class="itl-body">
+              <div class="itl-time green">15:00 PDT</div>
+              <div class="itl-title">Lumen Field周辺 Shopping</div>
+              <div class="itl-sub">スタジアム周辺のWCグッズ・お土産をゲット！</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot match"></div>
+            <div class="itl-body">
+              <div class="itl-time green">⚽ 17:00 PDT — KICK OFF</div>
+              <div class="itl-title">FIFA WC ・ Round of 16 / Match 94 @ Lumen Field</div>
+              <div class="itl-sub"><strong>VAN組 第1戦！</strong>6名全員で観戦。</div>
+              <div class="tags">
+                <span class="tag tr">🚇 Link「Stadium」駅</span>
+              </div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot tr"></div>
+            <div class="itl-body">
+              <div class="itl-time blue">21:00 PDT〜 — 試合後 即バンクーバーへ！</div>
+              <div class="itl-title">SEA → Peace Arch 国境越え → Surrey, BC</div>
+              <div class="itl-sub">カツヒサが運転。Peace Arch / Pacific Highway国境を越えてSurrey泊へ。<strong>明日はMatch 96！</strong></div>
+              <div class="copy-row" style="margin-top:8px" onclick="copyText('Peace Arch Border Crossing, Blaine, WA 98230')">
+                <span class="copy-val">Peace Arch Border Crossing, Blaine, WA</span>
+                <span class="copy-ic ic" data-ic="copy" data-size="13"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tips">
+        <h4><span class="ic" data-ic="info" data-size="13"></span>国境越え / Border Tips</h4>
+        <ul>
+          <li>パスポートのみ ✅（eTA不要 / 陸路入国）</li>
+          <li>月曜深夜は比較的スムーズ</li>
+          <li>カナダ入国後は CAD またはクレカ使用</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 5 — MATCH 2 -->
+  <div class="day-card match" id="day5" data-anchor>
+    <button class="day-head">
+      <div class="day-num"><span class="day-num-pre">DAY</span>05</div>
+      <div class="day-title">
+        <span class="day-label match" style="background:rgba(72,197,255,.16);color:#48c5ff;border-color:rgba(72,197,255,.32)">
+          <span class="ic" data-ic="trophy" data-size="10"></span>MATCH ② ・ VANCOUVER
+        </span>
+        <div class="day-h2">Match 96 🏆 @ BC Place</div>
+        <div class="day-date">7月7日 (火) ・ Kick Off 13:00 PDT</div>
+      </div>
+      <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
+    </button>
+    <div class="day-body">
+      <div class="day-map">
+        <div class="day-map-cap"><span class="ic" data-ic="map-pin" data-size="10"></span>BC PLACE ・ MATCH 96</div>
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=BC+Place+Stadium+Vancouver&z=15&output=embed"></iframe>
+      </div>
+
+      <div class="day-section">
+        <div class="day-section-title">
+          <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE
+        </div>
+        <div class="inline-tl" style="padding:0">
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">11:00 PDT</div>
+              <div class="itl-title">BC Place周辺 Shopping</div>
+              <div class="itl-sub">試合前にBC Place周辺のWCグッズ・お土産をゲット！キックオフ2時間前には入場ゲートへ。</div>
+              <div class="tags">
+                <span class="tag tr">🚇 SkyTrain「Stadium-Chinatown」駅</span>
+              </div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot match"></div>
+            <div class="itl-body">
+              <div class="itl-time" style="color:#48c5ff;font-weight:700">⚽ 13:00 PDT — KICK OFF</div>
+              <div class="itl-title">FIFA WC ・ Round of 16 / Match 96 @ BC Place</div>
+              <div class="itl-sub"><strong>VAN組 第2戦！2試合観戦達成🏆🏆</strong></div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot food"></div>
+            <div class="itl-body">
+              <div class="itl-time gold">17:00 PDT</div>
+              <div class="itl-title">Whole Foods / Costco — 買い出し</div>
+              <div class="itl-sub">Surrey滞在中の食材を購入。試合の興奮を語りながらショッピング。</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">19:00 PDT</div>
+              <div class="itl-title">自炊 — Surrey</div>
+              <div class="itl-sub">2試合観戦の余韻を楽しみながらみんなで自炊夕食。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 6 -->
+  <div class="day-card" id="day6" data-anchor>
+    <button class="day-head">
+      <div class="day-num"><span class="day-num-pre">DAY</span>06</div>
+      <div class="day-title">
+        <span class="day-label">
+          <span class="ic" data-ic="camera" data-size="10"></span>VAN観光①
+        </span>
+        <div class="day-h2">Gastown → Vera's → Lookout → Granville → Sundbar</div>
+        <div class="day-date">7月8日 (水)</div>
+      </div>
+      <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
+    </button>
+    <div class="day-body">
+      <div class="day-map">
+        <div class="day-map-cap"><span class="ic" data-ic="map-pin" data-size="10"></span>DOWNTOWN VANCOUVER</div>
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Gastown+Vancouver+BC&z=14&output=embed"></iframe>
+      </div>
+
+      <div class="day-section">
+        <div class="day-section-title">
+          <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE
+        </div>
+        <div class="inline-tl" style="padding:0">
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">10:00 PDT</div>
+              <div class="itl-title">Gastown 散策</div>
+              <div class="itl-sub">バンクーバー最古の地区。石畳・蒸気時計・おしゃれなショップが立ち並ぶ。</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot food"></div>
+            <div class="itl-body">
+              <div class="itl-time gold">12:00 PDT — Lunch</div>
+              <div class="itl-title">Vera's Burger Shack</div>
+              <div class="itl-sub">バンクーバーの人気バーガーショップ。地元でも評判の本格バーガー。</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">13:00 PDT</div>
+              <div class="itl-title">Vancouver Lookout / バンクーバー展望台</div>
+              <div class="itl-sub">バンクーバーを360度一望できる展望台。街・山・海が一度に見える絶景。</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">15:00 PDT</div>
+              <div class="itl-title">Granville Island Public Market — お土産</div>
+              <div class="itl-sub">アーティスト・クラフト・フード・マーケット。カナダ土産はここで！</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot food"></div>
+            <div class="itl-body">
+              <div class="itl-time gold">18:00 PDT — Dinner</div>
+              <div class="itl-title">The Sundbar — バンクーバー最後の夜</div>
+              <div class="itl-sub">旅の締めくくりの夕食。みんなで思い出を語ろう。</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">22:00 PDT</div>
+              <div class="itl-title">Packing / 荷造り</div>
+              <div class="itl-sub">Visit Japan Web（税関申告）に登録を忘れずに。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 7 -->
+  <div class="day-card" id="day7" data-anchor>
+    <button class="day-head">
+      <div class="day-num"><span class="day-num-pre">DAY</span>07</div>
+      <div class="day-title">
+        <span class="day-label">
+          <span class="ic" data-ic="mountain" data-size="10"></span>VAN観光②
+        </span>
+        <div class="day-h2">Capilano + Grouse Mountain</div>
+        <div class="day-date">7月9日 (木)</div>
+      </div>
+      <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
+    </button>
+    <div class="day-body">
+      <div class="day-map">
+        <div class="day-map-cap"><span class="ic" data-ic="map-pin" data-size="10"></span>NORTH VANCOUVER</div>
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Capilano+Suspension+Bridge+North+Vancouver&z=12&output=embed"></iframe>
+      </div>
+
+      <div class="day-section">
+        <div class="day-section-title">
+          <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE
+        </div>
+        <div class="inline-tl" style="padding:0">
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">10:00 PDT</div>
+              <div class="itl-title">Capilano Suspension Bridge Park</div>
+              <div class="itl-sub">バンクーバー屈指の自然体験。高さ70mの吊り橋・森のCliffwalk。</div>
+              <div class="tags">
+                <span class="tag">Suspension Bridge</span>
+                <span class="tag">Living Forest</span>
+                <span class="tag">Cliffwalk</span>
+                <span class="tag">Treetops</span>
+              </div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">14:00 PDT</div>
+              <div class="itl-title">Grouse Mountain / グラウスマウンテン</div>
+              <div class="itl-sub">バンクーバーの「空の遊び場」。ゴンドラ・ジップライン・山岳アクティビティ。</div>
+              <div class="tags">
+                <span class="tag">Sky Ride</span>
+                <span class="tag">Peak Chairlift</span>
+                <span class="tag">Zipline</span>
+                <span class="tag">Lumberjack Show</span>
+              </div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">19:00 PDT</div>
+              <div class="itl-title">自炊 — Surrey</div>
+              <div class="itl-sub">アクティビティ満載の一日の後は自炊でゆっくり。明日は帰国準備・Packing。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 8 -->
+  <div class="day-card travel" id="day8" data-anchor>
+    <button class="day-head">
+      <div class="day-num"><span class="day-num-pre">DAY</span>08</div>
+      <div class="day-title">
+        <span class="day-label ret">
+          <span class="ic" data-ic="plane-landing" data-size="10"></span>帰国日
+        </span>
+        <div class="day-h2">Check Out → 各自帰路へ</div>
+        <div class="day-date">7月10日 (金) ・ NH115 YVR 16:30 PDT → HND 7/11 ~19:00 JST</div>
+      </div>
+      <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
+    </button>
+    <div class="day-body">
+
+      <div class="day-section" style="padding-top:16px">
+        <div class="vc vc-flight auto" style="margin:0 0 8px">
+          <div class="vc-bg"></div>
+          <div class="vc-scrim"></div>
+          <div class="vc-flight-route" style="padding-top:18px">
+            <div class="vc-iata">YVR</div>
+            <div class="vc-arrow-line"></div>
+            <div class="vc-iata">HND</div>
+          </div>
+          <div class="vc-flight-meta">ANA NH115 ・ ~10h ・ 芝・勇介</div>
+          <div class="vc-flight-row">
+            <div class="col">
+              <div class="lbl">Departure</div>
+              <strong>16:30<span class="tz-tag p">PDT</span></strong>
+              <div style="font-size:.62rem;color:var(--muted)">7/10(金)</div>
+            </div>
+            <div class="col" style="text-align:right;align-items:flex-end">
+              <div class="lbl">Arrival</div>
+              <strong>~19:00<span class="tz-tag j">JST</span></strong>
+              <div style="font-size:.62rem;color:var(--muted)">7/11(土)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-section">
+        <div class="day-section-title">
+          <span class="ic" data-ic="clock" data-size="13"></span>各自の帰路
+        </div>
+        <div class="inline-tl" style="padding:0">
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">10:00 PDT</div>
+              <div class="itl-title">Surrey チェックアウト</div>
+              <div class="itl-sub">荷物をまとめてチェックアウト。コウシは別途空港へ。</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot"></div>
+            <div class="itl-body">
+              <div class="itl-time">11:00 PDT</div>
+              <div class="itl-title">Surrey → YVR バンクーバー国際空港</div>
+              <div class="itl-sub">SkyTrain Canada Line または カツヒサが送迎。</div>
+              <div class="tags">
+                <span class="tag tr">🚇 Canada Line → YVR-Airport駅</span>
+              </div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot food"></div>
+            <div class="itl-body">
+              <div class="itl-time gold">~17:30 PDT</div>
+              <div class="itl-title">コウシ — YYC → YVR着</div>
+              <div class="itl-sub">カルガリーから飛行機でVAN着。<strong>VAN残留 → 7/27-28 WestJet WS080で帰国</strong></div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot match"></div>
+            <div class="itl-body">
+              <div class="itl-time green">16:30 PDT — YVR出発 / 芝・勇介</div>
+              <div class="itl-title">ANA NH115 → 羽田 7/11(土) ~19:00 JST着</div>
+              <div class="itl-sub">お疲れ様でした！2試合観戦完了 🏆🏆</div>
+            </div>
+          </div>
+          <div class="itl-item">
+            <div class="itl-dot food"></div>
+            <div class="itl-body">
+              <div class="itl-time gold">7/10 試合後</div>
+              <div class="itl-title">カツヒサ — 車でCalgaryへ帰宅</div>
+              <div class="itl-sub">BC州〜Alberta州を走りCalgaryへ。お世話になりました！</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KOUSHI RETURN -->
+  <div class="day-card" id="koushi-return" data-anchor style="border-color:rgba(255,213,79,.24)">
+    <button class="day-head">
+      <div class="day-num" style="color:var(--gold)"><span class="day-num-pre">7/27</span>✈️</div>
+      <div class="day-title">
+        <span class="day-label" style="background:rgba(255,213,79,.14);color:var(--gold);border-color:rgba(255,213,79,.28)">
+          <span class="ic" data-ic="plane-landing" data-size="10"></span>コウシ 帰国
+        </span>
+        <div class="day-h2">WestJet WS080 YVR → 成田</div>
+        <div class="day-date">7月27日 (月) → 7月28日 (火)</div>
+      </div>
+      <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
+    </button>
+    <div class="day-body">
+      <div class="day-section" style="padding-top:16px">
+        <div class="vc vc-flight auto" style="margin:0 0 8px;border-color:rgba(255,213,79,.26)">
+          <div class="vc-bg"></div>
+          <div class="vc-scrim"></div>
+          <div class="vc-flight-route" style="padding-top:18px">
+            <div class="vc-iata">YVR</div>
+            <div class="vc-arrow-line"></div>
+            <div class="vc-iata">NRT</div>
+          </div>
+          <div class="vc-flight-meta">WESTJET WS080 ・ ~10h ・ Terminal 1</div>
+          <div class="vc-flight-row">
+            <div class="col">
+              <div class="lbl">Departure</div>
+              <strong>14:50<span class="tz-tag p">PDT</span></strong>
+              <div style="font-size:.62rem;color:var(--muted)">7/27(月)</div>
+            </div>
+            <div class="col" style="text-align:right;align-items:flex-end">
+              <div class="lbl">Arrival</div>
+              <strong>~19:00<span class="tz-tag j">JST</span></strong>
+              <div style="font-size:.62rem;color:var(--muted)">7/28(火) ・ NRT T1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-section">
+        <p style="font-size:.74rem;color:var(--text2);line-height:1.55">
+          コウシは<strong style="color:var(--gold)">7/10にYVR着後、バンクーバー残留</strong>。<br>
+          WestJet WS080に搭乗し、成田国際空港 Terminal 1 へ。
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ STADIUM INFO ═══ -->
+<div class="sec-title" id="rules">
+  <span class="sec-tit-ic"><span class="ic" data-ic="building" data-size="16"></span></span>
+  STADIUM INFO
+  <span class="sec-title-sub">2スタジアム ・ 観戦ガイド</span>
+</div>
+
+<div class="card-grid" style="padding-top:0">
+  <!-- Lumen Field -->
+  <div class="stadium-card">
+    <div class="vc-eyebrow" style="color:var(--green);margin-bottom:8px">
+      <span class="ic" data-ic="map-pin" data-size="11"></span>VENUE ① ・ 7/6 MATCH 94
+    </div>
+    <div class="sc-name">LUMEN FIELD ・ SEATTLE</div>
+    <div class="sc-ja">800 Occidental Ave S, Seattle, WA 98134</div>
+    <div class="copy-row" style="margin-top:14px" onclick="copyText('Lumen Field, 800 Occidental Ave S, Seattle, WA 98134')">
+      <span class="copy-val">800 Occidental Ave S, Seattle, WA 98134</span>
+      <span class="copy-ic ic" data-ic="copy" data-size="13"></span>
+    </div>
+    <div class="vc-actions" style="padding:14px 0 0">
+      <a class="vc-btn vc-btn-green" href="https://maps.google.com/maps?daddr=800+Occidental+Ave+S+Seattle+WA" target="_blank">
+        <span class="ic" data-ic="navigation" data-size="11"></span>Google Maps
+      </a>
+    </div>
+  </div>
+
+  <!-- BC Place -->
+  <div class="stadium-card" style="border-color:rgba(72,197,255,.32)">
+    <div class="vc-eyebrow" style="color:#48c5ff;margin-bottom:8px">
+      <span class="ic" data-ic="map-pin" data-size="11"></span>VENUE ② ・ 7/7 MATCH 96
+    </div>
+    <div class="sc-name">BC PLACE ・ VANCOUVER</div>
+    <div class="sc-ja">777 Pacific Blvd, Vancouver, BC V6B 4Y8</div>
+    <div class="copy-row" style="margin-top:14px" onclick="copyText('BC Place Stadium, 777 Pacific Blvd, Vancouver, BC V6B 4Y8')">
+      <span class="copy-val">777 Pacific Blvd, Vancouver, BC V6B 4Y8</span>
+      <span class="copy-ic ic" data-ic="copy" data-size="13"></span>
+    </div>
+    <div class="vc-actions" style="padding:14px 0 0">
+      <a class="vc-btn vc-btn-accent" href="https://maps.google.com/maps?daddr=BC+Place+Stadium+777+Pacific+Blvd+Vancouver" target="_blank" style="background:rgba(72,197,255,.10);border-color:rgba(72,197,255,.24);color:#48c5ff">
+        <span class="ic" data-ic="navigation" data-size="11"></span>Google Maps
+      </a>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="info-tile">
+      <div class="info-tile-ic"><span class="ic" data-ic="package" data-size="14"></span></div>
+      <h4>Bags / 持込荷物</h4>
+      <p>クリアバッグのみ（12×6×12in）</p>
+    </div>
+    <div class="info-tile">
+      <div class="info-tile-ic"><span class="ic" data-ic="clock" data-size="14"></span></div>
+      <h4>Arrive / 到着</h4>
+      <p>KO2〜3時間前推奨</p>
+    </div>
+    <div class="info-tile">
+      <div class="info-tile-ic"><span class="ic" data-ic="bus" data-size="14"></span></div>
+      <h4>SEA Transit</h4>
+      <p>Link「Stadium」駅すぐ</p>
+    </div>
+    <div class="info-tile">
+      <div class="info-tile-ic"><span class="ic" data-ic="bus" data-size="14"></span></div>
+      <h4>VAN Transit</h4>
+      <p>SkyTrain「Stadium-Chinatown」</p>
+    </div>
+    <div class="info-tile">
+      <div class="info-tile-ic"><span class="ic" data-ic="ticket" data-size="14"></span></div>
+      <h4>Tickets</h4>
+      <p>FIFA公式アプリ ＋ スクショbackup</p>
+    </div>
+    <div class="info-tile">
+      <div class="info-tile-ic"><span class="ic" data-ic="globe" data-size="14"></span></div>
+      <h4>Canada eTA</h4>
+      <p>陸路入国のため<strong>不要</strong>！</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ EMERGENCY ═══ -->
+<div class="sec-title" id="sos">
+  <span class="sec-tit-ic" style="background:rgba(255,77,77,.14);color:var(--red);border-color:rgba(255,77,77,.28)">
+    <span class="ic" data-ic="alert-triangle" data-size="16"></span>
+  </span>
+  EMERGENCY
+  <span class="sec-title-sub">緊急連絡</span>
+</div>
+
+<div class="card-grid" style="padding-top:0">
+  <div class="grid-2">
+    <div class="info-tile" style="border-color:rgba(255,77,77,.24);background:rgba(255,77,77,.05)">
+      <div class="info-tile-ic" style="background:rgba(255,77,77,.14);color:var(--red);border-color:rgba(255,77,77,.28)">
+        <span class="ic" data-ic="phone" data-size="14"></span>
+      </div>
+      <h4>Emergency / 緊急</h4>
+      <p>📞 <strong style="color:var(--red)">911</strong>（米国・カナダ共通）</p>
+    </div>
+    <div class="info-tile">
+      <div class="info-tile-ic"><span class="ic" data-ic="flag" data-size="14"></span></div>
+      <h4>在バンクーバー日本総領事館</h4>
+      <p onclick="copyText('(604) 684-9820')" style="cursor:pointer">📞 (604) 684-9820 📋</p>
+    </div>
+    <div class="info-tile">
+      <div class="info-tile-ic"><span class="ic" data-ic="flag" data-size="14"></span></div>
+      <h4>在シアトル日本総領事館</h4>
+      <p onclick="copyText('(206) 682-9107')" style="cursor:pointer">📞 (206) 682-9107 📋</p>
+    </div>
+    <div class="info-tile">
+      <div class="info-tile-ic"><span class="ic" data-ic="globe" data-size="14"></span></div>
+      <h4>Exchange Rate</h4>
+      <p>1 USD ≈ 150円 ／ 1 CAD ≈ 110円</p>
+    </div>
+    <div class="info-tile">
+      <div class="info-tile-ic"><span class="ic" data-ic="wifi" data-size="14"></span></div>
+      <h4>SIM / 通信</h4>
+      <p>米国・カナダ両対応eSIM事前準備</p>
+    </div>
+    <div class="info-tile">
+      <div class="info-tile-ic"><span class="ic" data-ic="refresh" data-size="14"></span></div>
+      <h4>Offline / オフライン</h4>
+      <p>機内モードでも閲覧可（PWA）</p>
+    </div>
+  </div>
+</div>
 
 <footer>
-  <div style="font-family:'Bebas Neue',cursive;font-size:1.5rem;letter-spacing:.1em;color:var(--blue);margin-bottom:.4rem">シアトル・バンクーバー 2026</div>
-  <p>⚽ Match 94 @ Lumen Field — 7/6 17:00 PDT</p>
-  <p>⚽ Match 96 @ BC Place — 7/10 13:00 PDT → NH115 16:45 出発</p>
-  <p style="margin-top:.5rem;font-size:.68rem">✈️ DL166 HND→SEA ／ NH115 YVR→HND</p>
+  <div class="ft-mark">VAN組 ・ SEATTLE & VANCOUVER 2026</div>
+  <div class="ft-sub">⚽ Match 94 @ Lumen Field ・ 7/6 17:00 PDT</div>
+  <div class="ft-sub">⚽ Match 96 @ BC Place ・ 7/7 13:00 PDT</div>
+  <div class="ft-meta">DL166 HND→SEA ／ NH115 YVR→HND</div>
 </footer>
 
 <!-- BOTTOM NAV -->
-<nav id="bn">
-  <a href="#top" class="bn-item"><div class="bn-ic">🏠</div>TOP</a>
-  <a href="#sched" class="bn-item"><div class="bn-ic">📅</div>日程</a>
-  <a href="#calgary" class="bn-item"><div class="bn-ic">🏔️</div>Calgary</a>
-  <a href="#day4" class="bn-item"><div class="bn-ic">⚽</div>Match①</a>
-  <a href="#day8" class="bn-item"><div class="bn-ic">🏆</div>Match②</a>
-  <a href="#sos" class="bn-item"><div class="bn-ic">🆘</div>緊急</a>
+<nav class="bn">
+  <button class="bn-btn active" data-target="top">
+    <span class="ic" data-ic="home" data-size="20"></span>
+    TOP
+  </button>
+  <button class="bn-btn" data-target="overview">
+    <span class="ic" data-ic="list" data-size="20"></span>
+    概要
+  </button>
+  <button class="bn-btn" data-target="days">
+    <span class="ic" data-ic="calendar" data-size="20"></span>
+    旅程
+  </button>
+  <button class="bn-btn" data-target="rules">
+    <span class="ic" data-ic="building" data-size="20"></span>
+    観戦
+  </button>
+  <button class="bn-btn" data-target="sos">
+    <span class="ic" data-ic="alert-triangle" data-size="20"></span>
+    緊急
+  </button>
 </nav>
 
-<script>
-// ブラウザのスクロール復元を無効化 → 常にページトップから開始
-if('scrollRestoration' in history) history.scrollRestoration='manual';
-window.scrollTo(0,0);
+<div id="toast">📋 コピーしました</div>
 
-function getTimeStr(h){
-  const n=new Date(),u=n.getTime()+n.getTimezoneOffset()*60000,t=new Date(u+h*3600000);
-  return String(t.getHours()).padStart(2,'0')+':'+String(t.getMinutes()).padStart(2,'0');
+<script>
+if('scrollRestoration' in history) history.scrollRestoration='manual';
+
+/* ── Clocks ── */
+function pad(n){return String(n).padStart(2,'0');}
+function tzClock(offsetH){
+  const n = new Date();
+  const u = n.getTime() + n.getTimezoneOffset()*60000;
+  const t = new Date(u + offsetH*3600000);
+  return pad(t.getHours())+':'+pad(t.getMinutes());
 }
 function updateClocks(){
-  document.getElementById('clk-jst').textContent=getTimeStr(9);
-  document.getElementById('clk-pdt').textContent=getTimeStr(-7);
-  document.getElementById('clk-mdt').textContent=getTimeStr(-6);
+  document.getElementById('clk-jst').textContent = tzClock(9);
+  document.getElementById('clk-pdt').textContent = tzClock(-7);
 }
-updateClocks();setInterval(updateClocks,10000);
-function toggleTZ(inp){
-  document.body.classList.toggle('pdt-mode',inp.checked);
-  document.getElementById('lbl-j').classList.toggle('active',!inp.checked);
-  document.getElementById('lbl-p').classList.toggle('active',inp.checked);
+updateClocks(); setInterval(updateClocks, 30000);
+
+/* ── TZ toggle ── */
+function setTZ(pdt){
+  document.body.classList.toggle('pdt-mode', pdt);
+  document.getElementById('lbl-j').classList.toggle('active', !pdt);
+  document.getElementById('lbl-p').classList.toggle('active', pdt);
 }
+
+/* ── Copy to clipboard ── */
 function copyText(t){
-  if(navigator.clipboard){navigator.clipboard.writeText(t).then(showToast);}
-  else{const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');document.body.removeChild(a);showToast();}
+  const fn = navigator.clipboard ? navigator.clipboard.writeText(t) :
+    new Promise(r=>{const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');document.body.removeChild(a);r();});
+  fn.then(()=>{
+    const el = document.getElementById('toast');
+    el.classList.add('show');
+    setTimeout(()=>el.classList.remove('show'),1600);
+  }).catch(()=>{});
 }
-function showToast(){const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800);}
-(function(){
-  const n=new Date(),m=n.getMonth()+1,d=n.getDate();
-  const mp={'7-3':'sc-d1','7-4':'sc-d2','7-5':'sc-d3','7-6':'sc-d4','7-7':'sc-d5','7-8':'sc-d6','7-9':'sc-d7','7-10':'sc-d8'};
-  const k=`${m}-${d}`,el=document.getElementById(mp[k]);
-  if(el){el.classList.add('today-col');el.querySelector('.day-head').insertAdjacentHTML('afterbegin','<div class="today-pill">TODAY</div>');el.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}
-})();
-const nb=document.querySelectorAll('#snav .snav-btn[href^="#"]');
-// navボタンが実際にリンクしているIDだけを観測対象にする
-const navTargets=new Set([...nb].map(b=>b.getAttribute('href').slice(1)));
-let obsReady=false;
-setTimeout(()=>{obsReady=true;},600); // 初期ロード誤発火を防ぐ600ms待機
-const obs=new IntersectionObserver(e=>{
-  if(!obsReady)return;
-  e.forEach(x=>{if(x.isIntersecting){
-    nb.forEach(b=>b.classList.remove('active'));
-    const a=document.querySelector(`#snav .snav-btn[href="#${x.target.id}"]`);
-    if(a){
-      a.classList.add('active');
-      const sn=document.getElementById('snav');
-      sn.scrollLeft=a.offsetLeft-sn.offsetWidth/2+a.offsetWidth/2;
-    }
-  }});
-},{rootMargin:'-30% 0px -60% 0px'});
-// navリンク先のIDを持つ要素のみ observe（#sb/#bn/#toast等の固定要素は除外）
-document.querySelectorAll('section[id],div[id]').forEach(s=>{
-  if(s.id && navTargets.has(s.id)) obs.observe(s);
+
+/* ── Day-card accordion ── */
+document.querySelectorAll('.day-card .day-head').forEach(head=>{
+  head.addEventListener('click', e=>{
+    const card = head.closest('.day-card');
+    card.classList.toggle('open');
+  });
 });
-if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/fwc2026/sw.js').catch(()=>{}));}
+
+/* ── Section nav scroll ── */
+function scrollToTarget(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const offset = 54 + 48;
+  const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+  window.scrollTo({top, behavior:'smooth'});
+}
+document.querySelectorAll('.snav-btn[data-target], .bn-btn[data-target]').forEach(btn=>{
+  btn.addEventListener('click', ()=>scrollToTarget(btn.dataset.target));
+});
+
+/* ── Active section detection ── */
+const sectionIds = ['top','overview','calgary','acc','days','rules','sos'];
+const sects = sectionIds.map(id=>document.getElementById(id)).filter(Boolean);
+function updateActive(){
+  const y = window.scrollY + 120;
+  let cur = sectionIds[0];
+  sects.forEach(s=>{ if(s.offsetTop <= y) cur = s.id; });
+  document.querySelectorAll('.snav-btn').forEach(b=>{
+    b.classList.toggle('active', b.dataset.target===cur);
+  });
+  document.querySelectorAll('.bn-btn').forEach(b=>{
+    b.classList.toggle('active', b.dataset.target===cur);
+  });
+}
+window.addEventListener('scroll', updateActive, {passive:true});
+updateActive();
+
+/* ── Auto-open today's day card ── */
+(function(){
+  const d = new Date();
+  const m = d.getMonth()+1, day = d.getDate();
+  const map = {'7-3':'day1','7-4':'day2','7-5':'day3','7-6':'day4','7-7':'day5','7-8':'day6','7-9':'day7','7-10':'day8'};
+  const key = m+'-'+day;
+  const target = map[key];
+  if(target){
+    document.querySelectorAll('.day-card.open').forEach(c=>c.classList.remove('open'));
+    const el = document.getElementById(target);
+    if(el) el.classList.add('open');
+  }
+})();
+
+/* ── Service worker ── */
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('../sw.js').catch(()=>{}));
+}
 </script>
 </body>
 </html>

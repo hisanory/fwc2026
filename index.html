@@ -1,80 +1,241 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FIFA World Cup 2026 — 旅のしおり</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
-  <style>
-    :root { --bg:#08101e; --card:#13243a; --border:#1e3a58; --green:#00e676; --gold:#ffd54f; --red:#ff5252; --blue:#40c4ff; --text:#e8f0fc; --muted:#7a94b0; }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body { background:var(--bg); color:var(--text); font-family:'Noto Sans JP',sans-serif; min-height:100svh; display:flex; flex-direction:column; }
-    .hero { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:2.5rem 1.5rem; position:relative; overflow:hidden; background:radial-gradient(ellipse at 50% 0%, #0a2a50, #08101e 70%); }
-    .hero::before { content:''; position:absolute; inset:0; background-image:repeating-linear-gradient(0deg,transparent,transparent 38px,rgba(255,255,255,0.02) 38px,rgba(255,255,255,0.02) 40px),repeating-linear-gradient(90deg,transparent,transparent 38px,rgba(255,255,255,0.015) 38px,rgba(255,255,255,0.015) 40px); pointer-events:none; }
-    .glow { position:absolute; top:-80px; left:50%; transform:translateX(-50%); width:500px; height:300px; background:radial-gradient(ellipse,rgba(0,230,118,0.1),transparent 70%); pointer-events:none; }
-    .badge { display:inline-block; background:rgba(0,230,118,0.12); border:1px solid rgba(0,230,118,0.3); border-radius:100px; padding:5px 14px; font-size:0.72rem; color:var(--green); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:1.5rem; animation:fadeIn 0.5s ease both; }
-    h1 { font-family:'Bebas Neue',cursive; font-size:clamp(3rem,13vw,6.5rem); line-height:0.9; letter-spacing:0.04em; animation:slideUp 0.6s ease both 0.1s; }
-    h1 em { color:var(--green); font-style:normal; display:block; }
-    .sub { font-size:clamp(0.85rem,3vw,1rem); color:var(--gold); font-weight:700; letter-spacing:0.06em; margin-top:0.8rem; animation:slideUp 0.6s ease both 0.2s; }
-    .match-info { margin:1.5rem 0 2rem; display:inline-flex; flex-wrap:wrap; gap:0.8rem; justify-content:center; animation:slideUp 0.6s ease both 0.3s; }
-    .mi { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:8px 14px; font-size:0.8rem; text-align:center; }
-    .mi strong { display:block; color:var(--gold); font-size:0.95rem; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>⚽ FWC2026 — 旅のしおり</title>
+<meta name="theme-color" content="#06090f">
+<link rel="manifest" href="manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/ds.css">
+<script src="assets/ic.js" defer></script>
+<style>
+body{padding:0;background:#06090f;}
 
-    .cards { display:grid; grid-template-columns:1fr 1fr; gap:1rem; max-width:600px; width:100%; margin:0 auto; padding:0 1rem; animation:slideUp 0.6s ease both 0.4s; }
-    @media(max-width:500px){ .cards { grid-template-columns:1fr; } }
-    .group-card { border-radius:20px; padding:1.5rem; text-decoration:none; display:flex; flex-direction:column; gap:0.5rem; transition:transform 0.2s, box-shadow 0.2s; border:1px solid; position:relative; overflow:hidden; }
-    .group-card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,0.4); }
-    .group-card.sea { background:linear-gradient(135deg,#0d2a1c,#1a2f40); border-color:rgba(0,230,118,0.3); }
-    .group-card.van { background:linear-gradient(135deg,#0d1a2a,#1a2040); border-color:rgba(64,196,255,0.3); }
-    .group-card .gc-label { font-size:0.68rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; }
-    .sea .gc-label { color:var(--green); }
-    .van .gc-label { color:var(--blue); }
-    .group-card .gc-title { font-family:'Bebas Neue',cursive; font-size:2rem; letter-spacing:0.06em; color:#fff; line-height:1; }
-    .group-card .gc-members { font-size:0.78rem; color:var(--muted); }
-    .group-card .gc-dates { font-size:0.75rem; font-weight:700; margin-top:0.3rem; }
-    .sea .gc-dates { color:var(--green); }
-    .van .gc-dates { color:var(--blue); }
-    .group-card .gc-match { margin-top:0.5rem; font-size:0.72rem; background:rgba(255,255,255,0.05); border-radius:8px; padding:5px 10px; color:var(--text); }
-    .group-card .gc-arrow { position:absolute; bottom:1rem; right:1rem; font-size:1.2rem; opacity:0.4; }
-    .group-card:hover .gc-arrow { opacity:1; }
+/* Landing only — no fixed bars */
+.land-wrap{min-height:100svh;display:flex;flex-direction:column;
+  padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);}
 
-    footer { text-align:center; padding:1.5rem 1rem; font-size:0.72rem; color:var(--muted); border-top:1px solid var(--border); }
+.land-hero{
+  position:relative;padding:60px 24px 40px;
+  overflow:hidden;isolation:isolate;text-align:center;
+}
+.land-hero::before{
+  content:'';position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(72,197,255,.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 15% 80%, rgba(0,230,118,.06) 0%, transparent 50%);
+}
+.land-hero > *{position:relative;z-index:1;}
+.land-eyebrow{display:inline-flex;align-items:center;gap:6px;
+  font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:#fff;
+  padding:6px 12px;border-radius:100px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);}
+.land-title{font-family:'Bebas Neue',cursive;
+  font-size:clamp(3.2rem, 14vw, 5.6rem);letter-spacing:.02em;
+  line-height:.92;color:#fff;margin-top:18px;}
+.land-title-yr{display:block;font-size:.5em;color:#48c5ff;margin-top:6px;
+  letter-spacing:.06em;}
+.land-sub{font-size:.92rem;color:#9badc8;margin-top:14px;line-height:1.55;
+  font-weight:500;max-width:340px;margin-inline:auto;}
+.land-sub strong{color:#fff;}
 
-    @keyframes fadeIn { from{opacity:0}to{opacity:1} }
-    @keyframes slideUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
-  </style>
+.land-meta{display:flex;justify-content:center;gap:18px;
+  margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);
+  max-width:340px;margin-inline:auto;}
+.lm-stat{display:flex;flex-direction:column;align-items:center;gap:2px;}
+.lm-num{font-family:'Bebas Neue',cursive;font-size:1.7rem;color:#fff;
+  letter-spacing:.04em;line-height:1;}
+.lm-num.green{color:#00e676;}
+.lm-num.blue{color:#48c5ff;}
+.lm-lbl{font-size:.58rem;color:#4a6278;letter-spacing:.08em;
+  text-transform:uppercase;font-weight:600;}
+
+/* Group cards */
+.land-groups{padding:8px 16px 28px;display:flex;flex-direction:column;gap:14px;}
+
+.gc{
+  display:block;border-radius:18px;overflow:hidden;position:relative;
+  min-height:200px;
+  isolation:isolate;
+  transition:transform .2s ease;
+}
+.gc:active{transform:scale(.98);}
+.gc-bg{position:absolute;inset:0;z-index:0;}
+.gc-scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top, rgba(0,8,16,.95) 0%, rgba(0,12,24,.4) 50%, transparent 100%);}
+.gc-content{position:relative;z-index:2;padding:24px 22px 22px;
+  height:100%;display:flex;flex-direction:column;justify-content:flex-end;min-height:200px;}
+.gc-eyebrow{display:inline-flex;align-items:center;gap:6px;
+  font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:5px 11px;border-radius:100px;
+  align-self:flex-start;margin-bottom:10px;}
+.gc-name{font-family:'Bebas Neue',cursive;font-size:3rem;
+  letter-spacing:.04em;line-height:.92;color:#fff;}
+.gc-ja{font-size:.92rem;color:rgba(255,255,255,.78);font-weight:600;margin-top:4px;}
+.gc-meta{font-size:.74rem;color:rgba(255,255,255,.6);margin-top:10px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.gc-meta .gc-mi{display:inline-flex;align-items:center;gap:5px;}
+.gc-arrow{position:absolute;top:20px;right:20px;z-index:3;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+
+/* SEA group: blue */
+.gc-sea{border:1px solid rgba(72,197,255,.32);
+  background:linear-gradient(170deg,#001628 0%,#050d18 100%);}
+.gc-sea .gc-bg::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(72,197,255,.22) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 80%, rgba(72,197,255,.10) 0%, transparent 45%);
+}
+.gc-sea .gc-bg::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 20% 22%, rgba(255,255,255,.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 38%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 75% 18%, rgba(255,255,255,.55) 0%, transparent 100%),
+    radial-gradient(1px 1px at 88% 32%, rgba(255,255,255,.4) 0%, transparent 100%);
+}
+.gc-sea .gc-eyebrow{background:rgba(72,197,255,.18);color:#48c5ff;
+  border:1px solid rgba(72,197,255,.36);}
+
+/* VAN group: green */
+.gc-van{border:1px solid rgba(0,230,118,.32);
+  background:linear-gradient(170deg,#001e10 0%,#050d18 100%);}
+.gc-van .gc-bg::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(0,230,118,.22) 0%, transparent 55%),
+    radial-gradient(ellipse at 25% 75%, rgba(0,230,118,.10) 0%, transparent 45%);
+}
+.gc-van .gc-bg::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 18% 30%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 52% 22%, rgba(255,255,255,.55) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 40%, rgba(255,255,255,.45) 0%, transparent 100%);
+}
+.gc-van .gc-eyebrow{background:rgba(0,230,118,.18);color:#00e676;
+  border:1px solid rgba(0,230,118,.36);}
+
+/* Match summary card (above groups) */
+.match-summary{margin:8px 16px 0;padding:18px 18px 16px;
+  border-radius:14px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;gap:14px;}
+.ms-ic{width:42px;height:42px;border-radius:11px;flex-shrink:0;
+  background:rgba(0,230,118,.16);color:#00e676;
+  border:1px solid rgba(0,230,118,.28);
+  display:flex;align-items:center;justify-content:center;}
+.ms-body{flex:1;min-width:0;}
+.ms-title{font-family:'Bebas Neue',cursive;font-size:1rem;
+  letter-spacing:.08em;color:#fff;line-height:1;}
+.ms-sub{font-size:.7rem;color:#9badc8;margin-top:4px;line-height:1.45;}
+
+/* Footer (landing) */
+.land-foot{margin-top:auto;padding:22px 18px 28px;text-align:center;
+  border-top:1px solid rgba(255,255,255,.06);}
+.lf-mark{font-family:'Bebas Neue',cursive;font-size:1.4rem;
+  letter-spacing:.1em;color:rgba(255,255,255,.6);}
+.lf-sub{font-size:.66rem;color:#4a6278;margin-top:5px;letter-spacing:.04em;}
+.lf-changelog{margin-top:14px;display:inline-flex;align-items:center;gap:6px;
+  font-size:.7rem;font-weight:600;color:#9badc8;
+  padding:7px 14px;border-radius:100px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  cursor:pointer;}
+.lf-changelog:active{background:rgba(255,255,255,.1);}
+</style>
 </head>
 <body>
-<div class="hero">
-  <div class="glow"></div>
-  <div class="badge">⚽ FIFA World Cup 2026™ — 旅のしおり Hub</div>
-  <h1>FWC <em>2026</em></h1>
-  <p class="sub">🏆 SEATTLE / VANCOUVER — Family &amp; Friends Trip</p>
 
-  <div class="match-info">
-    <div class="mi"><strong>⚽ Match 94</strong>7/6(月) 17:00 PT<br><small>Lumen Field, Seattle</small></div>
-    <div class="mi"><strong>⚽ Match 96</strong>7/10(金) 13:00 PT<br><small>BC Place, Vancouver</small></div>
+<div class="land-wrap">
+
+  <header class="land-hero">
+    <div class="land-eyebrow">
+      <span class="ic" data-ic="ticket"></span>
+      FIFA WORLD CUP 2026
+    </div>
+    <h1 class="land-title">SEA × VAN<span class="land-title-yr">JULY 2026</span></h1>
+    <p class="land-sub">
+      <strong>FIFA World Cup 2026™</strong><br>
+      シアトル・バンクーバー観戦旅行のしおり
+    </p>
+    <div class="land-meta">
+      <div class="lm-stat"><div class="lm-num">2</div><div class="lm-lbl">Cities</div></div>
+      <div class="lm-stat"><div class="lm-num green">2</div><div class="lm-lbl">Matches</div></div>
+      <div class="lm-stat"><div class="lm-num blue">8</div><div class="lm-lbl">Days</div></div>
+    </div>
+  </header>
+
+  <div class="match-summary">
+    <div class="ms-ic">
+      <span class="ic" data-ic="trophy" data-size="22"></span>
+    </div>
+    <div class="ms-body">
+      <div class="ms-title">ROUND OF 16 — 決勝16強</div>
+      <div class="ms-sub">7/6 SEA Match 94 ・ 7/7 VAN Match 95</div>
+    </div>
   </div>
 
-  <div class="cards">
-    <a class="group-card sea" href="./seattle/">
-      <div class="gc-label">🏠 Seattle 組</div>
-      <div class="gc-title">SEA<br>TRIP</div>
-      <div class="gc-members">山内・久典 ＋ 蓮太郎</div>
-      <div class="gc-dates">7/3(金)〜7/8(水)</div>
-      <div class="gc-match">🏆 Match 94 @ Lumen Field<br>✈️ ANA NH115 帰国</div>
-      <div class="gc-arrow">→</div>
+  <main class="land-groups">
+
+    <a href="seattle/" class="gc gc-sea">
+      <div class="gc-bg"></div>
+      <div class="gc-scrim"></div>
+      <div class="gc-arrow">
+        <span class="ic" data-ic="arrow-up-right" data-size="16"></span>
+      </div>
+      <div class="gc-content">
+        <span class="gc-eyebrow">
+          <span class="ic" data-ic="users" data-size="11"></span>
+          SEA組
+        </span>
+        <div class="gc-name">SEATTLE</div>
+        <div class="gc-ja">山内・蓮太郎</div>
+        <div class="gc-meta">
+          <span class="gc-mi"><span class="ic" data-ic="calendar" data-size="12"></span>7/3 — 7/8</span>
+          <span class="gc-mi"><span class="ic" data-ic="trophy" data-size="12"></span>Match 94</span>
+        </div>
+      </div>
     </a>
-    <a class="group-card van" href="./vancouver/">
-      <div class="gc-label">✈️ Vancouver 組</div>
-      <div class="gc-title">VAN<br>TRIP</div>
-      <div class="gc-members">芝・勇介 ＋ コウシ</div>
-      <div class="gc-dates">7/3(金)〜7/12(日)</div>
-      <div class="gc-match">🏆 Match 94 @ Lumen Field<br>🏆 Match 96 @ BC Place</div>
-      <div class="gc-arrow">→</div>
+
+    <a href="vancouver/" class="gc gc-van">
+      <div class="gc-bg"></div>
+      <div class="gc-scrim"></div>
+      <div class="gc-arrow">
+        <span class="ic" data-ic="arrow-up-right" data-size="16"></span>
+      </div>
+      <div class="gc-content">
+        <span class="gc-eyebrow">
+          <span class="ic" data-ic="users" data-size="11"></span>
+          VAN組
+        </span>
+        <div class="gc-name">VANCOUVER</div>
+        <div class="gc-ja">芝・コウシ・勇介</div>
+        <div class="gc-meta">
+          <span class="gc-mi"><span class="ic" data-ic="calendar" data-size="12"></span>7/3 — 7/10</span>
+          <span class="gc-mi"><span class="ic" data-ic="trophy" data-size="12"></span>Match 95</span>
+        </div>
+      </div>
     </a>
-  </div>
+
+  </main>
+
+  <footer class="land-foot">
+    <div class="lf-mark">FWC2026</div>
+    <div class="lf-sub">SEATTLE × VANCOUVER ・ JULY 2026</div>
+  </footer>
+
 </div>
-<footer>FIFA World Cup 2026™ — Private Trip Planner</footer>
+
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+}
+</script>
 </body>
 </html>
