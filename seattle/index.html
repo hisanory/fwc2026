@@ -1,995 +1,1051 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>⚽ SEA組 — シアトル 2026</title>
-<meta name="theme-color" content="#06090f">
-<link rel="manifest" href="../manifest.json">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/ds.css">
-<script src="../assets/ic.js" defer></script>
-<style>
-:root{
-  --accent:#48c5ff;
-  --acc-o:rgba(72,197,255,.12);
-  --acc-m:rgba(72,197,255,.22);
-  --acc-glow:rgba(72,197,255,.14);
-}
-.member-chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px;}
-.mchip{display:inline-flex;align-items:center;gap:6px;
-  padding:6px 12px;border-radius:100px;font-size:.7rem;font-weight:700;
-  background:rgba(72,197,255,.10);color:#fff;
-  border:1px solid rgba(72,197,255,.24);}
-.mchip-name{color:#fff;}
-.upd{display:inline-flex;align-items:center;gap:6px;margin-top:14px;
-  padding:5px 11px;border-radius:100px;font-size:.62rem;font-weight:600;
-  background:rgba(255,255,255,.04);color:var(--text2);
-  border:1px solid var(--line2);}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>⚽ SEA組 — シアトル 2026</title>
+  <meta name="theme-color" content="#06090f">
+  <link rel="manifest" href="../manifest.json">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../assets/ds.css">
+  <script src="../assets/ic.js" defer></script>
+  <style>
+    :root {
+      --accent: #48c5ff;
+      --acc-o: rgba(72, 197, 255, .12);
+      --acc-m: rgba(72, 197, 255, .22);
+      --acc-glow: rgba(72, 197, 255, .14);
+    }
+
+    .member-chips {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .mchip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 100px;
+      font-size: .7rem;
+      font-weight: 700;
+      background: rgba(72, 197, 255, .10);
+      color: #fff;
+      border: 1px solid rgba(72, 197, 255, .24);
+    }
+
+    .mchip-name {
+      color: #fff;
+    }
+
+    .upd {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      padding: 5px 11px;
+      border-radius: 100px;
+      font-size: .62rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, .04);
+      color: var(--text2);
+      border: 1px solid var(--line2);
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- STATUS BAR -->
-<header class="sb">
-  <a href="../" class="sb-home" aria-label="ランディングへ戻る">
-    <span class="ic" data-ic="home" data-size="16"></span>
-  </a>
-  <div class="sb-brand">
-    <div>
-      <div class="sb-brand-mark">SEA組</div>
-      <div class="sb-brand-sub">FIFA WORLD CUP 2026</div>
+  <!-- STATUS BAR -->
+  <header class="sb">
+    <a href="../" class="sb-home" aria-label="ランディングへ戻る">
+      <span class="ic" data-ic="home" data-size="16"></span>
+    </a>
+    <div class="sb-brand">
+      <div>
+        <div class="sb-brand-mark">SEA組</div>
+        <div class="sb-brand-sub">FIFA WORLD CUP 2026</div>
+      </div>
     </div>
-  </div>
-  <div class="sb-clk"><div class="sb-city">JST</div><div class="sb-time" id="clk-jst">--:--</div></div>
-  <div class="sb-sep"></div>
-  <div class="sb-clk"><div class="sb-city">PDT</div><div class="sb-time" id="clk-pdt">--:--</div></div>
-</header>
-
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-eyebrow">
-    <span class="ic" data-ic="ticket" data-size="11"></span>
-    SEA組 / シアトル組
-  </div>
-  <h1 class="hero-title">SEATTLE<br><em>2026</em></h1>
-  <p class="hero-sub"><strong>山内 ＋ 蓮太郎</strong> — 旅のしおり</p>
-
-  <div class="member-chips">
-    <span class="mchip"><span class="ic" data-ic="briefcase" data-size="12"></span><span class="mchip-name">山内</span></span>
-    <span class="mchip"><span class="ic" data-ic="zap" data-size="12"></span><span class="mchip-name">蓮太郎</span></span>
-  </div>
-
-  <div class="tz-toggle">
-    <button class="tz-btn active" id="lbl-j" onclick="setTZ(false)">JST 日本時間</button>
-    <button class="tz-btn" id="lbl-p" onclick="setTZ(true)">PDT 現地時間</button>
-  </div>
-
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-num accent">94</div>
-      <div class="hero-stat-lbl">Match No.</div>
+    <div class="sb-clk">
+      <div class="sb-city">JST</div>
+      <div class="sb-time" id="clk-jst">--:--</div>
     </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">17:00</div>
-      <div class="hero-stat-lbl">Kick Off PDT</div>
+    <div class="sb-sep"></div>
+    <div class="sb-clk">
+      <div class="sb-city">PDT</div>
+      <div class="sb-time" id="clk-pdt">--:--</div>
     </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">6</div>
-      <div class="hero-stat-lbl">Days</div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-eyebrow">
+      <span class="ic" data-ic="ticket" data-size="11"></span>
+      SEA組 / シアトル組
     </div>
-  </div>
+    <h1 class="hero-title">SEATTLE<br><em>2026</em></h1>
+    <p class="hero-sub"><strong>久典 ＋ 蓮太郎</strong> — 旅のしおり</p>
 
-  <span class="upd">
-    <span class="ic" data-ic="clock" data-size="11"></span>
-    最終更新: 2026年5月4日（v4.0）
-  </span>
-</section>
-
-<!-- SECTION NAV -->
-<nav class="snav">
-  <div class="snav-inner">
-    <button class="snav-btn active" data-target="top">
-      <span class="ic" data-ic="home" data-size="11"></span>TOP
-    </button>
-    <button class="snav-btn" data-target="overview">
-      <span class="ic" data-ic="list" data-size="11"></span>概要
-    </button>
-    <button class="snav-btn" data-target="acc">
-      <span class="ic" data-ic="hotel" data-size="11"></span>宿泊
-    </button>
-    <button class="snav-btn" data-target="days">
-      <span class="ic" data-ic="calendar" data-size="11"></span>旅程
-    </button>
-    <button class="snav-btn" data-target="rules">
-      <span class="ic" data-ic="building" data-size="11"></span>観戦Info
-    </button>
-    <button class="snav-btn" data-target="sos">
-      <span class="ic" data-ic="alert-triangle" data-size="11"></span>緊急
-    </button>
-  </div>
-</nav>
-
-<!-- ═══ OVERVIEW: 試合 + 往復 ═══ -->
-<div class="sec-title" id="overview">
-  <span class="sec-tit-ic"><span class="ic" data-ic="trophy" data-size="16"></span></span>
-  OVERVIEW
-  <span class="sec-title-sub">試合 ・ 往復</span>
-</div>
-
-<div class="card-grid" style="padding-top:0">
-
-  <!-- Match hero -->
-  <div class="vc vc-match auto">
-    <div class="vc-bg"></div>
-    <div class="vc-scrim"></div>
-    <div class="match-hero">
-      <div class="ml">FIFA WORLD CUP 2026™ ・ ROUND OF 16</div>
-      <div class="ml-ja">決勝ラウンド16強戦 / Match 94</div>
-      <div class="mvs">TBD<span>VS</span>TBD</div>
-      <div class="mmeta">対戦チームは7/1のグループ戦結果で決定</div>
-      <div class="div-line"></div>
-      <div class="mtime-en">KICK OFF / キックオフ</div>
-      <div class="mtime">17:00<span style="font-size:1rem;color:var(--green);margin-left:8px">PDT</span></div>
-      <div class="mtime-ja">日本時間: 7/7(火) 09:00 JST</div>
+    <div class="member-chips">
+      <span class="mchip"><span class="ic" data-ic="briefcase" data-size="12"></span><span
+          class="mchip-name">久典</span></span>
+      <span class="mchip"><span class="ic" data-ic="zap" data-size="12"></span><span
+          class="mchip-name">蓮太郎</span></span>
     </div>
-    <div class="vc-actions" style="padding-top:12px">
-      <a class="vc-btn vc-btn-green" href="https://maps.google.com/maps?daddr=Lumen+Field+Seattle" target="_blank">
-        <span class="ic" data-ic="map-pin" data-size="11"></span>Lumen Field
-      </a>
-      <button class="vc-btn vc-btn-copy" onclick="copyText('Lumen Field, 800 Occidental Ave S, Seattle, WA 98134')">
-        <span class="ic" data-ic="copy" data-size="11"></span>住所コピー
+
+    <div class="tz-toggle">
+      <button class="tz-btn active" id="lbl-j" onclick="setTZ(false)">JST 日本時間</button>
+      <button class="tz-btn" id="lbl-p" onclick="setTZ(true)">PDT 現地時間</button>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num accent">94</div>
+        <div class="hero-stat-lbl">Match No.</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">17:00</div>
+        <div class="hero-stat-lbl">Kick Off PDT</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">6</div>
+        <div class="hero-stat-lbl">Days</div>
+      </div>
+    </div>
+
+    <span class="upd">
+      <span class="ic" data-ic="clock" data-size="11"></span>
+      最終更新: 2026年5月4日（v4.0）
+    </span>
+  </section>
+
+  <!-- SECTION NAV -->
+  <nav class="snav">
+    <div class="snav-inner">
+      <button class="snav-btn active" data-target="top">
+        <span class="ic" data-ic="home" data-size="11"></span>TOP
+      </button>
+      <button class="snav-btn" data-target="overview">
+        <span class="ic" data-ic="list" data-size="11"></span>概要
+      </button>
+      <button class="snav-btn" data-target="acc">
+        <span class="ic" data-ic="hotel" data-size="11"></span>宿泊
+      </button>
+      <button class="snav-btn" data-target="days">
+        <span class="ic" data-ic="calendar" data-size="11"></span>旅程
+      </button>
+      <button class="snav-btn" data-target="rules">
+        <span class="ic" data-ic="building" data-size="11"></span>観戦Info
+      </button>
+      <button class="snav-btn" data-target="sos">
+        <span class="ic" data-ic="alert-triangle" data-size="11"></span>緊急
       </button>
     </div>
+  </nav>
+
+  <!-- ═══ OVERVIEW: 試合 + 往復 ═══ -->
+  <div class="sec-title" id="overview">
+    <span class="sec-tit-ic"><span class="ic" data-ic="trophy" data-size="16"></span></span>
+    OVERVIEW
+    <span class="sec-title-sub">試合 ・ 往復</span>
   </div>
 
-  <!-- Outbound flight -->
-  <div class="vc vc-flight auto">
-    <div class="vc-bg"></div>
-    <div class="vc-scrim"></div>
-    <div class="vc-content" style="padding-bottom:10px">
-      <div class="vc-eyebrow" style="color:var(--blue)">
-        <span class="ic" data-ic="plane-takeoff" data-size="12"></span>
-        OUTBOUND ・ 往路
+  <div class="card-grid" style="padding-top:0">
+
+    <!-- Match hero -->
+    <div class="vc vc-match auto">
+      <div class="vc-bg"></div>
+      <div class="vc-scrim"></div>
+      <div class="match-hero">
+        <div class="ml">FIFA WORLD CUP 2026™ ・ ROUND OF 16</div>
+        <div class="ml-ja">決勝ラウンド16強戦 / Match 94</div>
+        <div class="mvs">TBD<span>VS</span>TBD</div>
+        <div class="mmeta">対戦チームは7/1のグループ戦結果で決定</div>
+        <div class="div-line"></div>
+        <div class="mtime-en">KICK OFF / キックオフ</div>
+        <div class="mtime">17:00<span style="font-size:1rem;color:var(--green);margin-left:8px">PDT</span></div>
+        <div class="mtime-ja">日本時間: 7/7(火) 09:00 JST</div>
+      </div>
+      <div class="vc-actions" style="padding-top:12px">
+        <a class="vc-btn vc-btn-green" href="https://maps.google.com/maps?daddr=Lumen+Field+Seattle" target="_blank">
+          <span class="ic" data-ic="map-pin" data-size="11"></span>Lumen Field
+        </a>
+        <button class="vc-btn vc-btn-copy" onclick="copyText('Lumen Field, 800 Occidental Ave S, Seattle, WA 98134')">
+          <span class="ic" data-ic="copy" data-size="11"></span>住所コピー
+        </button>
       </div>
     </div>
-    <div class="vc-flight-route">
-      <div class="vc-iata">NRT</div>
-      <div class="vc-arrow-line"></div>
-      <div class="vc-iata">SEA</div>
-    </div>
-    <div class="vc-flight-meta">JAPAN AIRLINES JL068 ・ 9h 5min</div>
-    <div class="vc-flight-row">
-      <div class="col">
-        <div class="lbl">Departure</div>
-        <strong>17:45<span class="tz-tag j">JST</span></strong>
-        <div style="font-size:.62rem;color:var(--muted)">7/3(金)</div>
-      </div>
-      <div class="col" style="text-align:right;align-items:flex-end">
-        <div class="lbl">Arrival</div>
-        <strong>10:50<span class="tz-tag p">PDT</span></strong>
-        <div style="font-size:.62rem;color:var(--muted)">7/3(金) ／ JST 02:55(7/4)</div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Return flight -->
-  <div class="vc vc-flight auto">
-    <div class="vc-bg"></div>
-    <div class="vc-scrim"></div>
-    <div class="vc-content" style="padding-bottom:10px">
-      <div class="vc-eyebrow" style="color:var(--blue)">
-        <span class="ic" data-ic="plane-landing" data-size="12"></span>
-        RETURN ・ 復路
-      </div>
-    </div>
-    <div class="vc-flight-route">
-      <div class="vc-iata">SEA</div>
-      <div class="vc-arrow-line"></div>
-      <div class="vc-iata">NRT</div>
-    </div>
-    <div class="vc-flight-meta">JAPAN AIRLINES JL067 ・ 10h 5min</div>
-    <div class="vc-flight-row">
-      <div class="col">
-        <div class="lbl">Departure</div>
-        <strong>13:25<span class="tz-tag p">PDT</span></strong>
-        <div style="font-size:.62rem;color:var(--muted)">7/8(水)</div>
-      </div>
-      <div class="col" style="text-align:right;align-items:flex-end">
-        <div class="lbl">Arrival</div>
-        <strong>15:30<span class="tz-tag j">JST</span></strong>
-        <div style="font-size:.62rem;color:var(--muted)">7/9(木)</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Pickup -->
-  <div class="vc vc-travel mid">
-    <div class="vc-bg"></div>
-    <div class="vc-scrim"></div>
-    <div class="vc-content">
-      <div class="vc-eyebrow" style="color:var(--gold)">
-        <span class="ic" data-ic="car" data-size="12"></span>
-        AIRPORT PICKUP ・ 空港送迎
-      </div>
-      <div class="vc-title">カツヒサが<br>SEA空港でお迎え</div>
-      <div class="vc-sub">7/3 ・ VAN組（9:36 PDT）→ SEA組（10:50 PDT）合流後、6名全員でBurien Villaへ。</div>
-    </div>
-  </div>
-
-</div>
-
-<!-- ═══ ACCOMMODATION ═══ -->
-<div class="sec-title" id="acc">
-  <span class="sec-tit-ic"><span class="ic" data-ic="hotel" data-size="16"></span></span>
-  ACCOMMODATION
-  <span class="sec-title-sub">宿泊</span>
-</div>
-
-<div class="card-grid" style="padding-top:0">
-
-  <div class="vc vc-hotel mid">
-    <div class="vc-bg"></div>
-    <div class="vc-scrim"></div>
-    <div class="vc-content">
-      <div class="vc-eyebrow" style="color:var(--gold)">
-        <span class="ic" data-ic="bed" data-size="12"></span>
-        STAY 1 ・ 7/3 — 7/6
-      </div>
-      <div class="vc-title">THE BURIEN VILLA</div>
-      <div class="vc-sub">Burien, WA ／ カツヒサ手配・3泊</div>
-    </div>
-    <div class="vc-actions">
-      <a class="vc-btn vc-btn-accent" href="https://maps.google.com/maps?daddr=Burien+WA" target="_blank">
-        <span class="ic" data-ic="map-pin" data-size="11"></span>Burienエリア
-      </a>
-    </div>
-  </div>
-
-  <div class="vc vc-hotel mid" style="border-color:rgba(0,230,118,.32)">
-    <div class="vc-bg"></div>
-    <div class="vc-scrim"></div>
-    <div class="vc-content">
-      <div class="vc-eyebrow" style="color:var(--green)">
-        <span class="ic" data-ic="bed" data-size="12"></span>
-        STAY 2 ・ 7/6 — 7/8 ・ 予約済
-      </div>
-      <div class="vc-title" style="color:var(--green)">MAYFLOWER<br>PARK HOTEL</div>
-      <div class="vc-sub">7/6 16:00 IN ／ 7/8 12:00 OUT ・ 2泊・大人2名</div>
-    </div>
-    <div class="copy-row" style="margin:0 20px 12px" onclick="copyText('405 Olive Way, Seattle, WA 98101')">
-      <span class="copy-val">405 Olive Way, Seattle, WA 98101</span>
-      <span class="copy-ic ic" data-ic="copy" data-size="13"></span>
-    </div>
-    <div class="vc-actions">
-      <a class="vc-btn vc-btn-green" href="https://maps.google.com/maps?daddr=405+Olive+Way+Seattle+WA+98101" target="_blank">
-        <span class="ic" data-ic="map-pin" data-size="11"></span>Mayflower Park Hotel
-      </a>
-    </div>
-  </div>
-
-</div>
-
-<!-- ═══ ITINERARY (DAYS) ═══ -->
-<div class="sec-title" id="days">
-  <span class="sec-tit-ic"><span class="ic" data-ic="calendar" data-size="16"></span></span>
-  ITINERARY
-  <span class="sec-title-sub">6日間 ・ 旅程</span>
-</div>
-
-<div class="card-grid" style="padding-top:0;gap:10px" id="dayList">
-
-  <!-- ───── DAY 1 ───── -->
-  <div class="day-card travel" id="day1" data-anchor>
-    <button class="day-head">
-      <div class="day-num"><span class="day-num-pre">DAY</span>01</div>
-      <div class="day-title">
-        <span class="day-label travel">
-          <span class="ic" data-ic="plane" data-size="10"></span>到着日
-        </span>
-        <div class="day-h2">成田発 → シアトル着 → 全員合流</div>
-        <div class="day-date">7月3日 (金) ・ NRT 17:45 JST → SEA 10:50 PDT</div>
-      </div>
-      <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
-    </button>
-    <div class="day-body">
-      <div class="day-map">
-        <div class="day-map-cap"><span class="ic" data-ic="map-pin" data-size="10"></span>SEATAC → BURIEN → DOWNTOWN</div>
-        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=Pike+Place+Market+Seattle&z=11&output=embed"></iframe>
-      </div>
-
-      <div class="day-section">
-        <div class="day-section-title">
-          <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE
+    <!-- Outbound flight -->
+    <div class="vc vc-flight auto">
+      <div class="vc-bg"></div>
+      <div class="vc-scrim"></div>
+      <div class="vc-content" style="padding-bottom:10px">
+        <div class="vc-eyebrow" style="color:var(--blue)">
+          <span class="ic" data-ic="plane-takeoff" data-size="12"></span>
+          OUTBOUND ・ 往路
         </div>
-        <div class="inline-tl" style="padding:0">
-          <div class="itl-item">
-            <div class="itl-dot tr"></div>
-            <div class="itl-body">
-              <div class="itl-time blue"><span class="t-jst">17:45 JST — 成田出発</span><span class="t-pdt">17:45 JST — Narita Departure</span></div>
-              <div class="itl-title">Japan Airlines JL068</div>
-              <div class="itl-sub">出発3時間前（14:45 JST）には空港着を。JALラウンジも利用可。</div>
-            </div>
+      </div>
+      <div class="vc-flight-route">
+        <div class="vc-iata">NRT</div>
+        <div class="vc-arrow-line"></div>
+        <div class="vc-iata">SEA</div>
+      </div>
+      <div class="vc-flight-meta">JAPAN AIRLINES JL068 ・ 9h 5min</div>
+      <div class="vc-flight-row">
+        <div class="col">
+          <div class="lbl">Departure</div>
+          <strong>17:45<span class="tz-tag j">JST</span></strong>
+          <div style="font-size:.62rem;color:var(--muted)">7/3(金)</div>
+        </div>
+        <div class="col" style="text-align:right;align-items:flex-end">
+          <div class="lbl">Arrival</div>
+          <strong>10:50<span class="tz-tag p">PDT</span></strong>
+          <div style="font-size:.62rem;color:var(--muted)">7/3(金) ／ JST 02:55(7/4)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Return flight -->
+    <div class="vc vc-flight auto">
+      <div class="vc-bg"></div>
+      <div class="vc-scrim"></div>
+      <div class="vc-content" style="padding-bottom:10px">
+        <div class="vc-eyebrow" style="color:var(--blue)">
+          <span class="ic" data-ic="plane-landing" data-size="12"></span>
+          RETURN ・ 復路
+        </div>
+      </div>
+      <div class="vc-flight-route">
+        <div class="vc-iata">SEA</div>
+        <div class="vc-arrow-line"></div>
+        <div class="vc-iata">NRT</div>
+      </div>
+      <div class="vc-flight-meta">JAPAN AIRLINES JL067 ・ 10h 5min</div>
+      <div class="vc-flight-row">
+        <div class="col">
+          <div class="lbl">Departure</div>
+          <strong>13:25<span class="tz-tag p">PDT</span></strong>
+          <div style="font-size:.62rem;color:var(--muted)">7/8(水)</div>
+        </div>
+        <div class="col" style="text-align:right;align-items:flex-end">
+          <div class="lbl">Arrival</div>
+          <strong>15:30<span class="tz-tag j">JST</span></strong>
+          <div style="font-size:.62rem;color:var(--muted)">7/9(木)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pickup -->
+    <div class="vc vc-travel mid">
+      <div class="vc-bg"></div>
+      <div class="vc-scrim"></div>
+      <div class="vc-content">
+        <div class="vc-eyebrow" style="color:var(--gold)">
+          <span class="ic" data-ic="car" data-size="12"></span>
+          AIRPORT PICKUP ・ 空港送迎
+        </div>
+        <div class="vc-title">カツヒサが<br>SEA空港でお迎え</div>
+        <div class="vc-sub">7/3 ・ VAN組（9:36 PDT）→ SEA組（10:50 PDT）合流後、6名全員でBurien Villaへ。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ ACCOMMODATION ═══ -->
+  <div class="sec-title" id="acc">
+    <span class="sec-tit-ic"><span class="ic" data-ic="hotel" data-size="16"></span></span>
+    ACCOMMODATION
+    <span class="sec-title-sub">宿泊</span>
+  </div>
+
+  <div class="card-grid" style="padding-top:0">
+
+    <div class="vc vc-hotel mid">
+      <div class="vc-bg"></div>
+      <div class="vc-scrim"></div>
+      <div class="vc-content">
+        <div class="vc-eyebrow" style="color:var(--gold)">
+          <span class="ic" data-ic="bed" data-size="12"></span>
+          STAY 1 ・ 7/3 — 7/6
+        </div>
+        <div class="vc-title">THE BURIEN VILLA</div>
+        <div class="vc-sub">Burien, WA ／ カツヒサ手配・3泊</div>
+      </div>
+      <div class="vc-actions">
+        <a class="vc-btn vc-btn-accent" href="https://maps.google.com/maps?daddr=Burien+WA" target="_blank">
+          <span class="ic" data-ic="map-pin" data-size="11"></span>Burienエリア
+        </a>
+      </div>
+    </div>
+
+    <div class="vc vc-hotel mid" style="border-color:rgba(0,230,118,.32)">
+      <div class="vc-bg"></div>
+      <div class="vc-scrim"></div>
+      <div class="vc-content">
+        <div class="vc-eyebrow" style="color:var(--green)">
+          <span class="ic" data-ic="bed" data-size="12"></span>
+          STAY 2 ・ 7/6 — 7/8 ・ 予約済
+        </div>
+        <div class="vc-title" style="color:var(--green)">MAYFLOWER<br>PARK HOTEL</div>
+        <div class="vc-sub">7/6 16:00 IN ／ 7/8 12:00 OUT ・ 2泊・大人2名</div>
+      </div>
+      <div class="copy-row" style="margin:0 20px 12px" onclick="copyText('405 Olive Way, Seattle, WA 98101')">
+        <span class="copy-val">405 Olive Way, Seattle, WA 98101</span>
+        <span class="copy-ic ic" data-ic="copy" data-size="13"></span>
+      </div>
+      <div class="vc-actions">
+        <a class="vc-btn vc-btn-green" href="https://maps.google.com/maps?daddr=405+Olive+Way+Seattle+WA+98101"
+          target="_blank">
+          <span class="ic" data-ic="map-pin" data-size="11"></span>Mayflower Park Hotel
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ ITINERARY (DAYS) ═══ -->
+  <div class="sec-title" id="days">
+    <span class="sec-tit-ic"><span class="ic" data-ic="calendar" data-size="16"></span></span>
+    ITINERARY
+    <span class="sec-title-sub">6日間 ・ 旅程</span>
+  </div>
+
+  <div class="card-grid" style="padding-top:0;gap:10px" id="dayList">
+
+    <!-- ───── DAY 1 ───── -->
+    <div class="day-card travel" id="day1" data-anchor>
+      <button class="day-head">
+        <div class="day-num"><span class="day-num-pre">DAY</span>01</div>
+        <div class="day-title">
+          <span class="day-label travel">
+            <span class="ic" data-ic="plane" data-size="10"></span>到着日
+          </span>
+          <div class="day-h2">成田発 → シアトル着 → 全員合流</div>
+          <div class="day-date">7月3日 (金) ・ NRT 17:45 JST → SEA 10:50 PDT</div>
+        </div>
+        <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
+      </button>
+      <div class="day-body">
+        <div class="day-map">
+          <div class="day-map-cap"><span class="ic" data-ic="map-pin" data-size="10"></span>SEATAC → BURIEN → DOWNTOWN
           </div>
-          <div class="itl-item">
-            <div class="itl-dot match"></div>
-            <div class="itl-body">
-              <div class="itl-time green">10:50 PDT — SEAタック空港 ・ 全員合流！</div>
-              <div class="itl-title">カツヒサが車でお迎え → Burien Villaへ</div>
-              <div class="itl-sub">VAN組（芝・コウシ・勇介）は<strong>9:36 PDTに到着済み</strong>。山内・蓮太郎の到着（10:50 PDT）を迎えて、<strong>6名全員がカツヒサの車でBurien Villaへ出発！</strong></div>
-              <div class="tags">
-                <span class="tag"><a href="https://maps.google.com/maps?daddr=Seattle-Tacoma+International+Airport" target="_blank" style="display:flex;align-items:center;gap:4px"><span class="ic" data-ic="map-pin" data-size="10"></span>SEA-TAC</a></span>
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Pike+Place+Market+Seattle&z=11&output=embed"></iframe>
+        </div>
+
+        <div class="day-section">
+          <div class="day-section-title">
+            <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE
+          </div>
+          <div class="inline-tl" style="padding:0">
+            <div class="itl-item">
+              <div class="itl-dot tr"></div>
+              <div class="itl-body">
+                <div class="itl-time blue"><span class="t-jst">17:45 JST — 成田出発</span><span class="t-pdt">17:45 JST —
+                    Narita Departure</span></div>
+                <div class="itl-title">Japan Airlines JL068</div>
+                <div class="itl-sub">出発3時間前（14:45 JST）には空港着を。</div>
+              </div>
+            </div>
+            <div class="itl-item">
+              <div class="itl-dot match"></div>
+              <div class="itl-body">
+                <div class="itl-time green">10:50 PDT — SEAタック空港 ・ 全員合流！</div>
+                <div class="itl-title">カツヒサが車でお迎え → Burien Villaへ</div>
+                <div class="itl-sub">VAN組（芝・コウシ・勇介）は<strong>9:36 PDTに到着済み</strong>。久典・蓮太郎の到着（10:50
+                  PDT）を迎えて、<strong>6名全員がカツヒサの車でBurien Villaへ出発！</strong></div>
+                <div class="tags">
+                  <span class="tag"><a href="https://maps.google.com/maps?daddr=Seattle-Tacoma+International+Airport"
+                      target="_blank" style="display:flex;align-items:center;gap:4px"><span class="ic" data-ic="map-pin"
+                        data-size="10"></span>SEA-TAC</a></span>
+                </div>
+              </div>
+            </div>
+            <div class="itl-item">
+              <div class="itl-dot food"></div>
+              <div class="itl-body">
+                <div class="itl-time gold">11:00以降 — 荷物事前預け</div>
+                <div class="itl-title">Burien Villa</div>
+                <div class="itl-sub">
+                  <strong>正式チェックインはPM3:00から</strong>。11:00以降は荷物だけ置かせてもらえる。カツヒサが先に荷物を置いてくれるので、<strong>皆は到着後そのまま電車でPike
+                    Placeへ直行</strong>。</div>
+              </div>
+            </div>
+            <div class="itl-item">
+              <div class="itl-dot"></div>
+              <div class="itl-body">
+                <div class="itl-time"><span class="t-pdt">15:00 PDT〜 / Afternoon</span><span
+                    class="t-jst">午後（PDT現地）</span></div>
+                <div class="itl-title">Pike Place Market ＆ Golden Age Collectables</div>
+                <div class="itl-sub">シアトルの象徴的な市場。<strong>Golden Age Collectables</strong>でDCグッズも！</div>
+                <div class="tags">
+                  <span class="tag food">Starbucks 1号店</span>
+                  <span class="tag food">Pike Place Chowder</span>
+                  <span class="tag food">Pike Brewing Co.</span>
+                  <span class="tag">Golden Age Collectable</span>
+                </div>
+              </div>
+            </div>
+            <div class="itl-item">
+              <div class="itl-dot"></div>
+              <div class="itl-body">
+                <div class="itl-time">19:00 PDT</div>
+                <div class="itl-title">Costco / スーパーで買い出し</div>
+                <div class="itl-sub">滞在中の自炊用食材を購入。</div>
+              </div>
+            </div>
+            <div class="itl-item">
+              <div class="itl-dot"></div>
+              <div class="itl-body">
+                <div class="itl-time">21:00 PDT</div>
+                <div class="itl-title">自炊 — Burien Villa</div>
+                <div class="itl-sub">旅の初日はホームな夕食でゆっくり。時差ボケ対策に早めに就寝。</div>
               </div>
             </div>
           </div>
-          <div class="itl-item">
-            <div class="itl-dot food"></div>
-            <div class="itl-body">
-              <div class="itl-time gold">11:00以降 — 荷物事前預け</div>
-              <div class="itl-title">Burien Villa</div>
-              <div class="itl-sub"><strong>正式チェックインはPM3:00から</strong>。11:00以降は荷物だけ置かせてもらえる。カツヒサが先に荷物を置いてくれるので、<strong>皆は到着後そのまま電車でPike Placeへ直行</strong>。</div>
-            </div>
-          </div>
-          <div class="itl-item">
-            <div class="itl-dot"></div>
-            <div class="itl-body">
-              <div class="itl-time"><span class="t-pdt">15:00 PDT〜 / Afternoon</span><span class="t-jst">午後（PDT現地）</span></div>
-              <div class="itl-title">Pike Place Market ＆ Golden Age Collectables</div>
-              <div class="itl-sub">シアトルの象徴的な市場。<strong>Golden Age Collectables</strong>でDCグッズも！</div>
-              <div class="tags">
-                <span class="tag food">Starbucks 1号店</span>
-                <span class="tag food">Pike Place Chowder</span>
-                <span class="tag food">Pike Brewing Co.</span>
-                <span class="tag">Golden Age Collectable</span>
-              </div>
-            </div>
-          </div>
-          <div class="itl-item">
-            <div class="itl-dot"></div>
-            <div class="itl-body">
-              <div class="itl-time">19:00 PDT</div>
-              <div class="itl-title">Costco / スーパーで買い出し</div>
-              <div class="itl-sub">滞在中の自炊用食材を購入。</div>
-            </div>
-          </div>
-          <div class="itl-item">
-            <div class="itl-dot"></div>
-            <div class="itl-body">
-              <div class="itl-time">21:00 PDT</div>
-              <div class="itl-title">自炊 — Burien Villa</div>
-              <div class="itl-sub">旅の初日はホームな夕食でゆっくり。時差ボケ対策に早めに就寝。</div>
-            </div>
-          </div>
         </div>
-      </div>
 
-      <div class="tips">
-        <h4><span class="ic" data-ic="info" data-size="13"></span>到着日チェック / Arrival Checklist</h4>
-        <ul>
-          <li><strong>ESTA不要</strong>（今回は不要）</li>
-          <li>パスポート有効期限：入国日から6ヶ月以上</li>
-          <li>eSIM / 国際ローミングをオン（空港Wi-Fiで起動）</li>
-          <li>FIFA公式アプリにチケット保存 ＋ スクリーンショット</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- ───── DAY 2 ───── -->
-  <div class="day-card" id="day2" data-anchor>
-    <button class="day-head">
-      <div class="day-num"><span class="day-num-pre">DAY</span>02</div>
-      <div class="day-title">
-        <span class="day-label">
-          <span class="ic" data-ic="camera" data-size="10"></span>観光日
-        </span>
-        <div class="day-h2">MoPOP + レンタカー + Boeing + 独立記念日花火</div>
-        <div class="day-date">7月4日 (土) ・ Independence Day 🇺🇸</div>
-      </div>
-      <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
-    </button>
-    <div class="day-body">
-      <div class="day-map">
-        <div class="day-map-cap"><span class="ic" data-ic="map-pin" data-size="10"></span>SEATTLE CENTER → EVERETT</div>
-        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=Boeing+Future+of+Flight+Everett+WA&z=10&output=embed"></iframe>
-      </div>
-
-      <div class="day-section">
-        <div class="day-section-title">
-          <span class="ic" data-ic="car" data-size="13"></span>レンタカー手配
-        </div>
-        <div class="inline-tl" style="padding:0">
-          <div class="itl-item">
-            <div class="itl-dot food"></div>
-            <div class="itl-body">
-              <div class="itl-time gold">7/4 終日</div>
-              <div class="itl-title">6人以上乗りレンタカー 1日レンタル</div>
-              <div class="itl-sub">Boeingがある<strong>Everettは北方向</strong>で電車では不便のため、7/4のみ6人以上乗れるレンタカーを1日レンタル。MoPOP後のBoeing往復・Metropolitan Grillへの移動に使用。返却は夜。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="day-section">
-        <div class="day-section-title">
-          <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE
-        </div>
-        <div class="inline-tl" style="padding:0">
-          <div class="itl-item">
-            <div class="itl-dot"></div>
-            <div class="itl-body">
-              <div class="itl-time">10:00 PDT</div>
-              <div class="itl-title">Museum of Pop Culture (MoPOP)</div>
-              <div class="itl-sub"><strong>🦇 バットマン展示！ジョージ・クルーニー版バットスーツ</strong>も展示中。DC・SF・音楽など多彩な展示。スペースニードル横。</div>
-              <div class="tags">
-                <span class="tag tr">🚇 モノレール Westlake → Seattle Center</span>
-              </div>
-            </div>
-          </div>
-          <div class="itl-item">
-            <div class="itl-dot food"></div>
-            <div class="itl-body">
-              <div class="itl-time gold">12:00 PDT</div>
-              <div class="itl-title">Seattle Center周辺でランチ</div>
-              <div class="itl-sub">MoPOP観覧後、Boeing Everettへ移動前にランチ。</div>
-            </div>
-          </div>
-          <div class="itl-item">
-            <div class="itl-dot"></div>
-            <div class="itl-body">
-              <div class="itl-time">14:00 PDT</div>
-              <div class="itl-title">Boeing Future of Flight ＆ Tour</div>
-              <div class="itl-sub">世界最大の旅客機製造工場。<strong>777・787・737</strong>の製造ラインを間近に。事前予約推奨。</div>
-            </div>
-          </div>
-          <div class="itl-item">
-            <div class="itl-dot food"></div>
-            <div class="itl-body">
-              <div class="itl-time gold">19:00 PDT</div>
-              <div class="itl-title">Metropolitan Grill</div>
-              <div class="itl-sub">シアトル屈指のステーキハウス。Boeing観覧後の豪華ディナー。<strong>要予約！</strong></div>
-            </div>
-          </div>
-          <div class="itl-item">
-            <div class="itl-dot match"></div>
-            <div class="itl-body">
-              <div class="itl-time green">22:00 PDT</div>
-              <div class="itl-title">South Lake Union Park ・ 独立記念日花火 🇺🇸</div>
-              <div class="itl-sub">7月4日・アメリカ独立記念日。湖面に映る花火が絶景。</div>
-            </div>
-          </div>
+        <div class="tips">
+          <h4><span class="ic" data-ic="info" data-size="13"></span>到着日チェック / Arrival Checklist</h4>
+          <ul>
+            <li><strong>ESTA不要</strong>（今回は不要）</li>
+            <li>パスポート有効期限：入国日から6ヶ月以上</li>
+            <li>eSIM / 国際ローミングをオン（空港Wi-Fiで起動）</li>
+            <li>FIFA公式アプリにチケット保存 ＋ スクリーンショット</li>
+          </ul>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- ───── DAY 3 ───── -->
-  <div class="day-card" id="day3" data-anchor>
-    <button class="day-head">
-      <div class="day-num"><span class="day-num-pre">DAY</span>03</div>
-      <div class="day-title">
-        <span class="day-label">
-          <span class="ic" data-ic="camera" data-size="10"></span>観光日
-        </span>
-        <div class="day-h2">イチロー像 → MLB → Lumen Field周辺</div>
-        <div class="day-date">7月5日 (日)</div>
-      </div>
-      <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
-    </button>
-    <div class="day-body">
-      <div class="day-map">
-        <div class="day-map-cap"><span class="ic" data-ic="map-pin" data-size="10"></span>T-MOBILE PARK → LUMEN FIELD</div>
-        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=T-Mobile+Park+Seattle&z=15&output=embed"></iframe>
-      </div>
-
-      <div class="day-section">
-        <div class="day-section-title">
-          <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE
+    <!-- ───── DAY 2 ───── -->
+    <div class="day-card" id="day2" data-anchor>
+      <button class="day-head">
+        <div class="day-num"><span class="day-num-pre">DAY</span>02</div>
+        <div class="day-title">
+          <span class="day-label">
+            <span class="ic" data-ic="camera" data-size="10"></span>観光日
+          </span>
+          <div class="day-h2">MoPOP + レンタカー + Boeing + 独立記念日花火</div>
+          <div class="day-date">7月4日 (土) ・ Independence Day 🇺🇸</div>
         </div>
-        <div class="inline-tl" style="padding:0">
-          <div class="itl-item">
-            <div class="itl-dot"></div>
-            <div class="itl-body">
-              <div class="itl-time">11:00 PDT</div>
-              <div class="itl-title">T-Mobile Park周辺 ・ イチロー像</div>
-              <div class="itl-sub"><strong>イチロー像</strong>で記念写真！試合前のグッズショッピング。</div>
-            </div>
+        <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
+      </button>
+      <div class="day-body">
+        <div class="day-map">
+          <div class="day-map-cap"><span class="ic" data-ic="map-pin" data-size="10"></span>SEATTLE CENTER → EVERETT
           </div>
-          <div class="itl-item">
-            <div class="itl-dot food"></div>
-            <div class="itl-body">
-              <div class="itl-time gold">13:30 PDT — ⚾ PLAY BALL!</div>
-              <div class="itl-title">MLB ・ SEA Mariners vs TOR Blue Jays @ T-Mobile Park</div>
-              <div class="itl-sub">本場アメリカ野球！ホットドッグ・ガーリックフライ必食。</div>
-              <div class="tags">
-                <span class="tag tr">🚇 Link Light Rail「Stadium」駅直結</span>
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Boeing+Future+of+Flight+Everett+WA&z=10&output=embed"></iframe>
+        </div>
+
+        <div class="day-section">
+          <div class="day-section-title">
+            <span class="ic" data-ic="car" data-size="13"></span>レンタカー手配
+          </div>
+          <div class="inline-tl" style="padding:0">
+            <div class="itl-item">
+              <div class="itl-dot food"></div>
+              <div class="itl-body">
+                <div class="itl-time gold">7/4 終日</div>
+                <div class="itl-title">6人以上乗りレンタカー 1日レンタル</div>
+                <div class="itl-sub">
+                  Boeingがある<strong>Everettは北方向</strong>で電車では不便のため、7/4のみ6人以上乗れるレンタカーを1日レンタル。MoPOP後のBoeing往復・Metropolitan
+                  Grillへの移動に使用。返却は夜。</div>
               </div>
             </div>
           </div>
-          <div class="itl-item">
-            <div class="itl-dot"></div>
-            <div class="itl-body">
-              <div class="itl-time">17:00 PDT</div>
-              <div class="itl-title">Lumen Field周辺 Shopping</div>
-              <div class="itl-sub">明日の試合（Match 94）に備えてLumen Field周辺のWCグッズをリサーチ・購入。</div>
-            </div>
-          </div>
-          <div class="itl-item">
-            <div class="itl-dot"></div>
-            <div class="itl-body">
-              <div class="itl-time">19:00 PDT</div>
-              <div class="itl-title">自炊 — Burien Villa</div>
-              <div class="itl-sub">明日はPacking & Check Out。早めに就寝。</div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- ───── DAY 4 — MATCH ───── -->
-  <div class="day-card match open" id="day4" data-anchor>
-    <button class="day-head">
-      <div class="day-num"><span class="day-num-pre">DAY</span>04</div>
-      <div class="day-title">
-        <span class="day-label match">
-          <span class="ic" data-ic="trophy" data-size="10"></span>MATCH DAY
-        </span>
-        <div class="day-h2">Check Out → Match 94 🏆</div>
-        <div class="day-date">7月6日 (月) ・ Kick Off 17:00 PDT</div>
-      </div>
-      <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
-    </button>
-    <div class="day-body">
-      <div class="day-map">
-        <div class="day-map-cap"><span class="ic" data-ic="map-pin" data-size="10"></span>LUMEN FIELD ・ MATCH 94</div>
-        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=Lumen+Field+800+Occidental+Ave+S+Seattle&z=16&output=embed"></iframe>
-      </div>
-
-      <div class="day-section">
-        <div class="day-section-title">
-          <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE
-        </div>
-        <div class="inline-tl" style="padding:0">
-          <div class="itl-item">
-            <div class="itl-dot"></div>
-            <div class="itl-body">
-              <div class="itl-time">10:00 PDT</div>
-              <div class="itl-title">Packing / 荷造り</div>
-              <div class="itl-sub">今日でBurien Villaともお別れ。スーツケースをまとめる。</div>
-            </div>
+        <div class="day-section">
+          <div class="day-section-title">
+            <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE
           </div>
-          <div class="itl-item">
-            <div class="itl-dot"></div>
-            <div class="itl-body">
-              <div class="itl-time">11:00 PDT</div>
-              <div class="itl-title">Burien Villa チェックアウト</div>
-              <div class="itl-sub">Mayflower Park Hotelへ先に荷物を預けに行く。</div>
+          <div class="inline-tl" style="padding:0">
+            <div class="itl-item">
+              <div class="itl-dot"></div>
+              <div class="itl-body">
+                <div class="itl-time">10:00 PDT</div>
+                <div class="itl-title">Museum of Pop Culture (MoPOP)</div>
+                <div class="itl-sub"><strong>🦇 バットマン展示！ジョージ・クルーニー版バットスーツ</strong>も展示中。DC・SF・音楽など多彩な展示。スペースニードル横。</div>
+                <div class="tags">
+                  <span class="tag tr">🚇 モノレール Westlake → Seattle Center</span>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="itl-item">
-            <div class="itl-dot match"></div>
-            <div class="itl-body">
-              <div class="itl-time green">12:00 PDT</div>
-              <div class="itl-title">Stevie's Famous Burien Pizza</div>
-              <div class="itl-sub">試合前の腹ごしらえ。地元で人気の本格ピザ。</div>
+            <div class="itl-item">
+              <div class="itl-dot food"></div>
+              <div class="itl-body">
+                <div class="itl-time gold">12:00 PDT</div>
+                <div class="itl-title">Seattle Center周辺でランチ</div>
+                <div class="itl-sub">MoPOP観覧後、Boeing Everettへ移動前にランチ。</div>
+              </div>
             </div>
-          </div>
-          <div class="itl-item">
-            <div class="itl-dot match"></div>
-            <div class="itl-body">
-              <div class="itl-time green">15:00 PDT</div>
-              <div class="itl-title">Lumen Field周辺 Shopping</div>
-              <div class="itl-sub">スタジアム周辺のWCグッズ・お土産をゲット！</div>
+            <div class="itl-item">
+              <div class="itl-dot"></div>
+              <div class="itl-body">
+                <div class="itl-time">14:00 PDT</div>
+                <div class="itl-title">Boeing Future of Flight ＆ Tour</div>
+                <div class="itl-sub">世界最大の旅客機製造工場。<strong>777・787・737</strong>の製造ラインを間近に。事前予約推奨。</div>
+              </div>
             </div>
-          </div>
-          <div class="itl-item">
-            <div class="itl-dot match"></div>
-            <div class="itl-body">
-              <div class="itl-time green">16:00 PDT</div>
-              <div class="itl-title">Mayflower Park Hotel チェックイン</div>
-              <div class="itl-sub">Lumen Fieldまで<strong>徒歩約10分</strong>の好立地！試合前に荷物を置いてそのままスタジアムへ。</div>
+            <div class="itl-item">
+              <div class="itl-dot food"></div>
+              <div class="itl-body">
+                <div class="itl-time gold">19:00 PDT</div>
+                <div class="itl-title">Metropolitan Grill</div>
+                <div class="itl-sub">シアトル屈指のステーキハウス。Boeing観覧後の豪華ディナー。<strong>要予約！</strong></div>
+              </div>
             </div>
-          </div>
-          <div class="itl-item">
-            <div class="itl-dot match"></div>
-            <div class="itl-body">
-              <div class="itl-time green">⚽ 17:00 PDT — KICK OFF</div>
-              <div class="itl-title">FIFA WC ・ Round of 16 / Match 94</div>
-              <div class="itl-sub"><strong>Lumen Field</strong>（Seattle / 65,000+人）。蓮太郎と世界最高の舞台へ！</div>
-              <div class="tags">
-                <span class="tag tr">🚇 Link「Stadium」駅</span>
-                <span class="tag tr">🚶 Pioneer Squareから10分</span>
+            <div class="itl-item">
+              <div class="itl-dot match"></div>
+              <div class="itl-body">
+                <div class="itl-time green">22:00 PDT</div>
+                <div class="itl-title">South Lake Union Park ・ 独立記念日花火 🇺🇸</div>
+                <div class="itl-sub">7月4日・アメリカ独立記念日。湖面に映る花火が絶景。</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- ───── DAY 3 ───── -->
+    <div class="day-card" id="day3" data-anchor>
+      <button class="day-head">
+        <div class="day-num"><span class="day-num-pre">DAY</span>03</div>
+        <div class="day-title">
+          <span class="day-label">
+            <span class="ic" data-ic="camera" data-size="10"></span>観光日
+          </span>
+          <div class="day-h2">イチロー像 → MLB → Lumen Field周辺</div>
+          <div class="day-date">7月5日 (日)</div>
+        </div>
+        <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
+      </button>
+      <div class="day-body">
+        <div class="day-map">
+          <div class="day-map-cap"><span class="ic" data-ic="map-pin" data-size="10"></span>T-MOBILE PARK → LUMEN FIELD
+          </div>
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=T-Mobile+Park+Seattle&z=15&output=embed"></iframe>
+        </div>
+
+        <div class="day-section">
+          <div class="day-section-title">
+            <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE
+          </div>
+          <div class="inline-tl" style="padding:0">
+            <div class="itl-item">
+              <div class="itl-dot"></div>
+              <div class="itl-body">
+                <div class="itl-time">11:00 PDT</div>
+                <div class="itl-title">T-Mobile Park周辺 ・ イチロー像</div>
+                <div class="itl-sub"><strong>イチロー像</strong>で記念写真！試合前のグッズショッピング。</div>
+              </div>
+            </div>
+            <div class="itl-item">
+              <div class="itl-dot food"></div>
+              <div class="itl-body">
+                <div class="itl-time gold">13:30 PDT — ⚾ PLAY BALL!</div>
+                <div class="itl-title">MLB ・ SEA Mariners vs TOR Blue Jays @ T-Mobile Park</div>
+                <div class="itl-sub">本場アメリカ野球！ホットドッグ・ガーリックフライ必食。</div>
+                <div class="tags">
+                  <span class="tag tr">🚇 Link Light Rail「Stadium」駅直結</span>
+                </div>
+              </div>
+            </div>
+            <div class="itl-item">
+              <div class="itl-dot"></div>
+              <div class="itl-body">
+                <div class="itl-time">17:00 PDT</div>
+                <div class="itl-title">Lumen Field周辺 Shopping</div>
+                <div class="itl-sub">明日の試合（Match 94）に備えてLumen Field周辺のWCグッズをリサーチ・購入。</div>
+              </div>
+            </div>
+            <div class="itl-item">
+              <div class="itl-dot"></div>
+              <div class="itl-body">
+                <div class="itl-time">19:00 PDT</div>
+                <div class="itl-title">自炊 — Burien Villa</div>
+                <div class="itl-sub">明日はPacking & Check Out。早めに就寝。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───── DAY 4 — MATCH ───── -->
+    <div class="day-card match open" id="day4" data-anchor>
+      <button class="day-head">
+        <div class="day-num"><span class="day-num-pre">DAY</span>04</div>
+        <div class="day-title">
+          <span class="day-label match">
+            <span class="ic" data-ic="trophy" data-size="10"></span>MATCH DAY
+          </span>
+          <div class="day-h2">Check Out → Match 94 🏆</div>
+          <div class="day-date">7月6日 (月) ・ Kick Off 17:00 PDT</div>
+        </div>
+        <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
+      </button>
+      <div class="day-body">
+        <div class="day-map">
+          <div class="day-map-cap"><span class="ic" data-ic="map-pin" data-size="10"></span>LUMEN FIELD ・ MATCH 94</div>
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Lumen+Field+800+Occidental+Ave+S+Seattle&z=16&output=embed"></iframe>
+        </div>
+
+        <div class="day-section">
+          <div class="day-section-title">
+            <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE
+          </div>
+          <div class="inline-tl" style="padding:0">
+            <div class="itl-item">
+              <div class="itl-dot"></div>
+              <div class="itl-body">
+                <div class="itl-time">10:00 PDT</div>
+                <div class="itl-title">Packing / 荷造り</div>
+                <div class="itl-sub">今日でBurien Villaともお別れ。スーツケースをまとめる。</div>
+              </div>
+            </div>
+            <div class="itl-item">
+              <div class="itl-dot"></div>
+              <div class="itl-body">
+                <div class="itl-time">11:00 PDT</div>
+                <div class="itl-title">Burien Villa チェックアウト</div>
+                <div class="itl-sub">Mayflower Park Hotelへ先に荷物を預けに行く。</div>
+              </div>
+            </div>
+            <div class="itl-item">
+              <div class="itl-dot match"></div>
+              <div class="itl-body">
+                <div class="itl-time green">12:00 PDT</div>
+                <div class="itl-title">Stevie's Famous Burien Pizza</div>
+                <div class="itl-sub">試合前の腹ごしらえ。地元で人気の本格ピザ。</div>
+              </div>
+            </div>
+            <div class="itl-item">
+              <div class="itl-dot match"></div>
+              <div class="itl-body">
+                <div class="itl-time green">15:00 PDT</div>
+                <div class="itl-title">Lumen Field周辺 Shopping</div>
+                <div class="itl-sub">スタジアム周辺のWCグッズ・お土産をゲット！</div>
+              </div>
+            </div>
+            <div class="itl-item">
+              <div class="itl-dot match"></div>
+              <div class="itl-body">
+                <div class="itl-time green">16:00 PDT</div>
+                <div class="itl-title">Mayflower Park Hotel チェックイン</div>
+                <div class="itl-sub">Lumen Fieldまで<strong>徒歩約10分</strong>の好立地！試合前に荷物を置いてそのままスタジアムへ。</div>
+              </div>
+            </div>
+            <div class="itl-item">
+              <div class="itl-dot match"></div>
+              <div class="itl-body">
+                <div class="itl-time green">⚽ 17:00 PDT — KICK OFF</div>
+                <div class="itl-title">FIFA WC ・ Round of 16 / Match 94</div>
+                <div class="itl-sub"><strong>Lumen Field</strong>（Seattle / 65,000+人）。蓮太郎と世界最高の舞台へ！</div>
+                <div class="tags">
+                  <span class="tag tr">🚇 Link「Stadium」駅</span>
+                  <span class="tag tr">🚶 Pioneer Squareから10分</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───── DAY 5 ───── -->
+    <div class="day-card" id="day5" data-anchor>
+      <button class="day-head">
+        <div class="day-num"><span class="day-num-pre">DAY</span>05</div>
+        <div class="day-title">
+          <span class="day-label food">
+            <span class="ic" data-ic="shopping-bag" data-size="10"></span>最終観光日
+          </span>
+          <div class="day-h2">Check Out → LEGO 🧱 → Sundbar</div>
+          <div class="day-date">7月7日 (火)</div>
+        </div>
+        <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
+      </button>
+      <div class="day-body">
+        <div class="day-map">
+          <div class="day-map-cap"><span class="ic" data-ic="map-pin" data-size="10"></span>DOWNTOWN SEATTLE</div>
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Bricks+and+Minifigs+Seattle&z=12&output=embed"></iframe>
+        </div>
+
+        <div class="day-section">
+          <div class="day-section-title">
+            <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE
+          </div>
+          <div class="inline-tl" style="padding:0">
+            <div class="itl-item">
+              <div class="itl-dot"></div>
+              <div class="itl-body">
+                <div class="itl-time">11:00 PDT</div>
+                <div class="itl-title">Mayflower Park Hotel — 翌日も滞在中</div>
+                <div class="itl-sub">今日もMayflower Park Hotel滞在。チェックアウトは7/8(水) 12:00まで。</div>
+              </div>
+            </div>
+            <div class="itl-item">
+              <div class="itl-dot"></div>
+              <div class="itl-body">
+                <div class="itl-time">午前〜午後</div>
+                <div class="itl-title">Lumen Field周辺 Shopping</div>
+                <div class="itl-sub">昨日のMatch 94の余韻の中、Lumen Field周辺でWCグッズ・土産を購入。</div>
+              </div>
+            </div>
+            <div class="itl-item">
+              <div class="itl-dot food"></div>
+              <div class="itl-body">
+                <div class="itl-time gold">午後 — 蓮太郎メインイベント！</div>
+                <div class="itl-title">Bricks & Minifigs ・ LEGO DCミニフィグ探し</div>
+                <div class="itl-sub"><strong>LEGO DCコレクションの宝庫！</strong>バットマン・スーパーマン・ヴィランなど中古・レアLEGO専門店。</div>
+              </div>
+            </div>
+            <div class="itl-item">
+              <div class="itl-dot match"></div>
+              <div class="itl-body">
+                <div class="itl-time green">18:00 PDT — Dinner</div>
+                <div class="itl-title">The Sundbar ・ VAN組と合同の最後の夜</div>
+                <div class="itl-sub">VAN組（芝・コウシ・勇介・カツヒサ）と合同夕食。シアトルでの旅の締めくくり。この後VAN組はバンクーバーへ出発。</div>
+              </div>
+            </div>
+            <div class="itl-item">
+              <div class="itl-dot"></div>
+              <div class="itl-body">
+                <div class="itl-time">22:00 PDT</div>
+                <div class="itl-title">Packing / 荷造り</div>
+                <div class="itl-sub">翌朝出発に備えてパッキング完了。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tips">
+          <h4><span class="ic" data-ic="info" data-size="13"></span>帰国前チェック / Pre-departure Checklist</h4>
+          <ul>
+            <li>スーツケース重量確認（通常23kg上限）</li>
+            <li>液体物100ml以下 → 透明ジップ袋 or 預け荷物へ</li>
+            <li>LEGOやコレクターグッズはしっかり梱包</li>
+            <li>Visit Japan Web（税関申告）に登録</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───── DAY 6 ───── -->
+    <div class="day-card travel" id="day6" data-anchor>
+      <button class="day-head">
+        <div class="day-num"><span class="day-num-pre">DAY</span>06</div>
+        <div class="day-title">
+          <span class="day-label ret">
+            <span class="ic" data-ic="plane-landing" data-size="10"></span>帰国日
+          </span>
+          <div class="day-h2">Return to Japan</div>
+          <div class="day-date">7月8日 (水) ・ SEA 13:25 PDT → NRT 7/9 15:30 JST</div>
+        </div>
+        <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
+      </button>
+      <div class="day-body">
+
+        <div class="day-section" style="padding-top:16px">
+          <div class="vc vc-flight auto" style="margin:0 0 8px">
+            <div class="vc-bg"></div>
+            <div class="vc-scrim"></div>
+            <div class="vc-flight-route" style="padding-top:18px">
+              <div class="vc-iata">SEA</div>
+              <div class="vc-arrow-line"></div>
+              <div class="vc-iata">NRT</div>
+            </div>
+            <div class="vc-flight-meta">JAPAN AIRLINES JL067 ・ 10h 5min</div>
+            <div class="vc-flight-row">
+              <div class="col">
+                <div class="lbl">Departure</div>
+                <strong>13:25<span class="tz-tag p">PDT</span></strong>
+                <div style="font-size:.62rem;color:var(--muted)">7/8(水)</div>
+              </div>
+              <div class="col" style="text-align:right;align-items:flex-end">
+                <div class="lbl">Arrival</div>
+                <strong>15:30<span class="tz-tag j">JST</span></strong>
+                <div style="font-size:.62rem;color:var(--muted)">7/9(木)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-section">
+          <div class="day-section-title">
+            <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE
+          </div>
+          <div class="inline-tl" style="padding:0">
+            <div class="itl-item">
+              <div class="itl-dot"></div>
+              <div class="itl-body">
+                <div class="itl-time">〜12:00 PDT</div>
+                <div class="itl-title">Mayflower Park Hotel チェックアウト</div>
+                <div class="itl-sub">チェックアウト期限は<strong>12:00</strong>。荷物をまとめてSEAタックへ！</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tips">
+          <h4><span class="ic" data-ic="info" data-size="13"></span>逆算スケジュール / Timeline (PDT)</h4>
+          <ul>
+            <li>〜12:00 PDT Mayflower Park Hotel チェックアウト</li>
+            <li>11:00〜11:30 PDT SEAタック到着目標</li>
+            <li>12:30 PDT JALチェックインカウンター</li>
+            <li>13:25 PDT JL067 出発 / Departure</li>
+            <li>JALチェックインは出発2〜3時間前</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- ───── DAY 5 ───── -->
-  <div class="day-card" id="day5" data-anchor>
-    <button class="day-head">
-      <div class="day-num"><span class="day-num-pre">DAY</span>05</div>
-      <div class="day-title">
-        <span class="day-label food">
-          <span class="ic" data-ic="shopping-bag" data-size="10"></span>最終観光日
-        </span>
-        <div class="day-h2">Check Out → LEGO 🧱 → Sundbar</div>
-        <div class="day-date">7月7日 (火)</div>
+  <!-- ═══ STADIUM INFO ═══ -->
+  <div class="sec-title" id="rules">
+    <span class="sec-tit-ic"><span class="ic" data-ic="building" data-size="16"></span></span>
+    STADIUM INFO
+    <span class="sec-title-sub">観戦ガイド</span>
+  </div>
+
+  <div class="card-grid" style="padding-top:0">
+    <div class="stadium-card">
+      <div class="vc-eyebrow" style="color:var(--accent);margin-bottom:8px">
+        <span class="ic" data-ic="map-pin" data-size="11"></span>VENUE
       </div>
-      <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
+      <div class="sc-name">LUMEN FIELD ・ SEATTLE</div>
+      <div class="sc-ja">800 Occidental Ave S, Seattle, WA 98134</div>
+      <div class="copy-row" style="margin-top:14px"
+        onclick="copyText('Lumen Field, 800 Occidental Ave S, Seattle, WA 98134')">
+        <span class="copy-val">800 Occidental Ave S, Seattle, WA 98134</span>
+        <span class="copy-ic ic" data-ic="copy" data-size="13"></span>
+      </div>
+      <div class="vc-actions" style="padding:14px 0 0">
+        <a class="vc-btn vc-btn-accent" href="https://maps.google.com/maps?daddr=800+Occidental+Ave+S+Seattle+WA"
+          target="_blank">
+          <span class="ic" data-ic="navigation" data-size="11"></span>Google Maps
+        </a>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="info-tile">
+        <div class="info-tile-ic"><span class="ic" data-ic="package" data-size="14"></span></div>
+        <h4>Bags / 持込荷物</h4>
+        <p>クリアバッグのみ（12×6×12in）</p>
+      </div>
+      <div class="info-tile">
+        <div class="info-tile-ic"><span class="ic" data-ic="camera" data-size="14"></span></div>
+        <h4>Camera / カメラ</h4>
+        <p>スマホOK。一眼・PC禁止</p>
+      </div>
+      <div class="info-tile">
+        <div class="info-tile-ic"><span class="ic" data-ic="coffee" data-size="14"></span></div>
+        <h4>Drinks / 飲物</h4>
+        <p>未開封水のみ</p>
+      </div>
+      <div class="info-tile">
+        <div class="info-tile-ic"><span class="ic" data-ic="clock" data-size="14"></span></div>
+        <h4>Arrive / 到着</h4>
+        <p>2〜3時間前推奨</p>
+      </div>
+      <div class="info-tile">
+        <div class="info-tile-ic"><span class="ic" data-ic="bus" data-size="14"></span></div>
+        <h4>Transit / 交通</h4>
+        <p>Link「Stadium」駅すぐ</p>
+      </div>
+      <div class="info-tile">
+        <div class="info-tile-ic"><span class="ic" data-ic="ticket" data-size="14"></span></div>
+        <h4>Tickets</h4>
+        <p>FIFA公式アプリ ＋ スクショbackup</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ EMERGENCY ═══ -->
+  <div class="sec-title" id="sos">
+    <span class="sec-tit-ic" style="background:rgba(255,77,77,.14);color:var(--red);border-color:rgba(255,77,77,.28)">
+      <span class="ic" data-ic="alert-triangle" data-size="16"></span>
+    </span>
+    EMERGENCY
+    <span class="sec-title-sub">緊急連絡</span>
+  </div>
+
+  <div class="card-grid" style="padding-top:0">
+    <div class="grid-2">
+      <div class="info-tile" style="border-color:rgba(255,77,77,.24);background:rgba(255,77,77,.05)">
+        <div class="info-tile-ic"
+          style="background:rgba(255,77,77,.14);color:var(--red);border-color:rgba(255,77,77,.28)">
+          <span class="ic" data-ic="phone" data-size="14"></span>
+        </div>
+        <h4>Emergency / 緊急</h4>
+        <p>📞 <strong style="color:var(--red)">911</strong>（米国共通）</p>
+      </div>
+      <div class="info-tile">
+        <div class="info-tile-ic"><span class="ic" data-ic="flag" data-size="14"></span></div>
+        <h4>在シアトル日本総領事館</h4>
+        <p onclick="copyText('(206) 682-9107')" style="cursor:pointer">📞 (206) 682-9107 📋</p>
+      </div>
+      <div class="info-tile">
+        <div class="info-tile-ic"><span class="ic" data-ic="globe" data-size="14"></span></div>
+        <h4>Exchange Rate</h4>
+        <p>1 USD ≈ 150円</p>
+      </div>
+      <div class="info-tile">
+        <div class="info-tile-ic"><span class="ic" data-ic="wifi" data-size="14"></span></div>
+        <h4>SIM / 通信</h4>
+        <p>eSIM / 国際ローミングを事前設定</p>
+      </div>
+      <div class="info-tile">
+        <div class="info-tile-ic"><span class="ic" data-ic="cloud-sun" data-size="14"></span></div>
+        <h4>Weather / 気候</h4>
+        <p>7月: 最高24℃・夜15℃</p>
+      </div>
+      <div class="info-tile">
+        <div class="info-tile-ic"><span class="ic" data-ic="refresh" data-size="14"></span></div>
+        <h4>Offline / オフライン</h4>
+        <p>機内モードでも閲覧可（PWA）</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="ft-mark">SEA組 ・ SEATTLE 2026</div>
+    <div class="ft-sub">Match 94 ・ Round of 16 ・ Lumen Field ・ July 6, 17:00 PDT</div>
+    <div class="ft-meta">JAL JL068 NRT→SEA ／ JL067 SEA→NRT</div>
+  </footer>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bn">
+    <button class="bn-btn active" data-target="top">
+      <span class="ic" data-ic="home" data-size="20"></span>
+      TOP
     </button>
-    <div class="day-body">
-      <div class="day-map">
-        <div class="day-map-cap"><span class="ic" data-ic="map-pin" data-size="10"></span>DOWNTOWN SEATTLE</div>
-        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=Bricks+and+Minifigs+Seattle&z=12&output=embed"></iframe>
-      </div>
-
-      <div class="day-section">
-        <div class="day-section-title">
-          <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE
-        </div>
-        <div class="inline-tl" style="padding:0">
-          <div class="itl-item">
-            <div class="itl-dot"></div>
-            <div class="itl-body">
-              <div class="itl-time">11:00 PDT</div>
-              <div class="itl-title">Mayflower Park Hotel — 翌日も滞在中</div>
-              <div class="itl-sub">今日もMayflower Park Hotel滞在。チェックアウトは7/8(水) 12:00まで。</div>
-            </div>
-          </div>
-          <div class="itl-item">
-            <div class="itl-dot"></div>
-            <div class="itl-body">
-              <div class="itl-time">午前〜午後</div>
-              <div class="itl-title">Lumen Field周辺 Shopping</div>
-              <div class="itl-sub">昨日のMatch 94の余韻の中、Lumen Field周辺でWCグッズ・土産を購入。</div>
-            </div>
-          </div>
-          <div class="itl-item">
-            <div class="itl-dot food"></div>
-            <div class="itl-body">
-              <div class="itl-time gold">午後 — 蓮太郎メインイベント！</div>
-              <div class="itl-title">Bricks & Minifigs ・ LEGO DCミニフィグ探し</div>
-              <div class="itl-sub"><strong>LEGO DCコレクションの宝庫！</strong>バットマン・スーパーマン・ヴィランなど中古・レアLEGO専門店。</div>
-            </div>
-          </div>
-          <div class="itl-item">
-            <div class="itl-dot match"></div>
-            <div class="itl-body">
-              <div class="itl-time green">18:00 PDT — Dinner</div>
-              <div class="itl-title">The Sundbar ・ VAN組と合同の最後の夜</div>
-              <div class="itl-sub">VAN組（芝・コウシ・勇介・カツヒサ）と合同夕食。シアトルでの旅の締めくくり。この後VAN組はバンクーバーへ出発。</div>
-            </div>
-          </div>
-          <div class="itl-item">
-            <div class="itl-dot"></div>
-            <div class="itl-body">
-              <div class="itl-time">22:00 PDT</div>
-              <div class="itl-title">Packing / 荷造り</div>
-              <div class="itl-sub">翌朝出発に備えてパッキング完了。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tips">
-        <h4><span class="ic" data-ic="info" data-size="13"></span>帰国前チェック / Pre-departure Checklist</h4>
-        <ul>
-          <li>スーツケース重量確認（通常23kg上限）</li>
-          <li>液体物100ml以下 → 透明ジップ袋 or 預け荷物へ</li>
-          <li>LEGOやコレクターグッズはしっかり梱包</li>
-          <li>Visit Japan Web（税関申告）に登録</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- ───── DAY 6 ───── -->
-  <div class="day-card travel" id="day6" data-anchor>
-    <button class="day-head">
-      <div class="day-num"><span class="day-num-pre">DAY</span>06</div>
-      <div class="day-title">
-        <span class="day-label ret">
-          <span class="ic" data-ic="plane-landing" data-size="10"></span>帰国日
-        </span>
-        <div class="day-h2">Return to Japan</div>
-        <div class="day-date">7月8日 (水) ・ SEA 13:25 PDT → NRT 7/9 15:30 JST</div>
-      </div>
-      <div class="day-chev"><span class="ic" data-ic="chevron-down" data-size="14"></span></div>
+    <button class="bn-btn" data-target="overview">
+      <span class="ic" data-ic="list" data-size="20"></span>
+      概要
     </button>
-    <div class="day-body">
+    <button class="bn-btn" data-target="days">
+      <span class="ic" data-ic="calendar" data-size="20"></span>
+      旅程
+    </button>
+    <button class="bn-btn" data-target="rules">
+      <span class="ic" data-ic="building" data-size="20"></span>
+      観戦
+    </button>
+    <button class="bn-btn" data-target="sos">
+      <span class="ic" data-ic="alert-triangle" data-size="20"></span>
+      緊急
+    </button>
+  </nav>
 
-      <div class="day-section" style="padding-top:16px">
-        <div class="vc vc-flight auto" style="margin:0 0 8px">
-          <div class="vc-bg"></div>
-          <div class="vc-scrim"></div>
-          <div class="vc-flight-route" style="padding-top:18px">
-            <div class="vc-iata">SEA</div>
-            <div class="vc-arrow-line"></div>
-            <div class="vc-iata">NRT</div>
-          </div>
-          <div class="vc-flight-meta">JAPAN AIRLINES JL067 ・ 10h 5min</div>
-          <div class="vc-flight-row">
-            <div class="col">
-              <div class="lbl">Departure</div>
-              <strong>13:25<span class="tz-tag p">PDT</span></strong>
-              <div style="font-size:.62rem;color:var(--muted)">7/8(水)</div>
-            </div>
-            <div class="col" style="text-align:right;align-items:flex-end">
-              <div class="lbl">Arrival</div>
-              <strong>15:30<span class="tz-tag j">JST</span></strong>
-              <div style="font-size:.62rem;color:var(--muted)">7/9(木)</div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div id="toast">📋 コピーしました</div>
 
-      <div class="day-section">
-        <div class="day-section-title">
-          <span class="ic" data-ic="clock" data-size="13"></span>TIMELINE
-        </div>
-        <div class="inline-tl" style="padding:0">
-          <div class="itl-item">
-            <div class="itl-dot"></div>
-            <div class="itl-body">
-              <div class="itl-time">〜12:00 PDT</div>
-              <div class="itl-title">Mayflower Park Hotel チェックアウト</div>
-              <div class="itl-sub">チェックアウト期限は<strong>12:00</strong>。荷物をまとめてSEAタックへ！</div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
-      <div class="tips">
-        <h4><span class="ic" data-ic="info" data-size="13"></span>逆算スケジュール / Timeline (PDT)</h4>
-        <ul>
-          <li>〜12:00 PDT Mayflower Park Hotel チェックアウト</li>
-          <li>11:00〜11:30 PDT SEAタック到着目標</li>
-          <li>12:30 PDT JALチェックインカウンター</li>
-          <li>13:25 PDT JL067 出発 / Departure</li>
-          <li>JALチェックインは出発2〜3時間前</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+    /* ── Clocks ── */
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function tzClock(offsetH) {
+      const n = new Date();
+      const u = n.getTime() + n.getTimezoneOffset() * 60000;
+      const t = new Date(u + offsetH * 3600000);
+      return pad(t.getHours()) + ':' + pad(t.getMinutes());
+    }
+    function updateClocks() {
+      document.getElementById('clk-jst').textContent = tzClock(9);
+      document.getElementById('clk-pdt').textContent = tzClock(-7);
+    }
+    updateClocks(); setInterval(updateClocks, 30000);
 
-</div>
+    /* ── TZ toggle ── */
+    function setTZ(pdt) {
+      document.body.classList.toggle('pdt-mode', pdt);
+      document.getElementById('lbl-j').classList.toggle('active', !pdt);
+      document.getElementById('lbl-p').classList.toggle('active', pdt);
+    }
 
-<!-- ═══ STADIUM INFO ═══ -->
-<div class="sec-title" id="rules">
-  <span class="sec-tit-ic"><span class="ic" data-ic="building" data-size="16"></span></span>
-  STADIUM INFO
-  <span class="sec-title-sub">観戦ガイド</span>
-</div>
+    /* ── Copy to clipboard ── */
+    function copyText(t) {
+      const fn = navigator.clipboard ? navigator.clipboard.writeText(t) :
+        new Promise(r => { const a = document.createElement('textarea'); a.value = t; document.body.appendChild(a); a.select(); document.execCommand('copy'); document.body.removeChild(a); r(); });
+      fn.then(() => {
+        const el = document.getElementById('toast');
+        el.classList.add('show');
+        setTimeout(() => el.classList.remove('show'), 1600);
+      }).catch(() => { });
+    }
 
-<div class="card-grid" style="padding-top:0">
-  <div class="stadium-card">
-    <div class="vc-eyebrow" style="color:var(--accent);margin-bottom:8px">
-      <span class="ic" data-ic="map-pin" data-size="11"></span>VENUE
-    </div>
-    <div class="sc-name">LUMEN FIELD ・ SEATTLE</div>
-    <div class="sc-ja">800 Occidental Ave S, Seattle, WA 98134</div>
-    <div class="copy-row" style="margin-top:14px" onclick="copyText('Lumen Field, 800 Occidental Ave S, Seattle, WA 98134')">
-      <span class="copy-val">800 Occidental Ave S, Seattle, WA 98134</span>
-      <span class="copy-ic ic" data-ic="copy" data-size="13"></span>
-    </div>
-    <div class="vc-actions" style="padding:14px 0 0">
-      <a class="vc-btn vc-btn-accent" href="https://maps.google.com/maps?daddr=800+Occidental+Ave+S+Seattle+WA" target="_blank">
-        <span class="ic" data-ic="navigation" data-size="11"></span>Google Maps
-      </a>
-    </div>
-  </div>
+    /* ── Day-card accordion ── */
+    document.querySelectorAll('.day-card .day-head').forEach(head => {
+      head.addEventListener('click', e => {
+        const card = head.closest('.day-card');
+        card.classList.toggle('open');
+      });
+    });
 
-  <div class="grid-2">
-    <div class="info-tile">
-      <div class="info-tile-ic"><span class="ic" data-ic="package" data-size="14"></span></div>
-      <h4>Bags / 持込荷物</h4>
-      <p>クリアバッグのみ（12×6×12in）</p>
-    </div>
-    <div class="info-tile">
-      <div class="info-tile-ic"><span class="ic" data-ic="camera" data-size="14"></span></div>
-      <h4>Camera / カメラ</h4>
-      <p>スマホOK。一眼・PC禁止</p>
-    </div>
-    <div class="info-tile">
-      <div class="info-tile-ic"><span class="ic" data-ic="coffee" data-size="14"></span></div>
-      <h4>Drinks / 飲物</h4>
-      <p>未開封水のみ</p>
-    </div>
-    <div class="info-tile">
-      <div class="info-tile-ic"><span class="ic" data-ic="clock" data-size="14"></span></div>
-      <h4>Arrive / 到着</h4>
-      <p>2〜3時間前推奨</p>
-    </div>
-    <div class="info-tile">
-      <div class="info-tile-ic"><span class="ic" data-ic="bus" data-size="14"></span></div>
-      <h4>Transit / 交通</h4>
-      <p>Link「Stadium」駅すぐ</p>
-    </div>
-    <div class="info-tile">
-      <div class="info-tile-ic"><span class="ic" data-ic="ticket" data-size="14"></span></div>
-      <h4>Tickets</h4>
-      <p>FIFA公式アプリ ＋ スクショbackup</p>
-    </div>
-  </div>
-</div>
+    /* ── Section nav scroll ── */
+    function scrollToTarget(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const offset = 54 + 48;
+      const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+    document.querySelectorAll('.snav-btn[data-target], .bn-btn[data-target]').forEach(btn => {
+      btn.addEventListener('click', () => scrollToTarget(btn.dataset.target));
+    });
 
-<!-- ═══ EMERGENCY ═══ -->
-<div class="sec-title" id="sos">
-  <span class="sec-tit-ic" style="background:rgba(255,77,77,.14);color:var(--red);border-color:rgba(255,77,77,.28)">
-    <span class="ic" data-ic="alert-triangle" data-size="16"></span>
-  </span>
-  EMERGENCY
-  <span class="sec-title-sub">緊急連絡</span>
-</div>
+    /* ── Active section detection (snav) ── */
+    const sectionIds = ['top', 'overview', 'acc', 'days', 'rules', 'sos'];
+    const sects = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+    function updateActive() {
+      const y = window.scrollY + 120;
+      let cur = sectionIds[0];
+      sects.forEach(s => { if (s.offsetTop <= y) cur = s.id; });
+      document.querySelectorAll('.snav-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.target === cur);
+      });
+      document.querySelectorAll('.bn-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.target === cur);
+      });
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
 
-<div class="card-grid" style="padding-top:0">
-  <div class="grid-2">
-    <div class="info-tile" style="border-color:rgba(255,77,77,.24);background:rgba(255,77,77,.05)">
-      <div class="info-tile-ic" style="background:rgba(255,77,77,.14);color:var(--red);border-color:rgba(255,77,77,.28)">
-        <span class="ic" data-ic="phone" data-size="14"></span>
-      </div>
-      <h4>Emergency / 緊急</h4>
-      <p>📞 <strong style="color:var(--red)">911</strong>（米国共通）</p>
-    </div>
-    <div class="info-tile">
-      <div class="info-tile-ic"><span class="ic" data-ic="flag" data-size="14"></span></div>
-      <h4>在シアトル日本総領事館</h4>
-      <p onclick="copyText('(206) 682-9107')" style="cursor:pointer">📞 (206) 682-9107 📋</p>
-    </div>
-    <div class="info-tile">
-      <div class="info-tile-ic"><span class="ic" data-ic="globe" data-size="14"></span></div>
-      <h4>Exchange Rate</h4>
-      <p>1 USD ≈ 150円</p>
-    </div>
-    <div class="info-tile">
-      <div class="info-tile-ic"><span class="ic" data-ic="wifi" data-size="14"></span></div>
-      <h4>SIM / 通信</h4>
-      <p>eSIM / 国際ローミングを事前設定</p>
-    </div>
-    <div class="info-tile">
-      <div class="info-tile-ic"><span class="ic" data-ic="cloud-sun" data-size="14"></span></div>
-      <h4>Weather / 気候</h4>
-      <p>7月: 最高24℃・夜15℃</p>
-    </div>
-    <div class="info-tile">
-      <div class="info-tile-ic"><span class="ic" data-ic="refresh" data-size="14"></span></div>
-      <h4>Offline / オフライン</h4>
-      <p>機内モードでも閲覧可（PWA）</p>
-    </div>
-  </div>
-</div>
+    /* ── Auto-open today's day card ── */
+    (function () {
+      const d = new Date();
+      const m = d.getMonth() + 1, day = d.getDate();
+      const map = { '7-3': 'day1', '7-4': 'day2', '7-5': 'day3', '7-6': 'day4', '7-7': 'day5', '7-8': 'day6' };
+      const key = m + '-' + day;
+      const target = map[key];
+      if (target) {
+        document.querySelectorAll('.day-card.open').forEach(c => c.classList.remove('open'));
+        const el = document.getElementById(target);
+        if (el) el.classList.add('open');
+      }
+    })();
 
-<footer>
-  <div class="ft-mark">SEA組 ・ SEATTLE 2026</div>
-  <div class="ft-sub">Match 94 ・ Round of 16 ・ Lumen Field ・ July 6, 17:00 PDT</div>
-  <div class="ft-meta">JAL JL068 NRT→SEA ／ JL067 SEA→NRT</div>
-</footer>
-
-<!-- BOTTOM NAV -->
-<nav class="bn">
-  <button class="bn-btn active" data-target="top">
-    <span class="ic" data-ic="home" data-size="20"></span>
-    TOP
-  </button>
-  <button class="bn-btn" data-target="overview">
-    <span class="ic" data-ic="list" data-size="20"></span>
-    概要
-  </button>
-  <button class="bn-btn" data-target="days">
-    <span class="ic" data-ic="calendar" data-size="20"></span>
-    旅程
-  </button>
-  <button class="bn-btn" data-target="rules">
-    <span class="ic" data-ic="building" data-size="20"></span>
-    観戦
-  </button>
-  <button class="bn-btn" data-target="sos">
-    <span class="ic" data-ic="alert-triangle" data-size="20"></span>
-    緊急
-  </button>
-</nav>
-
-<div id="toast">📋 コピーしました</div>
-
-<script>
-if('scrollRestoration' in history) history.scrollRestoration='manual';
-
-/* ── Clocks ── */
-function pad(n){return String(n).padStart(2,'0');}
-function tzClock(offsetH){
-  const n = new Date();
-  const u = n.getTime() + n.getTimezoneOffset()*60000;
-  const t = new Date(u + offsetH*3600000);
-  return pad(t.getHours())+':'+pad(t.getMinutes());
-}
-function updateClocks(){
-  document.getElementById('clk-jst').textContent = tzClock(9);
-  document.getElementById('clk-pdt').textContent = tzClock(-7);
-}
-updateClocks(); setInterval(updateClocks, 30000);
-
-/* ── TZ toggle ── */
-function setTZ(pdt){
-  document.body.classList.toggle('pdt-mode', pdt);
-  document.getElementById('lbl-j').classList.toggle('active', !pdt);
-  document.getElementById('lbl-p').classList.toggle('active', pdt);
-}
-
-/* ── Copy to clipboard ── */
-function copyText(t){
-  const fn = navigator.clipboard ? navigator.clipboard.writeText(t) :
-    new Promise(r=>{const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');document.body.removeChild(a);r();});
-  fn.then(()=>{
-    const el = document.getElementById('toast');
-    el.classList.add('show');
-    setTimeout(()=>el.classList.remove('show'),1600);
-  }).catch(()=>{});
-}
-
-/* ── Day-card accordion ── */
-document.querySelectorAll('.day-card .day-head').forEach(head=>{
-  head.addEventListener('click', e=>{
-    const card = head.closest('.day-card');
-    card.classList.toggle('open');
-  });
-});
-
-/* ── Section nav scroll ── */
-function scrollToTarget(id){
-  const el = document.getElementById(id);
-  if(!el) return;
-  const offset = 54 + 48;
-  const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-  window.scrollTo({top, behavior:'smooth'});
-}
-document.querySelectorAll('.snav-btn[data-target], .bn-btn[data-target]').forEach(btn=>{
-  btn.addEventListener('click', ()=>scrollToTarget(btn.dataset.target));
-});
-
-/* ── Active section detection (snav) ── */
-const sectionIds = ['top','overview','acc','days','rules','sos'];
-const sects = sectionIds.map(id=>document.getElementById(id)).filter(Boolean);
-function updateActive(){
-  const y = window.scrollY + 120;
-  let cur = sectionIds[0];
-  sects.forEach(s=>{ if(s.offsetTop <= y) cur = s.id; });
-  document.querySelectorAll('.snav-btn').forEach(b=>{
-    b.classList.toggle('active', b.dataset.target===cur);
-  });
-  document.querySelectorAll('.bn-btn').forEach(b=>{
-    b.classList.toggle('active', b.dataset.target===cur);
-  });
-}
-window.addEventListener('scroll', updateActive, {passive:true});
-updateActive();
-
-/* ── Auto-open today's day card ── */
-(function(){
-  const d = new Date();
-  const m = d.getMonth()+1, day = d.getDate();
-  const map = {'7-3':'day1','7-4':'day2','7-5':'day3','7-6':'day4','7-7':'day5','7-8':'day6'};
-  const key = m+'-'+day;
-  const target = map[key];
-  if(target){
-    document.querySelectorAll('.day-card.open').forEach(c=>c.classList.remove('open'));
-    const el = document.getElementById(target);
-    if(el) el.classList.add('open');
-  }
-})();
-
-/* ── Service worker ── */
-if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('../sw.js').catch(()=>{}));
-}
-</script>
+    /* ── Service worker ── */
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('../sw.js').catch(() => { }));
+    }
+  </script>
 </body>
+
 </html>
