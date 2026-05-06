@@ -1,4 +1,4 @@
-const CACHE = 'fwc2026-v8';
+const CACHE = 'fwc2026-v9';
 const ASSETS = [
   '/fwc2026/',
   '/fwc2026/index.html',
